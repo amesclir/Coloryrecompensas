@@ -1,0 +1,209 @@
+---
+title: "Color y recompensas"
+author: "Marcial"
+date: "01/09/2019"
+output: html_document
+---
+1. Install and load packages
+
+```{r}
+#install.packages("picante")
+#This will install also package dependences
+library(picante)
+#This will also load package dependences
+#library(ape)
+#library(vegan)
+#library(permute)
+#library(lattice)
+#library(nlme)
+
+#install.packages("brranching")
+library(brranching)
+
+```
+
+
+3. Frequency matrix.
+
+```{r}
+mydata <- read.csv("mydata.csv", sep = ",", header=TRUE, stringsAsFactors=FALSE, fileEncoding="latin1")
+mydata
+
+```
+
+
+
+3. Create your tree and plot
+
+```{r}
+
+?phylomatic
+###FIRST SOME EXAMPLE OF HOW TO GET A PHYLOGENY USING A PHYLOMATIC APPROACH
+
+## Not run:
+# Input taxonomic names
+taxa <- c("Poa annua", "Phlox diffusa", "Helianthus annuus")
+tree <- phylomatic(taxa=taxa, get = 'POST')
+plot(tree, no.margin=TRUE)
+
+# Genus names
+taxa <- c("Poa", "Phlox", "Helianthus")
+tree <- phylomatic(taxa=taxa, storedtree='R20120829', get='POST')
+plot(tree, no.margin=TRUE)
+
+# Lots of names
+taxa <- c("Poa annua", "Collomia grandiflora", "Lilium lankongense", "Phlox diffusa", "Iteadaphne caudata", "Gagea sarmentosa", "Helianthus annuus")
+tree <- phylomatic(taxa=taxa, get ='POST')
+plot(tree, no.margin=TRUE)
+
+# Don't clean - clean=TRUE is default(tree <- phylomatic(taxa=taxa, clean = FALSE))
+## with clean=FALSE, you can get non-splitting nodes, which you
+## need to collpase before plotting
+library('ape')
+plot(collapse.singles(tree), no.margin=TRUE)
+# Output NeXML format
+taxa <- c("Gonocarpus leptothecus", "Gonocarpus leptothecus", "Lilium lankongense")
+out <- phylomatic(taxa=taxa, get ='POST', outformat = "nexml")
+cat(out)
+# Lots of names, note that when you have enough names (number depends on length of individual
+# names, so there's no per se rule), you will get an error when using \code{get='GET'},
+# when that happens use \code{get='POST'}
+library("taxize")
+spp <- names_list("species", 500)
+# phylomatic(taxa = spp, get = "GET")
+(out <- phylomatic(taxa = spp, get = "POST"))
+plot(out)
+# Pass in a tree from a URL on the web
+spp <- c("Abies_nordmanniana", "Abies_bornmuelleriana", "Abies_cilicica", "Abies_cephalonica",
+"Abies_numidica", "Abies_pinsapo", "Abies_alba")
+url <- "http://datadryad.org/bitstream/handle/10255/dryad.8791/final_tree.tre?sequence=1"
+phylomatic(taxa=spp, treeuri=url)
+
+
+#Here we are going to create species tree of the species sampled during field work
+### .....
+
+
+taxa <- as.character(mydata[,2])
+mytree <- phylomatic(taxa=taxa, get = 'POST')
+plot(mytree, no.margin=TRUE, cex = 0.8)
+
+mytree2 <- phylomatic(taxa=taxa, get = 'POST', storedtree = "zanne2014")
+plot(mytree2, no.margin=TRUE, cex = 0.8)
+
+write.tree(mytree, file = "mytree.tree")
+write.tree(mytree2, file = "mytree2.tree")
+
+###let's try to improve the species list and then getting the tree again
+sp_list <- mydata[,2]
+sp_list_phylocom = brranching::phylomatic_names(sp_list, 
+                                                format = "isubmit", 
+                                                db = "ncbi")
+mytree3 <- phylomatic(taxa=sp_list_phylocom, get = 'POST', storedtree = "zanne2014")
+
+mytree3 <- phylomatic(taxa=sp_list_phylocom2, get = 'POST', storedtree = "zanne2014")
+write.tree(mytree3, file = "mytree3.tree")
+```
+
+
+4. Calculate phylogenetic diversity statistics.
+
+```{r}
+mydata[,1] <- tolower(mydata[,1])
+mydata[,1] <- chartr(" ", "_", mydata[,1])
+setdiff(mydata[,1], mytree$tip.label)
+setdiff(mytree$tip.label,mydata[,1])
+
+mytree2$tip.label <- tolower(mytree2$tip.label)
+setdiff(mydata[,1], mytree2$tip.label)
+setdiff(mytree2$tip.label,mydata[,1])
+
+class(mytree) <- "phylo"
+class(mytree2) <- "phylo"
+
+color.plot.phylo(mytree2, mydata, "Caliza_1", "Specie", leg.cex = 0.6, main = "Caliza_1") 
+color.plot.phylo(mytree2, mydata, "Caliza_2","Specie", leg.cex = 0.6, main = "Caliza_2") 
+color.plot.phylo(mytree2, mydata, "Dolomia_1", "Specie", leg.cex = 0.6, main = "Dolomia_1") 
+color.plot.phylo(mytree2, mydata, "Dolomia_2", "Specie", leg.cex = 0.6, main = "Dolomia_2") 
+color.plot.phylo(mytree2, mydata, "Brezal_1", "Specie", leg.cex = 0.6, main = "Brezal_1") 
+color.plot.phylo(mytree2, mydata, "Brezal_2", "Specie", leg.cex = 0.6, main = "Brezal_2") 
+color.plot.phylo(mytree2, mydata, "Brezal_3", "Specie", leg.cex = 0.6, main = "Brezal_3") 
+color.plot.phylo(mytree2, mydata, "Brezal_4", "Specie", leg.cex = 0.6, main = "Brezal_4") 
+color.plot.phylo(mytree2, mydata, "Alcornocal_1", "Specie", leg.cex = 0.6, main = "Alcornocal_1") 
+color.plot.phylo(mytree2, mydata, "Alcornocal_2", "Specie", leg.cex = 0.6, main = "Alcornocal_2") 
+color.plot.phylo(mytree2, mydata, "Alcornocal_3", "Specie", leg.cex = 0.6, main = "Alcornocal_3") 
+color.plot.phylo(mytree2, mydata, "Quejigal_1", "Specie", leg.cex = 0.6, main = "Quejigal_1") 
+color.plot.phylo(mytree2, mydata, "Quejigal_2", "Specie", leg.cex = 0.6, main = "Quejigal_2") 
+color.plot.phylo(mytree2, mydata, "Quejigal_3", "Specie", leg.cex = 0.6, main = "Quejigal_3") 
+
+
+?pd
+#Explore the function and run the examples
+
+rownames(mydata) = mydata[,1]
+
+mypd <- pd(t(mydata[,-c(1)]), mytree2, include.root=TRUE)
+mypd
+
+?mpd
+#Explore the function and run the examples
+
+mympd <- mpd(t(mydata[,-c(1)]), cophenetic(mytree2), abundance.weighted=T)
+mympd
+myresults1 <- cbind(mypd, mympd)
+
+?mntd
+#Explore the function and run the examples
+
+mymntd <- mntd(t(mydata[,-c(1)]), cophenetic(mytree2), abundance.weighted=T)
+mymntd
+myresults2 <- cbind(myresults1, mymntd)
+colnames(myresults2) <- c("PD", "SR", "MPD", "MNTD")
+myresults2
+write.table(myresults2, file = "diversity_index_results.txt")
+
+mycomdist <- comdist(t(mydata[,-c(1)]), cophenetic(mytree2), abundance.weighted=T)
+library(cluster)
+mycomdist.clusters <- hclust(mycomdist)
+plot(mycomdist.clusters, main = "Dendrogram based on beta MPD")
+
+mycomdistnt1 <- comdistnt(t(mydata[,-c(1,2)]), cophenetic(mytree2), abundance.weighted=F, exclude.conspecifics = T)
+mycomdistnt1.clusters <- hclust(mycomdistnt1)
+plot(mycomdistnt1.clusters, main = "Dendrogram based on beta MNTD excluding conspecifics")
+
+mycomdistnt2 <- comdistnt(t(mydata[,-c(1,2)]), cophenetic(mytree2), abundance.weighted=F, exclude.conspecifics = F)
+mycomdistnt2.clusters <- hclust(mycomdistnt2)
+plot(mycomdistnt2.clusters, main = "Dendrogram based on beta MNTD including conspecifics")
+
+
+```
+
+
+5. Finally we are going to check for phylogenetic clustering and overdispersion
+```{r}
+my.ses.pd <- ses.pd(t(mydata[,-c(1)]), mytree2, null.model = "taxa.labels",
+runs = 999)
+my.ses.pd
+write.table(my.ses.pd, file="ses.pd.result.txt")
+
+my.ses.mpd <- ses.mpd(t(mydata[,-c(1)]), cophenetic(mytree2), null.model = "taxa.labels",
+abundance.weighted = T, runs = 999)
+my.ses.mpd
+write.table(my.ses.mpd, file="ses.mpd.result.txt")
+
+
+my.ses.mntd <- ses.mntd(t(mydata[,-c(1)]), cophenetic(mytree2), null.model = "taxa.labels",
+abundance.weighted = T, runs = 999)
+my.ses.mntd
+write.table(my.ses.mntd, file="ses.mntd.result.txt")
+
+
+
+comm.phylo.cor.r <- comm.phylo.cor(t(mydata[,-c(1)]), mytree2, metric="cij",null.model="sample.taxa.labels")
+comm.phylo.cor.r
+par(mai=c(1.02,0.82,0.82,0.42))
+hist(comm.phylo.cor.r$random.corrs)
+abline(v=comm.phylo.cor.r$obs.corr)
+
+```
+
