@@ -3,6 +3,8 @@ title: "Color y recompensas"
 author: "Marcial"
 date: "01/09/2019"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 1. Install and load packages
 
@@ -104,6 +106,33 @@ mytree3 <- phylomatic(taxa=sp_list_phylocom, get = 'POST', storedtree = "zanne20
 mytree3 <- phylomatic(taxa=sp_list_phylocom2, get = 'POST', storedtree = "zanne2014")
 write.tree(mytree3, file = "mytree3.tree")
 ```
+
+
+
+```{r}
+library(caper)
+write(mytree2$tip.label, "tips.txt")
+
+mydata2 <- read.csv("mydata2.csv", sep = ",", header=TRUE, stringsAsFactors=FALSE, fileEncoding="latin1")
+mydata2
+
+names(mydata2)
+
+color <- comparative.data(mytree2, mydata2, X2.Especies2, vcv=TRUE, vcv.dim=3)
+
+
+
+result1 <- pgls(X27.Hue ~ X31.MeanAbsGC, color)
+
+result2 <- pgls(X17.TamanofloralX ~ X11.Polenn, color)
+
+result3 <- pgls(X17.TamanofloralX ~ X31.MeanAbsGC, color)
+
+mydata[,9]
+
+```
+
+
 
 
 4. Calculate phylogenetic diversity statistics.
