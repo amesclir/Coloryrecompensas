@@ -118,18 +118,57 @@ mydata2
 
 names(mydata2)
 
-color <- comparative.data(mytree2, mydata2, X2.Especies2, vcv=TRUE, vcv.dim=3)
+color <- comparative.data(mytree2, mydata2, X2.Especies2, vcv=TRUE, vcv.dim=2)
+
+setdiff(mydata2$X2.Especies2, mytree2$tip.label)
+setdiff(mytree2$tip.label,mydata2$X2.Especies2)
 
 
-
-result1 <- pgls(X27.Hue ~ X31.MeanAbsGC, color)
-
-result2 <- pgls(X17.TamanofloralX ~ X11.Polenn, color)
-
-result3 <- pgls(X17.TamanofloralX ~ X31.MeanAbsGC, color)
-
-mydata[,9]
-
+    result1 <- pgls(X6.AzucarX ~ X12.Volumenpolen.flor.mm3., color)
+    summary(result1)
+    result2 <- pgls(X6.AzucarX ~ X17.TamanofloralX, color)
+    summary(result2)
+    result3 <- pgls(X6.AzucarX ~ X27.Hue, color)
+    summary(result3)
+    result4 <- pgls(X8.AzucarConcen ~ X9.PolenX, color)
+    summary(result4)
+    result5 <- pgls(X8.AzucarConcen ~ X12.Volumenpolen.flor.mm3., color)
+    summary(result5)
+    result6 <- pgls(X8.AzucarConcen ~ X17.TamanofloralX, color)
+    summary(result6)
+    result7 <- pgls(X8.AzucarConcen ~ X28.Brightness, color)
+    summary(result7)
+    result8 <- pgls(X8.AzucarConcen ~ X30.UVChroma, color)
+    summary(result8)
+    result9 <- pgls(X9.PolenX ~ X8.AzucarConcen, color)
+    summary(result9)
+    result10 <- pgls(X9.PolenX ~ X17.TamanofloralX, color)
+    summary(result10)
+    result11 <- pgls(X9.PolenX ~ X32.Dist.0, color)
+    summary(result11)
+    result12 <- pgls(X12.Volumenpolen.flor.mm3. ~ X6.AzucarX, color)
+    summary(result12)
+    result13 <- pgls(X12.Volumenpolen.flor.mm3. ~ X8.AzucarConcen, color)
+    summary(result13)
+    result14 <- pgls(X12.Volumenpolen.flor.mm3. ~ X17.TamanofloralX, color)
+    summary(result14)
+    result15 <- pgls(X12.Volumenpolen.flor.mm3. ~ X28.Brightness, color)
+    summary(result15)
+    result16 <- pgls(X12.Volumenpolen.flor.mm3. ~ X31.MeanAbsGC, color)
+    summary(result16)
+    result17 <- pgls(X17.TamanofloralX ~ X6.AzucarX, color)
+    summary(result17)
+    result18 <- pgls(X17.TamanofloralX ~ X8.AzucarConcen, color)
+    summary(result18)
+    result19 <- pgls(X17.TamanofloralX ~ X9.PolenX, color)
+    summary(result19)
+    result20 <- pgls(X17.TamanofloralX ~ X12.Volumenpolen.flor.mm3., color)
+    summary(result20)
+    result21 <- pgls(X17.TamanofloralX ~ X28.Brightness, color)
+    summary(result21)
+    result22 <- pgls(X17.TamanofloralX ~ X31.MeanAbsGC, color)
+    summary(result22)
+    
 ```
 
 
