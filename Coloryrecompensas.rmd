@@ -181,104 +181,34 @@ color$dropped
 
 
 
-4. Calculate phylogenetic diversity statistics.
-
 ```{r, echo = F}
-mydata[,1] <- tolower(mydata[,1])
-mydata[,1] <- chartr(" ", "_", mydata[,1])
-setdiff(mydata[,1], mytree$tip.label)
-setdiff(mytree$tip.label,mydata[,1])
 
-mytree2$tip.label <- tolower(mytree2$tip.label)
-setdiff(mydata[,1], mytree2$tip.label)
-setdiff(mytree2$tip.label,mydata[,1])
-
-class(mytree) <- "phylo"
-class(mytree2) <- "phylo"
-
-color.plot.phylo(mytree2, mydata, "Caliza_1", "Specie", leg.cex = 0.6, main = "Caliza_1") 
-color.plot.phylo(mytree2, mydata, "Caliza_2","Specie", leg.cex = 0.6, main = "Caliza_2") 
-color.plot.phylo(mytree2, mydata, "Dolomia_1", "Specie", leg.cex = 0.6, main = "Dolomia_1") 
-color.plot.phylo(mytree2, mydata, "Dolomia_2", "Specie", leg.cex = 0.6, main = "Dolomia_2") 
-color.plot.phylo(mytree2, mydata, "Brezal_1", "Specie", leg.cex = 0.6, main = "Brezal_1") 
-color.plot.phylo(mytree2, mydata, "Brezal_2", "Specie", leg.cex = 0.6, main = "Brezal_2") 
-color.plot.phylo(mytree2, mydata, "Brezal_3", "Specie", leg.cex = 0.6, main = "Brezal_3") 
-color.plot.phylo(mytree2, mydata, "Brezal_4", "Specie", leg.cex = 0.6, main = "Brezal_4") 
-color.plot.phylo(mytree2, mydata, "Alcornocal_1", "Specie", leg.cex = 0.6, main = "Alcornocal_1") 
-color.plot.phylo(mytree2, mydata, "Alcornocal_2", "Specie", leg.cex = 0.6, main = "Alcornocal_2") 
-color.plot.phylo(mytree2, mydata, "Alcornocal_3", "Specie", leg.cex = 0.6, main = "Alcornocal_3") 
-color.plot.phylo(mytree2, mydata, "Quejigal_1", "Specie", leg.cex = 0.6, main = "Quejigal_1") 
-color.plot.phylo(mytree2, mydata, "Quejigal_2", "Specie", leg.cex = 0.6, main = "Quejigal_2") 
-color.plot.phylo(mytree2, mydata, "Quejigal_3", "Specie", leg.cex = 0.6, main = "Quejigal_3") 
-
-
-?pd
-#Explore the function and run the examples
-
-rownames(mydata) = mydata[,1]
-
-mypd <- pd(t(mydata[,-c(1)]), mytree2, include.root=TRUE)
-mypd
-
-?mpd
-#Explore the function and run the examples
-
-mympd <- mpd(t(mydata[,-c(1)]), cophenetic(mytree2), abundance.weighted=T)
-mympd
-myresults1 <- cbind(mypd, mympd)
-
-?mntd
-#Explore the function and run the examples
-
-mymntd <- mntd(t(mydata[,-c(1)]), cophenetic(mytree2), abundance.weighted=T)
-mymntd
-myresults2 <- cbind(myresults1, mymntd)
-colnames(myresults2) <- c("PD", "SR", "MPD", "MNTD")
-myresults2
-write.table(myresults2, file = "diversity_index_results.txt")
-
-mycomdist <- comdist(t(mydata[,-c(1)]), cophenetic(mytree2), abundance.weighted=T)
-library(cluster)
-mycomdist.clusters <- hclust(mycomdist)
-plot(mycomdist.clusters, main = "Dendrogram based on beta MPD")
-
-mycomdistnt1 <- comdistnt(t(mydata[,-c(1,2)]), cophenetic(mytree2), abundance.weighted=F, exclude.conspecifics = T)
-mycomdistnt1.clusters <- hclust(mycomdistnt1)
-plot(mycomdistnt1.clusters, main = "Dendrogram based on beta MNTD excluding conspecifics")
-
-mycomdistnt2 <- comdistnt(t(mydata[,-c(1,2)]), cophenetic(mytree2), abundance.weighted=F, exclude.conspecifics = F)
-mycomdistnt2.clusters <- hclust(mycomdistnt2)
-plot(mycomdistnt2.clusters, main = "Dendrogram based on beta MNTD including conspecifics")
+lambda.resultf1 <- pgls(X3.MSUG ~ 1, color, lambda = "ML")
+    summary(lambda.resultf1)
+lambda.resultf2 <- pgls(X4.CSUG ~ 1, color, lambda = "ML")
+    summary(lambda.resultf2)
+lambda.resultf3 <- pgls(X5.NPOL ~ 1, color, lambda = "ML")
+    summary(lambda.resultf3)
+lambda.resultf4 <- pgls(X6.VPOL ~ 1, color, lambda = "ML")
+    summary(lambda.resultf4)
+lambda.resultf5 <- pgls(X9.SIZ ~ 1, color, lambda = "ML")
+    summary(lambda.resultf5)
+lambda.resultf6 <- pgls(X12.HUE ~ 1, color, lambda = "ML")
+    summary(lambda.resultf6)
+lambda.resultf7 <- pgls(X13.BRI ~ 1, color, lambda = "ML")
+    summary(lambda.resultf7)
+lambda.resultf8 <- pgls(X14.CHR ~ 1, color, lambda = "ML")
+    summary(lambda.resultf8)
+lambda.resultf9 <- pgls(X15.UV ~ 1, color, lambda = "ML")
+    summary(lambda.resultf9)
+lambda.resultf10 <- pgls(X16.GC ~ 1, color, lambda = "ML")
+    summary(lambda.resultf10)
+lambda.resultf11 <- pgls(X17.DIST ~ 1, color, lambda = "ML")
+    summary(lambda.resultf11)
+    
+    
 
 
-```
-
-
-5. Finally we are going to check for phylogenetic clustering and overdispersion
-```{r, echo = F}
-my.ses.pd <- ses.pd(t(mydata[,-c(1)]), mytree2, null.model = "taxa.labels",
-runs = 999)
-my.ses.pd
-write.table(my.ses.pd, file="ses.pd.result.txt")
-
-my.ses.mpd <- ses.mpd(t(mydata[,-c(1)]), cophenetic(mytree2), null.model = "taxa.labels",
-abundance.weighted = T, runs = 999)
-my.ses.mpd
-write.table(my.ses.mpd, file="ses.mpd.result.txt")
-
-
-my.ses.mntd <- ses.mntd(t(mydata[,-c(1)]), cophenetic(mytree2), null.model = "taxa.labels",
-abundance.weighted = T, runs = 999)
-my.ses.mntd
-write.table(my.ses.mntd, file="ses.mntd.result.txt")
-
-
-
-comm.phylo.cor.r <- comm.phylo.cor(t(mydata[,-c(1)]), mytree2, metric="cij",null.model="sample.taxa.labels")
-comm.phylo.cor.r
-par(mai=c(1.02,0.82,0.82,0.42))
-hist(comm.phylo.cor.r$random.corrs)
-abline(v=comm.phylo.cor.r$obs.corr)
-
+    
 ```
 
