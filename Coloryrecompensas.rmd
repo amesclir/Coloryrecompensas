@@ -212,3 +212,35 @@ lambda.resultf11 <- pgls(X17.DIST ~ 1, color, lambda = "ML")
     
 ```
 
+Plotting
+
+```{r, echo = F}
+
+library(devtools)
+install_github("liamrevell/phytools")
+library(phytools)
+
+rownames(mydata) <- as.character(mydata$X2.Especies2)
+colors<-colorRampPalette(colors=heat.colors(100, alpha = 1))(100)
+phylo.heatmap(mytree2,mydata[,c(6,7,8,9,12,15,16,17,18,19,20)],ftype="i", fsize = c(0.3,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = T, split=c(0.75,0.25))
+
+
+mytiplabels <- mydata$X2.Especies2
+names(mytiplabels) = mydata$X2.SP
+mytiplabels
+names(mytiplabels)[match(mytree2$tip.label,mytiplabels)]
+mytree3<-mytree2
+mytree3$tip.label <- as.character(names(mytiplabels)[match(mytree2$tip.label,mytiplabels)])
+mytree3
+
+traits <- mydata[,c(6,7,8,9,12,15,16,17,18,19,20)]
+colnames(traits) <- c("Sugar Mass", "Sugar Conc.", "Pollen Num.", "Pollen Vol.", "Flow. Size", "HUE", "BRI", "CHR", "UV", "GC", "DIST")
+mydata$X2.SP <- gsub('([[:punct:]])|\\s+','_',mydata$X2.SP)
+rownames(traits) <- as.character(mydata[,3])
+mytree3$tip.label <- gsub('([[:punct:]])|\\s+','_',mytree3$tip.label)
+colors<-colorRampPalette(colors=heat.colors(100, alpha = 1))(100)
+phylo.heatmap(mytree3,traits,ftype="i", fsize = c(0.35,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = T, split=c(0.75,0.25))
+
+
+```
+
