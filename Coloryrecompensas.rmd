@@ -44,7 +44,7 @@ mytree <- phylomatic(taxa=taxa,get = 'POST', storedtree = "zanne2014",nodes = FA
 plot(mytree, no.margin=TRUE, cex = 0.8)
 
 names(mytree)
-mytree$node.label <- ""
+mytree$node.label <- NULL
 
 write.tree(mytree, file = "mytree.tree")
 
@@ -68,7 +68,7 @@ color <- comparative.data(mytree2, mydata, X2.Especies2, vcv=TRUE, vcv.dim=2, na
 plot(color$phy)
 color$phy
 color$dropped
-
+dim(color$vcv)
     lambda.result1 <- pgls(X3.MSUG ~ X5.NPOL, color, lambda = "ML")
     summary(lambda.result1)
     lambda.result2 <- pgls(X3.MSUG ~ X6.VPOL, color, lambda = "ML")
@@ -216,13 +216,13 @@ Plotting
 
 ```{r, echo = F}
 
-library(devtools)
-install_github("liamrevell/phytools")
+#library(devtools)
+#install_github("liamrevell/phytools")
 library(phytools)
 
 rownames(mydata) <- as.character(mydata$X2.Especies2)
 colors<-colorRampPalette(colors=heat.colors(100, alpha = 1))(100)
-phylo.heatmap(mytree2,mydata[,c(6,7,8,9,12,15,16,17,18,19,20)],ftype="i", fsize = c(0.3,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = T, split=c(0.75,0.25))
+phylo.heatmap(mytree2,mydata[,c("X3.MSUG", "X4.CSUG", "X5.NPOL", "X6.VPOL", "X9.SIZ", "X12.HUE", "X13.BRI", "X14.CHR", "X15.UV", "X16.GC", "X17.DIST")],ftype="i", fsize = c(0.3,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = T, split=c(0.75,0.25))
 
 
 mytiplabels <- mydata$X2.Especies2
@@ -233,10 +233,10 @@ mytree3<-mytree2
 mytree3$tip.label <- as.character(names(mytiplabels)[match(mytree2$tip.label,mytiplabels)])
 mytree3
 
-traits <- mydata[,c(6,7,8,9,12,15,16,17,18,19,20)]
+traits <- mydata[,c("X3.MSUG", "X4.CSUG", "X5.NPOL", "X6.VPOL", "X9.SIZ", "X12.HUE", "X13.BRI", "X14.CHR", "X15.UV", "X16.GC", "X17.DIST")]
 colnames(traits) <- c("Sugar Mass", "Sugar Conc.", "Pollen Num.", "Pollen Vol.", "Flow. Size", "HUE", "BRI", "CHR", "UV", "GC", "DIST")
 mydata$X2.SP <- gsub('([[:punct:]])|\\s+','_',mydata$X2.SP)
-rownames(traits) <- as.character(mydata[,3])
+rownames(traits) <- as.character(mydata$X2.SP)
 mytree3$tip.label <- gsub('([[:punct:]])|\\s+','_',mytree3$tip.label)
 colors<-colorRampPalette(colors=heat.colors(100, alpha = 1))(100)
 phylo.heatmap(mytree3,traits,ftype="i", fsize = c(0.35,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = T, split=c(0.75,0.25))
