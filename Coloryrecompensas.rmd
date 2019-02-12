@@ -11,7 +11,7 @@ editor_options:
 ```{r, echo = F}
 #install.packages("picante")
 #This will install also package dependences
-library(picante)
+#library(picante)
 #This will also load package dependences
 #library(ape)
 #library(vegan)
@@ -41,6 +41,7 @@ mydata
 
 taxa <- as.character(mydata[,2])
 mytree <- phylomatic(taxa=taxa,get = 'POST', storedtree = "zanne2014",nodes = FALSE)
+mytree
 plot(mytree, no.margin=TRUE, cex = 0.8)
 
 names(mytree)
@@ -240,6 +241,81 @@ rownames(traits) <- as.character(mydata$X2.SP)
 mytree3$tip.label <- gsub('([[:punct:]])|\\s+','_',mytree3$tip.label)
 colors<-colorRampPalette(colors=heat.colors(100, alpha = 1))(100)
 phylo.heatmap(mytree3,traits,ftype="i", fsize = c(0.35,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = T, split=c(0.75,0.25))
+
+
+```
+
+Cathegorical variables
+
+```{r,  echo = F}
+
+    lambda.resultg1 <- pgls(X9.SIZ ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg1)
+    anova(lambda.resultg1)
+    lambda.resultg2 <- pgls(X5.NPOL ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg2)
+    lambda.resultg3 <- pgls(X6.VPOL ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg3)
+    lambda.resultg4 <- pgls(X12.HUE ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg4)
+    lambda.resultg5 <- pgls(X13.BRI ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg5)
+    lambda.resultg6 <- pgls(X14.CHR ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg6)
+    lambda.resultg7 <- pgls(X15.UV ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg7)
+    lambda.resultg8 <- pgls(X16.GC ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg8)
+    lambda.resultg9 <- pgls(X17.DIST ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg9)
+    lambda.resultg10 <- pgls(X3.MSUG ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg10)
+    lambda.resultg11 <- pgls(X4.CSUG ~ X10.SIM, color, lambda = "ML")
+    summary(lambda.resultg11)
+    
+    
+    lambda.resulth1 <- pgls(X9.SIZ ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth1)
+    lambda.resulth2 <- pgls(X5.NPOL ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth2)
+    lambda.resulth3 <- pgls(X6.VPOL ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth3)
+    lambda.resulth4 <- pgls(X12.HUE ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth4)
+    lambda.resulth5 <- pgls(X13.BRI ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth5)
+    lambda.resulth6 <- pgls(X14.CHR ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth6)
+    lambda.resulth7 <- pgls(X15.UV ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth7)
+    lambda.resulth8 <- pgls(X16.GC ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth8)
+    lambda.resulth9 <- pgls(X17.DIST ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth9)
+    lambda.resulth10 <- pgls(X3.MSUG ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth10)
+    lambda.resulth11 <- pgls(X4.CSUG ~ X18.CAT, color, lambda = "ML")
+    summary(lambda.resulth11)
+
+    
+
+```
+
+Phylogenetic signal of cathegorical variables
+
+```{r, echo = F}
+
+
+resulti1 <- phylo.d(mydata, mytree2, X2.Especies2, X10.SIM, permut = 1000, rnd.bias=NULL)
+summary(resulti1)
+
+###This is a method I have found to calculate phylogenetic signal for more than two categories
+library(geiger)
+hexagon <- mydata$X18.CAT
+names(hexagon) <- mydata$X2.Especies2
+mytree3 <- multi2di(mytree2)
+resulti1 <- fitDiscrete(mytree3, hexagon, model = "ER", transform = "lambda", niter = 100, FAIL = 1e+200, hessian = FALSE, CI = 0.95, ncores=NULL)
+resulti1
 
 
 ```
