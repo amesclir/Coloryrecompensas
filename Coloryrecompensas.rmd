@@ -9,18 +9,9 @@ editor_options:
 1. Install and load packages
 
 ```{r, echo = F}
-#install.packages("picante")
-#This will install also package dependences
-#library(picante)
-#This will also load package dependences
-#library(ape)
-#library(vegan)
-#library(permute)
-#library(lattice)
-#library(nlme)
+#devtools::install_github("jinyizju/V.PhyloMaker")
+library(V.PhyloMaker)
 
-#install.packages("brranching")
-library(brranching)
 
 ```
 
@@ -39,17 +30,22 @@ mydata
 
 ```{r, echo = F}
 
-taxa <- as.character(mydata[,2])
-mytree <- phylomatic(taxa=taxa,get = 'POST', storedtree = "zanne2014",nodes = FALSE)
-mytree
-plot(mytree, no.margin=TRUE, cex = 0.8)
-
-names(mytree)
-mytree$node.label <- NULL
-
 write.tree(mytree, file = "mytree.tree")
 
+
+genera<-sapply(strsplit(mydata[,2]," "),function(x) x[1])
+
+data <- data.frame(species = mydata[,2], genus = genera, family = mydata[,1])
+my.phylo.maker <- phylo.maker(data, tree = GBOTB.extended, nodes = nodes.info.1, output.sp.list = TRUE, output.tree = FALSE, scenarios = c("S1","S2","S3"), r = 1)
+
+plot(my.phylo.maker$scenario.3, cex = 0.6)
+
+write.tree(my.phylo.maker$scenario.3, file = "mytree.tree")
+
+
+
 ```
+
 
 
 
