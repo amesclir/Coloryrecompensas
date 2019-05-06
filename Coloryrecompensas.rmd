@@ -30,9 +30,6 @@ mydata
 
 ```{r, echo = F}
 
-write.tree(mytree, file = "mytree.tree")
-
-
 genera<-sapply(strsplit(mydata[,2]," "),function(x) x[1])
 
 data <- data.frame(species = mydata[,2], genus = genera, family = mydata[,1])
@@ -53,13 +50,10 @@ write.tree(my.phylo.maker$scenario.3, file = "mytree.tree")
 library(caper)
 
 mytree2 <- read.tree(file="mytree.tree")
-write(mytree2$tip.label, "tips.txt")
-#fix the names in case you did not
-mydata <- read.csv("mydata3.csv", sep = ",", header=TRUE, stringsAsFactors=FALSE, fileEncoding="latin1")
-mydata
 
 class(mytree2)
 plot(mytree2)
+mydata$X5.NPOL <- as.numeric(mydata$X5.NPOL)
 color <- comparative.data(mytree2, mydata, X2.Especies2, vcv=TRUE, vcv.dim=2, na.omit=F, 
 	             force.root=FALSE, warn.dropped=T, scope=NULL)
 plot(color$phy)
@@ -72,20 +66,18 @@ dim(color$vcv)
     summary(lambda.result2)
     lambda.result3 <- pgls(X3.MSUG ~ X9.SIZ, color, lambda = "ML")
     summary(lambda.result3)
-    lambda.result4 <- pgls(X3.MSUG ~ X9.SIZ, color, lambda = "ML")
+    lambda.result4 <- pgls(X3.MSUG ~ X12.HUE, color, lambda = "ML")
     summary(lambda.result4)
-    lambda.result5 <- pgls(X3.MSUG ~ X12.HUE, color, lambda = "ML")
+    lambda.result5 <- pgls(X3.MSUG ~ X13.BRI, color, lambda = "ML")
     summary(lambda.result5)
-    lambda.result6 <- pgls(X3.MSUG ~ X13.BRI, color, lambda = "ML")
+    lambda.result6 <- pgls(X3.MSUG ~ X14.CHR, color, lambda = "ML")
     summary(lambda.result6)
-    lambda.result7 <- pgls(X3.MSUG ~ X14.CHR, color, lambda = "ML")
+    lambda.result7 <- pgls(X3.MSUG ~ X15.UV, color, lambda = "ML")
     summary(lambda.result7)
-    lambda.result8 <- pgls(X3.MSUG ~ X15.UV, color, lambda = "ML")
+    lambda.result8 <- pgls(X3.MSUG ~ X16.GC, color, lambda = "ML")
     summary(lambda.result8)
-    lambda.result9 <- pgls(X3.MSUG ~ X16.GC, color, lambda = "ML")
+    lambda.result9 <- pgls(X3.MSUG ~ X17.DIST, color, lambda = "ML")
     summary(lambda.result9)
-    lambda.result10 <- pgls(X3.MSUG ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.result10)
     
     lambda.resultb1 <- pgls(X4.CSUG ~ X5.NPOL, color, lambda = "ML")
     summary(lambda.resultb1)
@@ -93,20 +85,18 @@ dim(color$vcv)
     summary(lambda.resultb2)
     lambda.resultb3 <- pgls(X4.CSUG ~ X9.SIZ, color, lambda = "ML")
     summary(lambda.resultb3)
-    lambda.resultb4 <- pgls(X4.CSUG ~ X9.SIZ, color, lambda = "ML")
+    lambda.resultb4 <- pgls(X4.CSUG ~ X12.HUE, color, lambda = "ML")
     summary(lambda.resultb4)
-    lambda.resultb5 <- pgls(X4.CSUG ~ X12.HUE, color, lambda = "ML")
+    lambda.resultb5 <- pgls(X4.CSUG ~ X13.BRI, color, lambda = "ML")
     summary(lambda.resultb5)
-    lambda.resultb6 <- pgls(X4.CSUG ~ X13.BRI, color, lambda = "ML")
+    lambda.resultb6 <- pgls(X4.CSUG ~ X14.CHR, color, lambda = "ML")
     summary(lambda.resultb6)
-    lambda.resultb7 <- pgls(X4.CSUG ~ X14.CHR, color, lambda = "ML")
+    lambda.resultb7 <- pgls(X4.CSUG ~ X15.UV, color, lambda = "ML")
     summary(lambda.resultb7)
-    lambda.resultb8 <- pgls(X4.CSUG ~ X15.UV, color, lambda = "ML")
+    lambda.resultb8 <- pgls(X4.CSUG ~ X16.GC, color, lambda = "ML")
     summary(lambda.resultb8)
-    lambda.resultb9 <- pgls(X4.CSUG ~ X16.GC, color, lambda = "ML")
+    lambda.resultb9 <- pgls(X4.CSUG ~ X17.DIST, color, lambda = "ML")
     summary(lambda.resultb9)
-    lambda.resultb10 <- pgls(X4.CSUG ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.resultb10)
 
     lambda.resultc1 <- pgls(X5.NPOL ~ X3.MSUG, color, lambda = "ML")
     summary(lambda.resultc1)
@@ -114,20 +104,18 @@ dim(color$vcv)
     summary(lambda.resultc2)
     lambda.resultc3 <- pgls(X5.NPOL ~ X9.SIZ, color, lambda = "ML")
     summary(lambda.resultc3)
-    lambda.resultc4 <- pgls(X5.NPOL ~ X9.SIZ, color, lambda = "ML")
+    lambda.resultc4 <- pgls(X5.NPOL ~ X12.HUE, color, lambda = "ML")
     summary(lambda.resultc4)
-    lambda.resultc5 <- pgls(X5.NPOL ~ X12.HUE, color, lambda = "ML")
+    lambda.resultc5 <- pgls(X5.NPOL ~ X13.BRI, color, lambda = "ML")
     summary(lambda.resultc5)
-    lambda.resultc6 <- pgls(X5.NPOL ~ X13.BRI, color, lambda = "ML")
+    lambda.resultc6 <- pgls(X5.NPOL ~ X14.CHR, color, lambda = "ML")
     summary(lambda.resultc6)
-    lambda.resultc7 <- pgls(X5.NPOL ~ X14.CHR, color, lambda = "ML")
+    lambda.resultc7 <- pgls(X5.NPOL ~ X15.UV, color, lambda = "ML")
     summary(lambda.resultc7)
-    lambda.resultc8 <- pgls(X5.NPOL ~ X15.UV, color, lambda = "ML")
+    lambda.resultc8 <- pgls(X5.NPOL ~ X16.GC, color, lambda = "ML")
     summary(lambda.resultc8)
-    lambda.resultc9 <- pgls(X5.NPOL ~ X16.GC, color, lambda = "ML")
+    lambda.resultc9 <- pgls(X5.NPOL ~ X17.DIST, color, lambda = "ML")
     summary(lambda.resultc9)
-    lambda.resultc10 <- pgls(X5.NPOL ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.resultc10)
     
     
     lambda.resultd1 <- pgls(X6.VPOL ~ X3.MSUG, color, lambda = "ML")
@@ -136,20 +124,18 @@ dim(color$vcv)
     summary(lambda.resultd2)
     lambda.resultd3 <- pgls(X6.VPOL ~ X9.SIZ, color, lambda = "ML")
     summary(lambda.resultd3)
-    lambda.resultd4 <- pgls(X6.VPOL ~ X9.SIZ, color, lambda = "ML")
+    lambda.resultd4 <- pgls(X6.VPOL ~ X12.HUE, color, lambda = "ML")
     summary(lambda.resultd4)
-    lambda.resultd5 <- pgls(X6.VPOL ~ X12.HUE, color, lambda = "ML")
+    lambda.resultd5 <- pgls(X6.VPOL ~ X13.BRI, color, lambda = "ML")
     summary(lambda.resultd5)
-    lambda.resultd6 <- pgls(X6.VPOL ~ X13.BRI, color, lambda = "ML")
+    lambda.resultd6 <- pgls(X6.VPOL ~ X14.CHR, color, lambda = "ML")
     summary(lambda.resultd6)
-    lambda.resultd7 <- pgls(X6.VPOL ~ X14.CHR, color, lambda = "ML")
+    lambda.resultd7 <- pgls(X6.VPOL ~ X15.UV, color, lambda = "ML")
     summary(lambda.resultd7)
-    lambda.resultd8 <- pgls(X6.VPOL ~ X15.UV, color, lambda = "ML")
+    lambda.resultd8 <- pgls(X6.VPOL ~ X16.GC, color, lambda = "ML")
     summary(lambda.resultd8)
-    lambda.resultd9 <- pgls(X6.VPOL ~ X16.GC, color, lambda = "ML")
+    lambda.resultd9 <- pgls(X6.VPOL ~ X17.DIST, color, lambda = "ML")
     summary(lambda.resultd9)
-    lambda.resultd10 <- pgls(X6.VPOL ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.resultd10)
 
     
     lambda.resulte1 <- pgls(X9.SIZ ~ X3.MSUG, color, lambda = "ML")
@@ -177,6 +163,7 @@ dim(color$vcv)
 
 
 
+Phylogenetic signal
 
 ```{r, echo = F}
 
@@ -218,25 +205,10 @@ Plotting
 library(phytools)
 
 rownames(mydata) <- as.character(mydata$X2.Especies2)
-colors<-colorRampPalette(colors=heat.colors(100, alpha = 1))(100)
-phylo.heatmap(mytree2,mydata[,c("X3.MSUG", "X4.CSUG", "X5.NPOL", "X6.VPOL", "X9.SIZ", "X12.HUE", "X13.BRI", "X14.CHR", "X15.UV", "X16.GC", "X17.DIST")],ftype="i", fsize = c(0.3,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = T, split=c(0.75,0.25))
-
-
-mytiplabels <- mydata$X2.Especies2
-names(mytiplabels) = mydata$X2.SP
-mytiplabels
-names(mytiplabels)[match(mytree2$tip.label,mytiplabels)]
-mytree3<-mytree2
-mytree3$tip.label <- as.character(names(mytiplabels)[match(mytree2$tip.label,mytiplabels)])
-mytree3
-
+colors<-colorRampPalette(colors=gray.colors(100, alpha = 1))(100)
 traits <- mydata[,c("X3.MSUG", "X4.CSUG", "X5.NPOL", "X6.VPOL", "X9.SIZ", "X12.HUE", "X13.BRI", "X14.CHR", "X15.UV", "X16.GC", "X17.DIST")]
 colnames(traits) <- c("Sugar Mass", "Sugar Conc.", "Pollen Num.", "Pollen Vol.", "Flow. Size", "HUE", "BRI", "CHR", "UV", "GC", "DIST")
-mydata$X2.SP <- gsub('([[:punct:]])|\\s+','_',mydata$X2.SP)
-rownames(traits) <- as.character(mydata$X2.SP)
-mytree3$tip.label <- gsub('([[:punct:]])|\\s+','_',mytree3$tip.label)
-colors<-colorRampPalette(colors=heat.colors(100, alpha = 1))(100)
-phylo.heatmap(mytree3,traits,ftype="i", fsize = c(0.35,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = T, split=c(0.75,0.25))
+phylo.heatmap(mytree2,traits,ftype="i", fsize = c(0.35,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = T, split=c(0.50,0.50))
 
 
 ```
