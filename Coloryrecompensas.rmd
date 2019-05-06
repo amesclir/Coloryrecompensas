@@ -191,6 +191,7 @@ lambda.resultf11 <- pgls(X17.DIST ~ 1, color, lambda = "ML")
     summary(lambda.resultf11)
     
     
+    
 
 
     
@@ -286,5 +287,139 @@ resulti1 <- fitDiscrete(mytree3, hexagon, model = "ER", transform = "lambda", ni
 resulti1
 
 
+```
+
+
+
+plot!
+
+```{r}
+library(phytools)
+
+
+#MSUG
+dat.MSUG <- mydata$X3.MSUG
+names(dat.MSUG) <- mydata$X2.Especies2
+names(dat.MSUG)[is.na(dat.MSUG) == TRUE]
+tree <- drop.tip(mytree2, names(dat.MSUG)[is.na(dat.MSUG) == TRUE])
+dat.MSUG <- dat.MSUG[is.na(dat.MSUG) == FALSE]
+
+contMap.MSUG <-contMap(tree,dat.MSUG,plot=FALSE)
+plot(contMap.MSUG,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+
+#CSUG
+dat.CSUG <- mydata$X4.CSUG
+names(dat.CSUG) <- mydata$X2.Especies2
+names(dat.CSUG)[is.na(dat.CSUG) == TRUE]
+tree <- drop.tip(mytree2, names(dat.CSUG)[is.na(dat.CSUG) == TRUE])
+dat.CSUG <- dat.CSUG[is.na(dat.CSUG) == FALSE]
+
+contMap.CSUG <-contMap(tree,dat.CSUG,plot=FALSE)
+plot(contMap.CSUG,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+
+
+#NPOL
+dat.NPOL <- mydata$X5.NPOL
+names(dat.NPOL) <- mydata$X2.Especies2
+names(dat.NPOL)[is.na(dat.NPOL) == TRUE]
+tree <- drop.tip(mytree2, names(dat.NPOL)[is.na(dat.NPOL) == TRUE])
+dat.NPOL <- dat.NPOL[is.na(dat.NPOL) == FALSE]
+
+contMap.NPOL <-contMap(tree,dat.NPOL,plot=FALSE)
+plot(contMap.NPOL,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+
+#VPOL
+dat.VPOL <- mydata$X6.VPOL
+names(dat.VPOL) <- mydata$X2.Especies2
+names(dat.VPOL)[is.na(dat.VPOL) == TRUE]
+tree <- drop.tip(mytree2, names(dat.VPOL)[is.na(dat.VPOL) == TRUE])
+dat.VPOL <- dat.VPOL[is.na(dat.VPOL) == FALSE]
+
+contMap.VPOL <-contMap(tree,dat.VPOL,plot=FALSE)
+plot(contMap.VPOL,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+#SIZ
+dat.SIZ <- mydata$X9.SIZ
+names(dat.SIZ) <- mydata$X2.Especies2
+names(dat.SIZ)[is.na(dat.SIZ) == TRUE]
+tree <- drop.tip(mytree2, names(dat.SIZ)[is.na(dat.SIZ) == TRUE])
+dat.SIZ <- dat.SIZ[is.na(dat.SIZ) == FALSE]
+
+contMap.SIZ <-contMap(tree,dat.SIZ,plot=FALSE)
+plot(contMap.SIZ,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+#HUE
+dat.HUE <- mydata$X12.HUE
+names(dat.HUE) <- mydata$X2.Especies2
+names(dat.HUE)[is.na(dat.HUE) == TRUE]
+tree <- drop.tip(mytree2, names(dat.HUE)[is.na(dat.HUE) == TRUE])
+dat.HUE <- dat.HUE[is.na(dat.HUE) == FALSE]
+
+contMap.HUE <-contMap(tree,dat.HUE,plot=FALSE)
+plot(contMap.HUE,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+#BRI
+dat.BRI <- mydata$X13.BRI
+names(dat.BRI) <- mydata$X2.Especies2
+names(dat.BRI)[is.na(dat.BRI) == TRUE]
+tree <- drop.tip(mytree2, names(dat.BRI)[is.na(dat.BRI) == TRUE])
+dat.BRI <- dat.BRI[is.na(dat.BRI) == FALSE]
+
+contMap.BRI <-contMap(tree,dat.BRI,plot=FALSE)
+plot(contMap.BRI,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+#CHR
+dat.CHR <- mydata$X14.CHR
+names(dat.CHR) <- mydata$X2.Especies2
+names(dat.CHR)[is.na(dat.CHR) == TRUE]
+tree <- drop.tip(mytree2, names(dat.CHR)[is.na(dat.CHR) == TRUE])
+dat.CHR <- dat.CHR[is.na(dat.CHR) == FALSE]
+
+contMap.CHR <-contMap(tree,dat.CHR,plot=FALSE)
+plot(contMap.CHR,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+#UV
+dat.UV <- mydata$X15.UV
+names(dat.UV) <- mydata$X2.Especies2
+names(dat.UV)[is.na(dat.UV) == TRUE]
+tree <- drop.tip(mytree2, names(dat.UV)[is.na(dat.UV) == TRUE])
+dat.UV <- dat.UV[is.na(dat.UV) == FALSE]
+
+contMap.UV <-contMap(tree,dat.UV,plot=FALSE)
+plot(contMap.UV,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+#GC
+dat.GC <- mydata$X16.GC
+names(dat.GC) <- mydata$X2.Especies2
+names(dat.GC)[is.na(dat.GC) == TRUE]
+tree <- drop.tip(mytree2, names(dat.GC)[is.na(dat.GC) == TRUE])
+dat.GC <- dat.GC[is.na(dat.GC) == FALSE]
+
+contMap.GC <-contMap(tree,dat.GC,plot=FALSE)
+plot(contMap.GC,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+#DIST
+dat.DIST <- mydata$X17.DIST
+names(dat.DIST) <- mydata$X2.Especies2
+names(dat.DIST)[is.na(dat.DIST) == TRUE]
+tree <- drop.tip(mytree2, names(dat.DIST)[is.na(dat.DIST) == TRUE])
+dat.DIST <- dat.DIST[is.na(dat.DIST) == FALSE]
+
+contMap.DIST <-contMap(tree,dat.DIST,plot=FALSE)
+plot(contMap.DIST,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
 ```
 
