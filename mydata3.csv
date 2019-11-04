@@ -21,7 +21,7 @@ Boraginaceae,Cerinthe major,Cerinthe_major,1630.15,28.73,649680,0.72,3,A,7.5,R,S
 Cistaceae,Cistus albidus,Cistus_albidus,302,78.92,233470,7.42,2,P,45,R,NO,666.122,320.970102,1.842310755,0.047716384,0.122941198,0.176945929,B,pink,Radiada
 Cistaceae,Cistus crispus,Cistus_crispus,388,96.62,170164,3.3,2,P,32,R,NO,695.0766667,287.45554,1.838356087,0.207270321,0.081619025,0.298332705,UV-B,pink,Radiada
 Cistaceae,Cistus ladanifer,Cistus_ladanifer,1702,90.3,564623,30.01,2,P,95,R,NO,566.7083333,384.1840417,1.426201737,0.011603202,0.273707328,0.300157003,B-G,white,Radiada
-Cistaceae,Cistus libanotis,Cistus_libanotis,18,,"43,266",2.4,2,P,27,R,NO,600.785,1721.740833,1.274055677,0.051101124,0.315718002,0.315718002,B-G,white,Radiada
+Cistaceae,Cistus libanotis,Cistus_libanotis,18,,43266,2.4,2,P,27,R,NO,545.805,384.507895,1.439503458,0.010152679,0.272253042,0.295164525,B-G,white,Radiada
 Cistaceae,Cistus monspeliensis,Cistus_monspeliensis,476,103.3,33418,1.36,2,P,28,R,NO,568.1833333,416.5361233,1.42940335,0.014887546,0.288453605,0.278924558,B-G,white,Radiada
 Cistaceae,Cistus salviifolius,Cistus_salviifolius,420,105,57258,2.56,2,P,43,R,NO,594.5916667,448.7112783,1.442024507,0.012917304,0.292210196,0.266198492,B-G,white,Radiada
 Ranunculaceae,Clematis flammula,Clematis_flammula,0,,239444,1.1,3,P,22,R,NO,540.5866667,594.5641233,1.353839272,0.024968867,0.337602572,0.169121525,B-G,white,Radiada
@@ -85,7 +85,7 @@ Caryophyllaceae,Silene colorata,Silene_colorata,1016.83,31.31,14023,0.92,3,A,17,
 Smilacaceae,Smilax aspera,Smilax_aspera,,,"19,224",0.08,,,6,R,NO,591.004,125.82341,1.679837539,0.027157425,0.012943437,0.012943437,B-G,white,Radiada
 Solanaceae,Solanum nigrum,Solanum_nigrum,,,55775,0.5,3,A,6.5,R,NO,545.832,362.673032,1.275338505,0.037571682,0.245481554,0.173018539,B-G,white,Rotacea
 Lamiaceae,Stachys ocymastrum,Stachys_ocymastrum,311.6,22.14,36720,0.15,3,A,14.5,Z,SI,562.2533333,413.3539547,1.489780964,0.022366069,0.291510338,0.271523236,B-G,white,Bilabiada
-Fabaceae,Stauracanthus genistoides,Stauracanthus_genistoides,0,,"8,085",0.05,2,P,10,Z,NO,600.528,334.595196,1.687339143,0.094374192,0.229075786,0.232645976,G-UV,yellow,Papilionada
+Fabaceae,Stauracanthus genistoides,Stauracanthus_genistoides,0,,8085,0.05,2,P,10,Z,NO,600.528,334.595196,1.687339143,0.094374192,0.229075786,0.232645976,G-UV,yellow,Papilionada
 Tamaricaceae,Tamarix gallica,Tamarix_gallica,,,9570,0.04,2,P,3.8,R,NO,604.55,146.21619,1.319647169,0.042630574,0.089570534,0.18088261,B,white,Radiada
 Lamiaceae,Teucrium capitatum,Teucrium_capitatum,87,30.09,7792,0.06,2,,4.5,Z,SI,491.89,418.7573633,1.313474907,0.031652038,0.284962839,0.175457024,B-G,white,Bilabiada
 Lamiaceae,Teucrium fruticans,Teucrium_fruticans,656,21.48,10144,0.16,2,P,26.5,Z,SI,692.6833333,329.6419433,1.740528803,0.053240212,0.172464924,0.147205539,B,purple,Bilabiada

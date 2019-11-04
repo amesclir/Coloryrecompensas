@@ -158,6 +158,75 @@ dim(color$vcv)
     summary(lambda.resulte9)
     lambda.resulte10 <- pgls(X9.SIZ ~ X17.DIST, color, lambda = "ML")
     summary(lambda.resulte10)
+    
+    
+    
+    
+    lambda.resultf1 <- pgls(X12.HUE ~ X3.MSUG, color, lambda = "ML")
+    summary(lambda.resultf1)
+    lambda.resultf2 <- pgls(X12.HUE ~ X4.CSUG, color, lambda = "ML")
+    summary(lambda.resultf2)
+    lambda.resultf3 <- pgls(X12.HUE ~ X5.NPOL, color, lambda = "ML")
+    summary(lambda.resultf3)
+    lambda.resultf4 <- pgls(X12.HUE ~ X6.VPOL, color, lambda = "ML")   
+     summary(lambda.resultf4)
+    lambda.resultf5 <- pgls(X12.HUE ~ X9.SIZ, color, lambda = "ML")   
+     summary(lambda.resultf4)
+
+lambda.resultg1 <- pgls(X13.BRI ~ X3.MSUG, color, lambda = "ML")
+    summary(lambda.resultg1)
+    lambda.resultg2 <- pgls(X13.BRI ~ X4.CSUG, color, lambda = "ML")
+    summary(lambda.resultg2)
+    lambda.resultg3 <- pgls(X13.BRI ~ X5.NPOL, color, lambda = "ML")
+    summary(lambda.resultg3)
+    lambda.resultg4 <- pgls(X13.BRI ~ X6.VPOL, color, lambda = "ML")   
+     summary(lambda.resultg4)
+    lambda.resultg5 <- pgls(X13.BRI ~ X9.SIZ, color, lambda = "ML")   
+     summary(lambda.resultg4)
+
+lambda.resulth1 <- pgls(X14.CHR ~ X3.MSUG, color, lambda = "ML")
+    summary(lambda.resulth1)
+    lambda.resulth2 <- pgls(X14.CHR ~ X4.CSUG, color, lambda = "ML")
+    summary(lambda.resulth2)
+    lambda.resulth3 <- pgls(X14.CHR ~ X5.NPOL, color, lambda = "ML")
+    summary(lambda.resulth3)
+    lambda.resulth4 <- pgls(X14.CHR ~ X6.VPOL, color, lambda = "ML")   
+     summary(lambda.resulth4)
+    lambda.resulth5 <- pgls(X14.CHR ~ X9.SIZ, color, lambda = "ML")   
+     summary(lambda.resulth4)
+
+lambda.resulti1 <- pgls(X15.UV ~ X3.MSUG, color, lambda = "ML")
+    summary(lambda.resulti1)
+    lambda.resulti2 <- pgls(X15.UV ~ X4.CSUG, color, lambda = "ML")
+    summary(lambda.resulti2)
+    lambda.resulti3 <- pgls(X15.UV ~ X5.NPOL, color, lambda = "ML")
+    summary(lambda.resulti3)
+    lambda.resulti4 <- pgls(X15.UV ~ X6.VPOL, color, lambda = "ML")   
+     summary(lambda.resulti4)
+    lambda.resulti5 <- pgls(X15.UV ~ X9.SIZ, color, lambda = "ML")   
+     summary(lambda.resulti4)
+
+lambda.resultj1 <- pgls(X16.GC ~ X3.MSUG, color, lambda = "ML")
+    summary(lambda.resultj1)
+    lambda.resultj2 <- pgls(X16.GC ~ X4.CSUG, color, lambda = "ML")
+    summary(lambda.resultj2)
+    lambda.resultj3 <- pgls(X16.GC ~ X5.NPOL, color, lambda = "ML")
+    summary(lambda.resultj3)
+    lambda.resultj4 <- pgls(X16.GC ~ X6.VPOL, color, lambda = "ML")   
+     summary(lambda.resultj4)
+    lambda.resultj5 <- pgls(X16.GC ~ X9.SIZ, color, lambda = "ML")   
+     summary(lambda.resultj4)
+
+lambda.resultk1 <- pgls(X17.DIST ~ X3.MSUG, color, lambda = "ML")
+    summary(lambda.resultk1)
+    lambda.resultk2 <- pgls(X17.DIST ~ X4.CSUG, color, lambda = "ML")
+    summary(lambda.resultk2)
+    lambda.resultk3 <- pgls(X17.DIST ~ X5.NPOL, color, lambda = "ML")
+    summary(lambda.resultk3)
+    lambda.resultk4 <- pgls(X17.DIST ~ X6.VPOL, color, lambda = "ML")   
+     summary(lambda.resultk4)
+    lambda.resultk5 <- pgls(X17.DIST ~ X9.SIZ, color, lambda = "ML")   
+     summary(lambda.resultk4)
 
 ```
 
@@ -191,9 +260,9 @@ lambda.resultf11 <- pgls(X17.DIST ~ 1, color, lambda = "ML")
     summary(lambda.resultf11)
     
     
-    
 
 
+               
     
 ```
 
@@ -266,8 +335,54 @@ Cathegorical variables
     lambda.resulth11 <- pgls(X4.CSUG ~ X18.CAT, color, lambda = "ML")
     summary(lambda.resulth11)
 
+    head(mydata)
     
+    lambda.resulti1 <- pgls(X9.SIZ ~ X19.COLOR,color, lambda = "ML")
+    summary(lambda.resulti1)
+    lambda.resulth2 <- pgls(X5.NPOL ~ X19.COLOR, color, lambda = "ML")
+    summary(lambda.resulth2)
+    lambda.resulth3 <- pgls(X6.VPOL ~ X19.COLOR, color, lambda = "ML")
+    summary(lambda.resulth3)
+    lambda.resulth4 <- pgls(X12.HUE ~ X19.COLOR, color, lambda = "ML")
+    summary(lambda.resulth4)
+    lambda.resulth5 <- pgls(X13.BRI ~ X19.COLOR, color, lambda = "ML")
+    summary(lambda.resulth5)
+    lambda.resulth6 <- pgls(X14.CHR ~ X19.COLOR, color, lambda = "ML")
+    summary(lambda.resulth6)
+    lambda.resulth7 <- pgls(X15.UV ~ X19.COLOR, color, lambda = "ML")
+    summary(lambda.resulth7)
+    lambda.resulth8 <- pgls(X16.GC ~ X19.COLOR, color, lambda = "ML")
+    summary(lambda.resulth8)
+    lambda.resulth9 <- pgls(X17.DIST ~ X19.COLOR, color, lambda = "ML")
+    summary(lambda.resulth9)
+    lambda.resulth10 <- pgls(X3.MSUG ~ X19.COLOR, color, lambda = "ML")
+    summary(lambda.resulth10)
+    lambda.resulth11 <- pgls(X4.CSUG ~ X19.COLOR, color, lambda = "ML")
+    summary(lambda.resulth11)
 
+       lambda.resulth1 <- pgls(X9.SIZ ~  X20.COROLA,color, lambda = "ML")
+    summary(lambda.resulth1)
+    lambda.resulth2 <- pgls(X5.NPOL ~ X20.COROLA, color, lambda = "ML")
+    summary(lambda.resulth2)
+    lambda.resulth3 <- pgls(X6.VPOL ~ X20.COROLA, color, lambda = "ML")
+    summary(lambda.resulth3)
+    lambda.resulth4 <- pgls(X12.HUE ~ X20.COROLA, color, lambda = "ML")
+    summary(lambda.resulth4)
+    lambda.resulth5 <- pgls(X13.BRI ~ X20.COROLA, color, lambda = "ML")
+    summary(lambda.resulth5)
+    lambda.resulth6 <- pgls(X14.CHR ~ X20.COROLA, color, lambda = "ML")
+    summary(lambda.resulth6)
+    lambda.resulth7 <- pgls(X15.UV ~ X20.COROLA, color, lambda = "ML")
+    summary(lambda.resulth7)
+    lambda.resulth8 <- pgls(X16.GC ~ X20.COROLA, color, lambda = "ML")
+    summary(lambda.resulth8)
+    lambda.resulth9 <- pgls(X17.DIST ~ X20.COROLA, color, lambda = "ML")
+    summary(lambda.resulth9)
+    lambda.resulth10 <- pgls(X3.MSUG ~ X20.COROLA, color, lambda = "ML")
+    summary(lambda.resulth10)
+    lambda.resulth11 <- pgls(X4.CSUG ~ X20.COROLA, color, lambda = "ML")
+    summary(lambda.resulth11)
+    
 ```
 
 Phylogenetic signal of cathegorical variables
