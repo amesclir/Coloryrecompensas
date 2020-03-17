@@ -628,6 +628,45 @@ Cathegorical variables
 
     
     
+#MULVARIABLES MODELS
+
+
+lambda.result1.multi <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color, lambda = "ML")
+    summary(lambda.result1.multi)
+    
+    lambda.result2.multi <- pgls(X5.NPOL ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI  + X14.CHR, color, lambda = "ML")
+    summary(lambda.result2.multi)
+    
+    lambda.result3.multi <- pgls(X3.MSUG ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI + X14.CHR, color, lambda = "ML")
+    summary(lambda.result3.multi)
+    
+    lambda.result4.multi <- pgls(X4.CSUG ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI  + X14.CHR, color, lambda = "ML")
+    summary(lambda.result4.multi)
+
+    #lambda.result5.multi <- pgls(X4.CSUG ~ X9.SIZ  + X16.GC + X17.DIST, color, lambda = "ML")
+    #summary(lambda.result5.multi)
+    
+    #lambda.result6.multi <- pgls(X4.CSUG ~ X16.GC + X17.DIST, color, lambda = "ML")
+    #summary(lambda.result6.multi)
+
+    lambda.result7.multi <- pgls(X4.CSUG ~ X9.SIZ  + X17.DIST, color, lambda = "ML")
+    summary(lambda.result7.multi)
+
+    
+lambda.result8.multi <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR + Floral.display, color, lambda = "ML")
+    summary(lambda.result8.multi)
+    
+    lambda.result9.multi <- pgls(X5.NPOL ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI  + X14.CHR + Floral.display, color, lambda = "ML")
+    summary(lambda.result9.multi)
+    
+    lambda.result10.multi <- pgls(X3.MSUG ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI + X14.CHR + Floral.display, color, lambda = "ML")
+    summary(lambda.result10.multi)
+    
+    lambda.result11.multi <- pgls(X4.CSUG ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI  + X14.CHR + Floral.display, color, lambda = "ML")
+    summary(lambda.result11.multi)
+    
+    lambda.result12.multi <- pgls(X4.CSUG ~ X9.SIZ  + X17.DIST + X13.BRI, color, lambda = "ML")
+    summary(lambda.result12.multi)
     
     
 ```
@@ -668,6 +707,10 @@ names(NECTAR) <- mydata$X2.Especies2
 mytree3 <- multi2di(mytree2)
 resultin <- fitDiscrete(mytree3, NECTAR, model = "ER", transform = "lambda", niter = 100, FAIL = 1e+200, hessian = FALSE, CI = 0.95, ncores=NULL)
 resultin
+
+
+
+
 
 ```
 
