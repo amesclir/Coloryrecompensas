@@ -628,6 +628,14 @@ Cathegorical variables
 
     
     
+
+    
+```
+
+
+Multiple models 
+
+```{r}
 #MULVARIABLES MODELS
 
 
@@ -668,8 +676,8 @@ lambda.result8.multi <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X1
     lambda.result12.multi <- pgls(X4.CSUG ~ X9.SIZ  + X17.DIST + X13.BRI, color, lambda = "ML")
     summary(lambda.result12.multi)
     
-    
 ```
+
 
 Phylogenetic signal of cathegorical variables
 
@@ -870,6 +878,105 @@ contMap.FdSize <-contMap(tree,dat.FdSize,plot=FALSE)
 plot(contMap.FdSize,type="fan",legend=0.7*max(nodeHeights(tree)),
     sig=2,fsize=c(0.7,0.9))
 
+
+
+```
+
+
+
+Modified data set
+
+
+```{r}
+mytree4 <- drop.tip(mytree2, "Cistus_ladanifer") 
+mydata2 <- mydata[which(mydata$X2.Especies2 != "Cistus_ladanifer"),]
+
+color2 <- comparative.data(mytree4, mydata2, X2.Especies2, vcv=TRUE, vcv.dim=2, na.omit=F, 
+	             force.root=FALSE, warn.dropped=T, scope=NULL)
+
+lambda.result1.color2 <- pgls(X6.VPOL ~ X9.SIZ, color2, lambda = "ML")
+    summary(lambda.result1.color2)
+lambda.result2.color2 <- pgls(X6.VPOL ~ X16.GC, color2, lambda = "ML")
+    summary(lambda.result2.color2)
+lambda.result3.color2 <- pgls(X6.VPOL ~ X17.DIST, color2, lambda = "ML")
+    summary(lambda.result3.color2)
+lambda.result4.color2 <- pgls(X6.VPOL ~ X13.BRI, color2, lambda = "ML")
+    summary(lambda.result4.color2)
+lambda.result5.color2 <- pgls(X6.VPOL ~ X14.CHR, color2, lambda = "ML")
+    summary(lambda.result5.color2)
+    
+
+          
+lambda.result6.color2 <- pgls(X5.NPOL ~ X9.SIZ, color2, lambda = "ML")
+    summary(lambda.result6.color2)
+lambda.result7.color2 <- pgls(X5.NPOL ~ X16.GC, color2, lambda = "ML")
+    summary(lambda.result7.color2)
+lambda.result8.color2 <- pgls(X5.NPOL ~ X17.DIST, color2, lambda = "ML")
+    summary(lambda.result8.color2)
+lambda.result9.color2 <- pgls(X5.NPOL ~ X13.BRI, color2, lambda = "ML")
+    summary(lambda.result9.color2)
+lambda.result10.color2 <- pgls(X5.NPOL ~ X14.CHR, color2, lambda = "ML")
+    summary(lambda.result10.color2)
+
+
+lambda.result11.color2 <- pgls(X3.MSUG ~ X9.SIZ, color2, lambda = "ML")
+    summary(lambda.result11.color2)
+lambda.result12.color2 <- pgls(X3.MSUG ~ X16.GC, color2, lambda = "ML")
+    summary(lambda.result12.color2)
+lambda.result13.color2 <- pgls(X3.MSUG ~ X17.DIST, color2, lambda = "ML")
+    summary(lambda.result13.color2)
+lambda.result14.color2 <- pgls(X3.MSUG ~ X13.BRI, color2, lambda = "ML")
+    summary(lambda.result14.color2)
+lambda.result15.color2 <- pgls(X3.MSUG ~ X14.CHR, color2, lambda = "ML")
+    summary(lambda.result15.color2)
+
+lambda.result16.color2 <- pgls(X4.CSUG ~ X9.SIZ, color2, lambda = "ML")
+    summary(lambda.result16.color2)
+lambda.result17.color2 <- pgls(X4.CSUG ~ X16.GC, color2, lambda = "ML")
+    summary(lambda.result17.color2)
+lambda.result18.color2 <- pgls(X4.CSUG ~ X17.DIST, color2, lambda = "ML")
+    summary(lambda.result18.color2)
+lambda.result19.color2 <- pgls(X4.CSUG ~ X13.BRI, color2, lambda = "ML")
+    summary(lambda.result19.color2)
+lambda.result20.color2 <- pgls(X4.CSUG ~ X14.CHR, color2, lambda = "ML")
+    summary(lambda.result20.color2)
+    
+lambda.result25.color2 <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
+    summary(lambda.result25.color2)
+lambda.result26.color2 <- pgls(X5.NPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
+    summary(lambda.result26.color2)
+lambda.result27.color2 <- pgls(X3.MSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
+    summary(lambda.result27.color2)
+lambda.result28.color2 <- pgls(X4.CSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
+    summary(lambda.result28.color2)
+
+lambda.result21.color2 <- pgls(X6.VPOL ~ Floral.display, color2, lambda = "ML")
+    summary(lambda.result21.color2)
+lambda.result22.color2 <- pgls(X5.NPOL ~ Floral.display, color2, lambda = "ML")
+    summary(lambda.result22.color2)
+lambda.result23.color2 <- pgls(X3.MSUG ~ Floral.display, color2, lambda = "ML")
+    summary(lambda.result23.color2)
+lambda.result24.color2 <- pgls(X4.CSUG ~ Floral.display, color2, lambda = "ML")
+    summary(lambda.result24.color2)
+    
+
+lambda.result25.color2 <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
+    summary(lambda.result25.color2)
+lambda.result26.color2 <- pgls(X5.NPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
+    summary(lambda.result26.color2)
+lambda.result27.color2 <- pgls(X3.MSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
+    summary(lambda.result27.color2)
+lambda.result28.color2 <- pgls(X4.CSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
+    summary(lambda.result28.color2)
+    
+lambda.result29.color2 <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR  + Floral.display, color2, lambda = "ML")
+    summary(lambda.result29.color2)
+lambda.result30.color2 <- pgls(X5.NPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR  + Floral.display, color2, lambda = "ML")
+    summary(lambda.result30.color2)
+lambda.result31.color2 <- pgls(X3.MSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR  + Floral.display, color2, lambda = "ML")
+    summary(lambda.result31.color2)
+lambda.result32.color2 <- pgls(X4.CSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR  + Floral.display, color2, lambda = "ML")
+    summary(lambda.result32.color2)    
 
 
 ```
