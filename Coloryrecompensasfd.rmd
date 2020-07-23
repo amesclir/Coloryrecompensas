@@ -19,7 +19,7 @@ library(V.PhyloMaker)
 3. Frequency matrix.
 
 ```{r, echo = F}
-mydata <- read.csv("mydata4.csv", sep = ";", header=TRUE, stringsAsFactors=FALSE, fileEncoding="latin1")
+mydata <- read.csv("mydata.csv")
 mydata
 ```
 
@@ -28,15 +28,43 @@ mydata
 3. Create your tree and plot
 
 ```{r, echo = F}
+names(mydata)
+genera<-sapply(strsplit(as.character(mydata$Species2),"_"),function(x) x[1])
+epithet<-sapply(strsplit(as.character(mydata$Species2),"_"),function(x) x[2])
 
-genera<-sapply(strsplit(mydata[,2]," "),function(x) x[1])
+library(Taxonstand)
+correctednames <- TPL(genus = genera, species = epithet, infrasp = NULL,infra = TRUE, corr = TRUE, diffchar = 2, max.distance = 1,version = "1.1", encoding = "UTF-8", author = TRUE,drop.lower.level = FALSE, file = "", silent = TRUE, repeats = 6)
 
-data <- data.frame(species = mydata[,2], genus = genera, family = mydata[,1])
+species <- paste(correctednames$New.Genus,correctednames$New.Species, sep = "_")
+duplicated(species)
+
+mydata[,3] <- as.character(mydata[,3])
+mydata[,3][duplicated(species)]
+species[duplicated(species)]
+species[duplicated(species)] <- mydata[,3][duplicated(species)]
+
+duplicated(species)
+
+mydata[,3][duplicated(species, fromLast = TRUE)]
+species[duplicated(species, fromLast = TRUE)]
+species[duplicated(species, fromLast = TRUE)] <- mydata[,3][duplicated(species, fromLast = TRUE)]
+
+duplicated(species)
+
+
+data <- data.frame(species = species, genus = correctednames$New.Genus, family = mydata[,1])
 my.phylo.maker <- phylo.maker(data, tree = GBOTB.extended, nodes = nodes.info.1, output.sp.list = TRUE, output.tree = FALSE, scenarios = c("S1","S2","S3"), r = 1)
 
-plot(my.phylo.maker$scenario.3, cex = 0.6)
+speciesnamesversions <- cbind(as.character(mydata[,3]), paste(correctednames$New.Genus,correctednames$New.Species, sep = "_"), species )
 
-write.tree(my.phylo.maker$scenario.3, file = "mytree.tree")
+my.phylo.maker$scenario.2$run.1$tip.label <- speciesnamesversions[,1][match(my.phylo.maker$scenario.2$run.1$tip.label,speciesnamesversions[,3])]
+
+pdffn = paste0("myphylo", ".scenario2.pdf")
+pdf(file=pdffn, width=6, height=18)
+plot(my.phylo.maker$scenario.2$run.1, cex = 0.5)
+dev.off()
+write.tree(my.phylo.maker$scenario.2$run.1, file = "mytree.tree")
+
 
 
 
@@ -52,365 +80,157 @@ mytree2 <- read.tree(file="mytree.tree")
 
 class(mytree2)
 plot(mytree2)
-mydata$X5.NPOL <- as.numeric(mydata$X5.NPOL)
-color <- comparative.data(mytree2, mydata, X2.Especies2, vcv=TRUE, vcv.dim=2, na.omit=F, 
+mydata$NPOL <- as.numeric(mydata$NPOL)
+mydata$Floral_display <- as.numeric(mydata$Floral_display)
+color <- comparative.data(mytree2, mydata, Species2, vcv=TRUE, vcv.dim=2, na.omit=F, 
 	             force.root=FALSE, warn.dropped=T, scope=NULL)
 plot(color$phy)
 color$phy
 color$dropped
 dim(color$vcv)
-    lambda.result1 <- pgls(X3.MSUG ~ X5.NPOL, color, lambda = "ML")
+    
+sink("new_results.txt")
+    lambda.result1 <- pgls(MSUG ~ SIZ, color, lambda = "ML")
     summary(lambda.result1)
     
-    lambda.result2 <- pgls(X3.MSUG ~ X6.VPOL, color, lambda = "ML")
+    lambda.result2 <- pgls(MSUG ~ Floral_display, color, lambda = "ML")
     summary(lambda.result2)
     
-    lambda.result3 <- pgls(X3.MSUG ~ X9.SIZ, color, lambda = "ML")
-    summary(lambda.result3)
-    
-    lambda.result4 <- pgls(X3.MSUG ~ X12.HUE, color, lambda = "ML")
-    summary(lambda.result4)
-    
-    lambda.result5 <- pgls(X3.MSUG ~ X13.BRI, color, lambda = "ML")
-    summary(lambda.result5)
-    
-    lambda.result6 <- pgls(X3.MSUG ~ X14.CHR, color, lambda = "ML")
-    summary(lambda.result6)
-    
-    lambda.result7 <- pgls(X3.MSUG ~ X15.UV, color, lambda = "ML")
-    summary(lambda.result7)
-    
-    lambda.result8 <- pgls(X3.MSUG ~ X16.GC, color, lambda = "ML")
+    lambda.result8 <- pgls(MSUG ~ CHROMA, color, lambda = "ML")
     summary(lambda.result8)
     
-    lambda.result9 <- pgls(X3.MSUG ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.result9)
-        
-    lambda.resulta0 <- pgls(X3.MSUG ~ Floral.display, color, lambda = "ML")
-    summary(lambda.resulta0)
+    lambda.result13 <- pgls(MSUG ~ UV_Chroma, color, lambda = "ML")
+    summary(lambda.result13)
     
-    lambda.resulta0.0 <- pgls(X3.MSUG ~ FdSize, color, lambda = "ML")
-    summary(lambda.resulta0.0)
+    lambda.result14 <- pgls(MSUG ~ Green_Contrast, color, lambda = "ML")
+    summary(lambda.result14)
     
+    lambda.result15 <- pgls(MSUG ~ Brightness_Contrast, color, lambda = "ML")
+    summary(lambda.result15)
   
+    lambda.result16 <- pgls(MSUG ~ Reflectance_amplitude, color, lambda = "ML")
+    summary(lambda.result16)
+  
+    lambda.result17 <- pgls(MSUG ~ Chromatic_contrast, color, lambda = "ML")
+    summary(lambda.result17)
     
     
-    lambda.resultb1 <- pgls(X4.CSUG ~ X5.NPOL, color, lambda = "ML")
-    summary(lambda.resultb1)
+    lambda.resulta1 <- pgls(CSUG ~ SIZ, color, lambda = "ML")
+    summary(lambda.resulta1)
     
-    lambda.resultb2 <- pgls(X4.CSUG ~ X6.VPOL, color, lambda = "ML")
-    summary(lambda.resultb2)
+    lambda.resulta2 <- pgls(CSUG ~ Floral_display, color, lambda = "ML")
+    summary(lambda.resulta2)
     
-    lambda.resultb3 <- pgls(X4.CSUG ~ X9.SIZ, color, lambda = "ML")
-    summary(lambda.resultb3)
+    lambda.resulta8 <- pgls(CSUG ~ CHROMA, color, lambda = "ML")
+    summary(lambda.resulta8)
+    
+    lambda.resulta13 <- pgls(CSUG ~ UV_Chroma, color, lambda = "ML")
+    summary(lambda.resulta13)
+    
+    lambda.resulta14 <- pgls(CSUG ~ Green_Contrast, color, lambda = "ML")
+    summary(lambda.resulta14)
+    
+    lambda.resulta15 <- pgls(CSUG ~ Brightness_Contrast, color, lambda = "ML")
+    summary(lambda.resulta15)
+  
+    lambda.resulta16 <- pgls(CSUG ~ Reflectance_amplitude, color, lambda = "ML")
+    summary(lambda.resulta16)
+  
+    lambda.resulta17 <- pgls(CSUG ~ Chromatic_contrast, color, lambda = "ML")
+    summary(lambda.resulta17)
 
-    lambda.resultb4 <- pgls(X4.CSUG ~ X12.HUE, color, lambda = "ML")
-    summary(lambda.resultb4)
-    
-    lambda.resultb5 <- pgls(X4.CSUG ~ X13.BRI, color, lambda = "ML")
-    summary(lambda.resultb5)
-    
-    lambda.resultb6 <- pgls(X4.CSUG ~ X14.CHR, color, lambda = "ML")
-    summary(lambda.resultb6)
-    
-    lambda.resultb7 <- pgls(X4.CSUG ~ X15.UV, color, lambda = "ML")
-    summary(lambda.resultb7)
-    
-    lambda.resultb8 <- pgls(X4.CSUG ~ X16.GC, color, lambda = "ML")
-    summary(lambda.resultb8)
-    
-    lambda.resultb9 <- pgls(X4.CSUG ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.resultb9)
 
-    lambda.resultb0 <- pgls(X4.CSUG ~ Floral.display, color, lambda = "ML")
-    summary(lambda.resultb0)
-    
-    lambda.resultb0.0 <- pgls(X4.CSUG ~ FdSize, color, lambda = "ML")
-    summary(lambda.resultb0.0)
-    
-    
-    lambda.resultc1 <- pgls(X5.NPOL ~ X3.MSUG, color, lambda = "ML")
+    lambda.resultc1 <- pgls(NPOL ~ SIZ, color, lambda = "ML")
     summary(lambda.resultc1)
     
-    lambda.resultc2 <- pgls(X5.NPOL ~ X4.CSUG, color, lambda = "ML")
+    lambda.resultc2 <- pgls(NPOL ~ Floral_display, color, lambda = "ML")
     summary(lambda.resultc2)
     
-    lambda.resultc3 <- pgls(X5.NPOL ~ X9.SIZ, color, lambda = "ML")
-    summary(lambda.resultc3)
-    
-    lambda.resultc4 <- pgls(X5.NPOL ~ X12.HUE, color, lambda = "ML")
-    summary(lambda.resultc4)
-    
-    lambda.resultc5 <- pgls(X5.NPOL ~ X13.BRI, color, lambda = "ML")
-    summary(lambda.resultc5)
-    
-    lambda.resultc6 <- pgls(X5.NPOL ~ X14.CHR, color, lambda = "ML")
-    summary(lambda.resultc6)
-    
-    lambda.resultc7 <- pgls(X5.NPOL ~ X15.UV, color, lambda = "ML")
-    summary(lambda.resultc7)
-    
-    lambda.resultc8 <- pgls(X5.NPOL ~ X16.GC, color, lambda = "ML")
+    lambda.resultc8 <- pgls(NPOL ~ CHROMA, color, lambda = "ML")
     summary(lambda.resultc8)
     
-    lambda.resultc9 <- pgls(X5.NPOL ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.resultc9)
+    lambda.resultc13 <- pgls(NPOL ~ UV_Chroma, color, lambda = "ML")
+    summary(lambda.resultc13)
     
-    lambda.resultc0 <- pgls(X5.NPOL ~ Floral.display, color, lambda = "ML")
-    summary(lambda.resultc0)
+    lambda.resultc14 <- pgls(NPOL ~ Green_Contrast, color, lambda = "ML")
+    summary(lambda.resultc14)
     
-    lambda.resultc0.0 <- pgls(X5.NPOL ~ FdSize, color, lambda = "ML")
-    summary(lambda.resultc0.0)
+    lambda.resultc15 <- pgls(NPOL ~ Brightness_Contrast, color, lambda = "ML")
+    summary(lambda.resultc15)
+  
+    lambda.resultc16 <- pgls(NPOL ~ Reflectance_amplitude, color, lambda = "ML")
+    summary(lambda.resultc16)
+  
+    lambda.resultc17 <- pgls(NPOL ~ Chromatic_contrast, color, lambda = "ML")
+    summary(lambda.resultc17)
+
     
-    
-    
-    lambda.resultd1 <- pgls(X6.VPOL ~ X3.MSUG, color, lambda = "ML")
+    lambda.resultd1 <- pgls(VPOL ~ SIZ, color, lambda = "ML")
     summary(lambda.resultd1)
     
-    lambda.resultd2 <- pgls(X6.VPOL ~ X4.CSUG, color, lambda = "ML")
+    lambda.resultd2 <- pgls(VPOL ~ Floral_display, color, lambda = "ML")
     summary(lambda.resultd2)
     
-    lambda.resultd3 <- pgls(X6.VPOL ~ X9.SIZ, color, lambda = "ML")
-    summary(lambda.resultd3)
-    
-    lambda.resultd4 <- pgls(X6.VPOL ~ X12.HUE, color, lambda = "ML")
-    summary(lambda.resultd4)
-    
-    lambda.resultd5 <- pgls(X6.VPOL ~ X13.BRI, color, lambda = "ML")
-    summary(lambda.resultd5)
-    
-    lambda.resultd6 <- pgls(X6.VPOL ~ X14.CHR, color, lambda = "ML")
-    summary(lambda.resultd6)
-    
-    lambda.resultd7 <- pgls(X6.VPOL ~ X15.UV, color, lambda = "ML")
-    summary(lambda.resultd7)
-    
-    lambda.resultd8 <- pgls(X6.VPOL ~ X16.GC, color, lambda = "ML")
+    lambda.resultd8 <- pgls(VPOL ~ CHROMA, color, lambda = "ML")
     summary(lambda.resultd8)
     
-    lambda.resultd9 <- pgls(X6.VPOL ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.resultd9)
+    lambda.resultd13 <- pgls(VPOL ~ UV_Chroma, color, lambda = "ML")
+    summary(lambda.resultd13)
+    
+    lambda.resultd14 <- pgls(VPOL ~ Green_Contrast, color, lambda = "ML")
+    summary(lambda.resultd14)
+    
+    lambda.resultd15 <- pgls(VPOL ~ Brightness_Contrast, color, lambda = "ML")
+    summary(lambda.resultd15)
+  
+    lambda.resultd16 <- pgls(VPOL ~ Reflectance_amplitude, color, lambda = "ML")
+    summary(lambda.resultd16)
+  
+    lambda.resultd17 <- pgls(VPOL ~ Chromatic_contrast, color, lambda = "ML")
+    summary(lambda.resultd17)
 
-    lambda.resultd0 <- pgls(X6.VPOL ~ Floral.display, color, lambda = "ML")
-    summary(lambda.resultd0)
-    
-    lambda.resultd0.0 <- pgls(X6.VPOL ~ FdSize, color, lambda = "ML")
-    summary(lambda.resultd0.0)
     
     
-    
-    
-    lambda.resulte1 <- pgls(X9.SIZ ~ X3.MSUG, color, lambda = "ML")
-    summary(lambda.resulte1)
-    
-    lambda.resulte2 <- pgls(X9.SIZ ~ X4.CSUG, color, lambda = "ML")
-    summary(lambda.resulte2)
-    
-    lambda.resulte3 <- pgls(X9.SIZ ~ X5.NPOL, color, lambda = "ML")
-    summary(lambda.resulte3)
-    
-    lambda.resulte4 <- pgls(X9.SIZ ~ X6.VPOL, color, lambda = "ML")
-    summary(lambda.resulte4)
-    
-    lambda.resulte5 <- pgls(X9.SIZ ~ X12.HUE, color, lambda = "ML")
-    summary(lambda.resulte5)
-    
-    lambda.resulte6 <- pgls(X9.SIZ ~ X13.BRI, color, lambda = "ML")
-    summary(lambda.resulte6)
-    
-    lambda.resulte7 <- pgls(X9.SIZ ~ X14.CHR, color, lambda = "ML")
-    summary(lambda.resulte7)
-    
-    lambda.resulte8 <- pgls(X9.SIZ ~ X15.UV, color, lambda = "ML")
+    lambda.resulte8 <- pgls(SIZ ~ CHROMA, color, lambda = "ML")
     summary(lambda.resulte8)
     
-    lambda.resulte9 <- pgls(X9.SIZ ~ X16.GC, color, lambda = "ML")
-    summary(lambda.resulte9)
+    lambda.resulte13 <- pgls(SIZ ~ UV_Chroma, color, lambda = "ML")
+    summary(lambda.resulte13)
     
-    lambda.resulte10 <- pgls(X9.SIZ ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.resulte10)
+    lambda.resulte14 <- pgls(SIZ ~ Green_Contrast, color, lambda = "ML")
+    summary(lambda.resulte14)
     
-    lambda.resulte0 <- pgls(X9.SIZ ~ Floral.display, color, lambda = "ML")
-    summary(lambda.resulte0)
-    
-    lambda.resulte0.0 <- pgls(X9.SIZ ~ FdSize, color, lambda = "ML")
-    summary(lambda.resulte0.0)
-    
-    
-    
-    
-    lambda.resultz1 <- pgls(Floral.display ~ X3.MSUG, color, lambda = "ML")
-    summary(lambda.resultz1)
-    
-    lambda.resultz2 <- pgls(Floral.display ~ X4.CSUG, color, lambda = "ML")
-    summary(lambda.resultz2)
-    
-    lambda.resultz3 <- pgls(Floral.display ~ X9.SIZ, color, lambda = "ML")
-    summary(lambda.resultz3)
-    
-    lambda.resultz4 <- pgls(Floral.display ~ X5.NPOL, color, lambda = "ML")
-    summary(lambda.resultz4)
-    
-    lambda.resultz5 <- pgls(Floral.display ~ X6.VPOL, color, lambda = "ML")
-    summary(lambda.resultz5)
-    
-    lambda.resultz6 <- pgls(Floral.display ~ X12.HUE, color, lambda = "ML")
-    summary(lambda.resultz6)
-    
-    lambda.resultz7 <- pgls(Floral.display ~ X13.BRI, color, lambda = "ML")
-    summary(lambda.resultz7)
-    
-    lambda.resultz8 <- pgls(Floral.display ~ X14.CHR, color, lambda = "ML")
-    summary(lambda.resultz8)
-    
-    lambda.resultz9 <- pgls(Floral.display ~ X15.UV, color, lambda = "ML")
-    summary(lambda.resultz9)
-    
-    lambda.resultz10 <- pgls(Floral.display ~ X16.GC, color, lambda = "ML")
-    summary(lambda.resultz10)
-    
-    lambda.resultz11 <- pgls(Floral.display ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.resultz11)
-    
-    lambda.resultz0.0 <- pgls(Floral.display ~ FdSize, color, lambda = "ML")
-    summary(lambda.resultz0.0)
-    
-    
-    
-    
-    lambda.resulty1 <- pgls(FdSize ~ X3.MSUG, color, lambda = "ML")
-    summary(lambda.resulty1)
-    
-    lambda.resulty2 <- pgls(FdSize ~ X4.CSUG, color, lambda = "ML")
-    summary(lambda.resulty2)
-    
-    lambda.resulty3 <- pgls(FdSize ~ X5.NPOL, color, lambda = "ML")
-    summary(lambda.resulty3)
-    
-    lambda.resulty4 <- pgls(FdSize ~ X6.VPOL, color, lambda = "ML")
-    summary(lambda.resulty4)
-    
-    lambda.resulty5 <- pgls(FdSize ~ X12.HUE, color, lambda = "ML")
-    summary(lambda.resulty5)
-    
-    lambda.resulty6 <- pgls(FdSize ~ X13.BRI, color, lambda = "ML")
-    summary(lambda.resulty6)
-    
-    lambda.resulty7 <- pgls(FdSize ~ X14.CHR, color, lambda = "ML")
-    summary(lambda.resulty7)
-    
-    lambda.resulty8 <- pgls(FdSize ~ X15.UV, color, lambda = "ML")
-    summary(lambda.resulty8)
-    
-    lambda.resulty9 <- pgls(FdSize ~ X16.GC, color, lambda = "ML")
-    summary(lambda.resulty9)
-    
-    lambda.resulty10 <- pgls(FdSize ~ X17.DIST, color, lambda = "ML")
-    summary(lambda.resulty10)
-    
-    lambda.resulty11 <- pgls(FdSize ~ X9.SIZ, color, lambda = "ML")
-    summary(lambda.resulty11)
-    
-    lambda.resulty0 <- pgls(FdSize ~ Floral.display, color, lambda = "ML")
-    summary(lambda.resulty0)
-    
-    
-    
-    
-    
- lambda.resultf1 <- pgls(X12.HUE ~ X3.MSUG, color, lambda = "ML")
-    summary(lambda.resultf1)
-    lambda.resultf2 <- pgls(X12.HUE ~ X4.CSUG, color, lambda = "ML")
-    summary(lambda.resultf2)
-    lambda.resultf3 <- pgls(X12.HUE ~ X5.NPOL, color, lambda = "ML")
-    summary(lambda.resultf3)
-    lambda.resultf4 <- pgls(X12.HUE ~ X6.VPOL, color, lambda = "ML")   
-     summary(lambda.resultf4)
-    lambda.resultf5 <- pgls(X12.HUE ~ X9.SIZ, color, lambda = "ML")   
-     summary(lambda.resultf5)
-    lambda.resultf0 <- pgls(X12.HUE ~ Floral.display, color, lambda = "ML")   
-     summary(lambda.resultf0)
-    lambda.resultf0.0 <- pgls(X12.HUE ~ FdSize, color, lambda = "ML")   
-     summary(lambda.resultf0.0) 
-     
-     
- lambda.resultg1 <- pgls(X13.BRI ~ X3.MSUG, color, lambda = "ML")
-    summary(lambda.resultg1)
-    lambda.resultg2 <- pgls(X13.BRI ~ X4.CSUG, color, lambda = "ML")
-    summary(lambda.resultg2)
-    lambda.resultg3 <- pgls(X13.BRI ~ X5.NPOL, color, lambda = "ML")
-    summary(lambda.resultg3)
-    lambda.resultg4 <- pgls(X13.BRI ~ X6.VPOL, color, lambda = "ML")   
-     summary(lambda.resultg4)
-    lambda.resultg5 <- pgls(X13.BRI ~ X9.SIZ, color, lambda = "ML")   
-     summary(lambda.resultg5)
-    lambda.resultg0 <- pgls(X13.BRI ~ Floral.display, color, lambda = "ML")   
-     summary(lambda.resultf0)
-    lambda.resultg0.0 <- pgls(X13.BRI ~ FdSize, color, lambda = "ML")   
-     summary(lambda.resultf0.0) 
-     
-lambda.resulth1 <- pgls(X14.CHR ~ X3.MSUG, color, lambda = "ML")
-    summary(lambda.resulth1)
-    lambda.resulth2 <- pgls(X14.CHR ~ X4.CSUG, color, lambda = "ML")
-    summary(lambda.resulth2)
-    lambda.resulth3 <- pgls(X14.CHR ~ X5.NPOL, color, lambda = "ML")
-    summary(lambda.resulth3)
-    lambda.resulth4 <- pgls(X14.CHR ~ X6.VPOL, color, lambda = "ML")   
-     summary(lambda.resulth4)
-    lambda.resulth5 <- pgls(X14.CHR ~ X9.SIZ, color, lambda = "ML")   
-     summary(lambda.resulth5)
-    lambda.resulth0 <- pgls(X14.CHR ~ Floral.display, color, lambda = "ML")   
-     summary(lambda.resulth0)
-    lambda.resulth0.0 <- pgls(X14.CHR ~ FdSize, color, lambda = "ML")   
-     summary(lambda.resulth0.0) 
+    lambda.resulte15 <- pgls(SIZ ~ Brightness_Contrast, color, lambda = "ML")
+    summary(lambda.resulte15)
+  
+    lambda.resulte16 <- pgls(SIZ ~ Reflectance_amplitude, color, lambda = "ML")
+    summary(lambda.resulte16)
+  
+    lambda.resulte17 <- pgls(SIZ ~ Chromatic_contrast, color, lambda = "ML")
+    summary(lambda.resulte17)
 
-lambda.resulti1 <- pgls(X15.UV ~ X3.MSUG, color, lambda = "ML")
-    summary(lambda.resulti1)
-    lambda.resulti2 <- pgls(X15.UV ~ X4.CSUG, color, lambda = "ML")
-    summary(lambda.resulti2)
-    lambda.resulti3 <- pgls(X15.UV ~ X5.NPOL, color, lambda = "ML")
-    summary(lambda.resulti3)
-    lambda.resulti4 <- pgls(X15.UV ~ X6.VPOL, color, lambda = "ML")   
-     summary(lambda.resulti4)
-    lambda.resulti5 <- pgls(X15.UV ~ X9.SIZ, color, lambda = "ML")   
-     summary(lambda.resulti5)
-       lambda.resulti0 <- pgls(X15.UV ~ Floral.display, color, lambda = "ML")   
-     summary(lambda.resulti0)
-    lambda.resulti0.0 <- pgls(X15.UV ~ FdSize, color, lambda = "ML")   
-     summary(lambda.resulti0.0) 
-
-lambda.resultj1 <- pgls(X16.GC ~ X3.MSUG, color, lambda = "ML")
-    summary(lambda.resultj1)
-    lambda.resultj2 <- pgls(X16.GC ~ X4.CSUG, color, lambda = "ML")
-    summary(lambda.resultj2)
-    lambda.resultj3 <- pgls(X16.GC ~ X5.NPOL, color, lambda = "ML")
-    summary(lambda.resultj3)
-    lambda.resultj4 <- pgls(X16.GC ~ X6.VPOL, color, lambda = "ML")   
-     summary(lambda.resultj4)
-    lambda.resultj5 <- pgls(X16.GC ~ X9.SIZ, color, lambda = "ML")   
-     summary(lambda.resultj5)
-       lambda.resultj0 <- pgls(X16.GC ~ Floral.display, color, lambda = "ML")   
-     summary(lambda.resultj0)
-    lambda.resultj0.0 <- pgls(X16.GC ~ FdSize, color, lambda = "ML")   
-     summary(lambda.resultj0.0) 
-     
-     
-     
-
-lambda.resultk1 <- pgls(X17.DIST ~ X3.MSUG, color, lambda = "ML")
-    summary(lambda.resultk1)
-    lambda.resultk2 <- pgls(X17.DIST ~ X4.CSUG, color, lambda = "ML")
-    summary(lambda.resultk2)
-    lambda.resultk3 <- pgls(X17.DIST ~ X5.NPOL, color, lambda = "ML")
-    summary(lambda.resultk3)
-    lambda.resultk4 <- pgls(X17.DIST ~ X6.VPOL, color, lambda = "ML")   
-     summary(lambda.resultk4)
-    lambda.resultk5 <- pgls(X17.DIST ~ X9.SIZ, color, lambda = "ML")   
-     summary(lambda.resultk5)
-    lambda.resultk0 <- pgls(X17.DIST ~ Floral.display, color, lambda = "ML")   
-     summary(lambda.resultk0)
-    lambda.resultk0.0 <- pgls(X17.DIST ~ FdSize, color, lambda = "ML")   
-     summary(lambda.resultk0.0) 
+    
+    
+    lambda.resultf8 <- pgls(Floral_display ~ CHROMA, color, lambda = "ML")
+    summary(lambda.resultf8)
+    
+    lambda.resultf13 <- pgls(Floral_display ~ UV_Chroma, color, lambda = "ML")
+    summary(lambda.resultf13)
+    
+    lambda.resultf14 <- pgls(Floral_display ~ Green_Contrast, color, lambda = "ML")
+    summary(lambda.resultf14)
+    
+    lambda.resultf15 <- pgls(Floral_display ~ Brightness_Contrast, color, lambda = "ML")
+    summary(lambda.resultf15)
+  
+    lambda.resultf16 <- pgls(Floral_display ~ Reflectance_amplitude, color, lambda = "ML")
+    summary(lambda.resultf16)
+  
+    lambda.resultf17 <- pgls(Floral_display ~ Chromatic_contrast, color, lambda = "ML")
+    summary(lambda.resultf17)
+    
+    
+    sink(NULL)
 
 ```
 
@@ -420,215 +240,48 @@ Phylogenetic signal
 
 ```{r, echo = F}
 
-lambda.resultm1 <- pgls(X3.MSUG ~ 1, color, lambda = "ML")
-    summary(lambda.resultm1)
-lambda.resultm2 <- pgls(X4.CSUG ~ 1, color, lambda = "ML")
-    summary(lambda.resultm2)
-lambda.resultm3 <- pgls(X5.NPOL ~ 1, color, lambda = "ML")
-    summary(lambda.resultm3)
-lambda.resultm4 <- pgls(X6.VPOL ~ 1, color, lambda = "ML")
-    summary(lambda.resultm4)
-lambda.resultm5 <- pgls(X9.SIZ ~ 1, color, lambda = "ML")
-    summary(lambda.resultm5)
-lambda.resultm0 <- pgls(Floral.display ~ 1, color, lambda = "ML")
-    summary(lambda.resultm0)
-lambda.resultm0.0 <- pgls(FdSize ~ 1, color, lambda = "ML")
-    summary(lambda.resultm0.0)
-lambda.resultm6 <- pgls(X12.HUE ~ 1, color, lambda = "ML")
-    summary(lambda.resultm6)
-lambda.resultm7 <- pgls(X13.BRI ~ 1, color, lambda = "ML")
-    summary(lambda.resultm7)
-lambda.resultm8 <- pgls(X14.CHR ~ 1, color, lambda = "ML")
-    summary(lambda.resultm8)
-lambda.resultm9 <- pgls(X15.UV ~ 1, color, lambda = "ML")
-    summary(lambda.resultm9)
-lambda.resultm10 <- pgls(X16.GC ~ 1, color, lambda = "ML")
-    summary(lambda.resultm10)
-lambda.resultm11 <- pgls(X17.DIST ~ 1, color, lambda = "ML")
-    summary(lambda.resultm11)
-    
-    
+sink("new_results_phylogeneticsignal.txt")
 
-
-               
-    
-```
-
-Plotting
-
-```{r, echo = F}
-
-#library(devtools)
-#install_github("liamrevell/phytools")
-library(phytools)
-
-rownames(mydata) <- as.character(mydata$X2.Especies2)
-
-colors<-colorRampPalette(colors=gray.colors(100, alpha = 1))(100) #blanco y negro
-
-colors<-colorRampPalette(colors=heat.colors(100, alpha = 1))(100) #escala naranja
-
-traits <- mydata[,c("X3.MSUG", "X4.CSUG", "X5.NPOL", "X6.VPOL", "X9.SIZ", "X12.HUE", "X13.BRI", "X14.CHR", "X15.UV", "X16.GC", "X17.DIST", "Floral.display")]
-colnames(traits) <- c("Sugar Mass", "Sugar Conc.", "Pollen Num.", "Pollen Vol.", "Flow. Size", "Hue", "Brigthness", "Chroma", "UV Chroma", "Green C.", "Backgr. C.", "Floral display")
-
-phylo.heatmap(mytree2,traits,ftype="i", fsize = c(0.35,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = F, split=c(0.70,0.30))
-
-#para que salga la leyenda legend=T
-
-
-
-```
-
-Cathegorical variables
-
-```{r,  echo = F}
-
-    lambda.resultg1 <- pgls(X9.SIZ ~ X10.SIM, color, lambda = "ML")
-    summary(lambda.resultg1)
-    anova(lambda.resultg1)
-    lambda.resultg0 <- pgls(Floral.display ~ X10.SIM, color, lambda = "ML")
+    lambda.resultg0 <- pgls(MSUG ~ 1, color, lambda = "ML")
     summary(lambda.resultg0)
-    lambda.resultg0.0 <- pgls(FdSize ~ X10.SIM, color, lambda = "ML")
-    summary(lambda.resultg0.0)
     
-    lambda.resultg2 <- pgls(X5.NPOL ~ X10.SIM, color, lambda = "ML")
+    lambda.resultg00 <- pgls(CSUG ~ 1, color, lambda = "ML")
+    summary(lambda.resultg00)
+
+    lambda.resultg000 <- pgls(NPOL ~ 1, color, lambda = "ML")
+    summary(lambda.resultg000)
+    
+    lambda.resultg0000 <- pgls(VPOL ~ 1, color, lambda = "ML")
+    summary(lambda.resultg0000)
+    
+    lambda.resultg1 <- pgls(SIZ ~ 1, color, lambda = "ML")
+    summary(lambda.resultg1)
+
+    lambda.resultg2 <- pgls(Floral_display ~ 1, color, lambda = "ML")
     summary(lambda.resultg2)
-    lambda.resultg3 <- pgls(X6.VPOL ~ X10.SIM, color, lambda = "ML")
-    summary(lambda.resultg3)
-    lambda.resultg4 <- pgls(X12.HUE ~ X10.SIM, color, lambda = "ML")
-    summary(lambda.resultg4)
-    lambda.resultg5 <- pgls(X13.BRI ~ X10.SIM, color, lambda = "ML")
-    summary(lambda.resultg5)
-    lambda.resultg6 <- pgls(X14.CHR ~ X10.SIM, color, lambda = "ML")
-    summary(lambda.resultg6)
-    lambda.resultg7 <- pgls(X15.UV ~ X10.SIM, color, lambda = "ML")
-    summary(lambda.resultg7)
-    lambda.resultg8 <- pgls(X16.GC ~ X10.SIM, color, lambda = "ML")
+    
+    lambda.resultg8 <- pgls(CHROMA ~ 1, color, lambda = "ML")
     summary(lambda.resultg8)
-    lambda.resultg9 <- pgls(X17.DIST ~ X10.SIM, color, lambda = "ML")
-    summary(lambda.resultg9)
-    lambda.resultg10 <- pgls(X3.MSUG ~ X10.SIM, color, lambda = "ML")
-    summary(lambda.resultg10)
-    lambda.resultg11 <- pgls(X4.CSUG ~ X10.SIM, color, lambda = "ML")
-    summary(lambda.resultg11)
     
+    lambda.resultg13 <- pgls(UV_Chroma  ~ 1, color, lambda = "ML")
+    summary(lambda.resultg13)
     
-    lambda.resulth1 <- pgls(X9.SIZ ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth1)
-    lambda.resulth0 <- pgls(Floral.display ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth0)
-    lambda.resulth0.0 <- pgls(FdSize ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth0.0)
-    lambda.resulth2 <- pgls(X5.NPOL ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth2)
-    lambda.resulth3 <- pgls(X6.VPOL ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth3)
-    lambda.resulth4 <- pgls(X12.HUE ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth4)
-    lambda.resulth5 <- pgls(X13.BRI ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth5)
-    lambda.resulth6 <- pgls(X14.CHR ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth6)
-    lambda.resulth7 <- pgls(X15.UV ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth7)
-    lambda.resulth8 <- pgls(X16.GC ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth8)
-    lambda.resulth9 <- pgls(X17.DIST ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth9)
-    lambda.resulth10 <- pgls(X3.MSUG ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth10)
-    lambda.resulth11 <- pgls(X4.CSUG ~ X18.CAT, color, lambda = "ML")
-    summary(lambda.resulth11)
-
-    head(mydata)
+    lambda.resultg14 <- pgls(Green_Contrast  ~ 1, color, lambda = "ML")
+    summary(lambda.resultg14)
     
-    lambda.resulti1 <- pgls(X9.SIZ ~ X19.COLOR,color, lambda = "ML")
-    summary(lambda.resulti1)
-    lambda.resulth2 <- pgls(X5.NPOL ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth2)
-    lambda.resulth3 <- pgls(X6.VPOL ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth3)
-    lambda.resulth4 <- pgls(X12.HUE ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth4)
-    lambda.resulth5 <- pgls(X13.BRI ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth5)
-    lambda.resulth6 <- pgls(X14.CHR ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth6)
-    lambda.resulth7 <- pgls(X15.UV ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth7)
-    lambda.resulth8 <- pgls(X16.GC ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth8)
-    lambda.resulth9 <- pgls(X17.DIST ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth9)
-    lambda.resulth10 <- pgls(X3.MSUG ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth10)
-    lambda.resulth11 <- pgls(X4.CSUG ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth11)
-    lambda.resulth0 <- pgls(Floral.display ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth0)
-    lambda.resulth0.0 <- pgls(FdSize ~ X19.COLOR, color, lambda = "ML")
-    summary(lambda.resulth0.0)
-    
-
-       lambda.resulth1 <- pgls(X9.SIZ ~  X20.COROLA,color, lambda = "ML")
-    summary(lambda.resulth1)
-    lambda.resulth0 <- pgls(Floral.display ~  X20.COROLA,color, lambda = "ML")
-    summary(lambda.resulth0)
-    lambda.resulth0.0 <- pgls(FdSize ~  X20.COROLA,color, lambda = "ML")
-    summary(lambda.resulth0.0)
-    lambda.resulth2 <- pgls(X5.NPOL ~ X20.COROLA, color, lambda = "ML")
-    summary(lambda.resulth2)
-    lambda.resulth3 <- pgls(X6.VPOL ~ X20.COROLA, color, lambda = "ML")
-    summary(lambda.resulth3)
-    lambda.resulth4 <- pgls(X12.HUE ~ X20.COROLA, color, lambda = "ML")
-    summary(lambda.resulth4)
-    lambda.resulth5 <- pgls(X13.BRI ~ X20.COROLA, color, lambda = "ML")
-    summary(lambda.resulth5)
-    lambda.resulth6 <- pgls(X14.CHR ~ X20.COROLA, color, lambda = "ML")
-    summary(lambda.resulth6)
-    lambda.resulth7 <- pgls(X15.UV ~ X20.COROLA, color, lambda = "ML")
-    summary(lambda.resulth7)
-    lambda.resulth8 <- pgls(X16.GC ~ X20.COROLA, color, lambda = "ML")
-    summary(lambda.resulth8)
-    lambda.resulth9 <- pgls(X17.DIST ~ X20.COROLA, color, lambda = "ML")
-    summary(lambda.resulth9)
-    lambda.resulth10 <- pgls(X3.MSUG ~ X20.COROLA, color, lambda = "ML")
-    summary(lambda.resulth10)
-    lambda.resulth11 <- pgls(X4.CSUG ~ X20.COROLA, color, lambda = "ML")
-    summary(lambda.resulth11)
-    
-    
-    
-    
-    
-     lambda.resultp1 <- pgls(X9.SIZ ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp1)
-    anova(lambda.resultp1)
-    lambda.resultp0 <- pgls(Floral.display ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp0)
-    lambda.resultp0.0 <- pgls(FdSize ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp0.0)
-    
-    lambda.resultp2 <- pgls(X5.NPOL ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp2)
-    lambda.resultp3 <- pgls(X6.VPOL ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp3)
-    lambda.resultp4 <- pgls(X12.HUE ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp4)
-    lambda.resultp5 <- pgls(X13.BRI ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp5)
-    lambda.resultp6 <- pgls(X14.CHR ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp6)
-    lambda.resultp7 <- pgls(X15.UV ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp7)
-    lambda.resultp8 <- pgls(X16.GC ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp8)
-    lambda.resultp9 <- pgls(X17.DIST ~ X21.NECTAR, color, lambda = "ML")
-    summary(lambda.resultp9)
+    lambda.resultg15 <- pgls(Brightness_Contrast  ~ 1, color, lambda = "ML")
+    summary(lambda.resultg15)
+  
+    lambda.resultg16 <- pgls(Reflectance_amplitude  ~ 1, color, lambda = "ML")
+    summary(lambda.resultg16)
+  
+    lambda.resultg17 <- pgls(Chromatic_contrast  ~ 1, color, lambda = "ML")
+    summary(lambda.resultg17)
 
     
-    
 
+sink(NULL)
+               
     
 ```
 
@@ -638,87 +291,225 @@ Multiple models
 ```{r}
 #MULVARIABLES MODELS
 
+sink("new_results_multi.txt") 
 
-lambda.result1.multi <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color, lambda = "ML")
-    summary(lambda.result1.multi)
+lambda.result1.multi <- pgls(MSUG ~ SIZ + Green_Contrast	+ Brightness_Contrast	+ 	Chromatic_contrast, color, lambda = "ML")
+summary(lambda.result1.multi)
     
-    lambda.result2.multi <- pgls(X5.NPOL ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI  + X14.CHR, color, lambda = "ML")
-    summary(lambda.result2.multi)
-    
-    lambda.result3.multi <- pgls(X3.MSUG ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI + X14.CHR, color, lambda = "ML")
-    summary(lambda.result3.multi)
-    
-    lambda.result4.multi <- pgls(X4.CSUG ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI  + X14.CHR, color, lambda = "ML")
-    summary(lambda.result4.multi)
 
-    #lambda.result5.multi <- pgls(X4.CSUG ~ X9.SIZ  + X16.GC + X17.DIST, color, lambda = "ML")
-    #summary(lambda.result5.multi)
-    
-    #lambda.result6.multi <- pgls(X4.CSUG ~ X16.GC + X17.DIST, color, lambda = "ML")
-    #summary(lambda.result6.multi)
+lambda.result1.multi <- pgls(MSUG ~ SIZ + Green_Contrast	+ Brightness_Contrast	+ 	Chromatic_contrast, color, lambda = "ML")
+summary(lambda.result1.multi)
 
-    lambda.result7.multi <- pgls(X4.CSUG ~ X9.SIZ  + X17.DIST, color, lambda = "ML")
-    summary(lambda.result7.multi)
+lambda.result2.multi <- pgls(CSUG ~ SIZ + Green_Contrast	+ Brightness_Contrast	+ 	Chromatic_contrast, color, lambda = "ML")
+summary(lambda.result2.multi)
+
+lambda.result3.multi <- pgls(NPOL ~ SIZ + Green_Contrast	+ Brightness_Contrast	+ 	Chromatic_contrast, color, lambda = "ML")
+summary(lambda.result3.multi)
+    
+lambda.result4.multi <- pgls(VPOL ~ SIZ + Green_Contrast	+ Brightness_Contrast	+ 	Chromatic_contrast, color, lambda = "ML")
+summary(lambda.result4.multi)
+
+lambda.result5.multi <- pgls(MSUG ~ SIZ + Floral_display + Green_Contrast	+ Brightness_Contrast	+ 	Chromatic_contrast, color, lambda = "ML")
+summary(lambda.result5.multi)
+
+lambda.result6.multi <- pgls(CSUG ~ SIZ + Floral_display + Green_Contrast	+ Brightness_Contrast	+ 	Chromatic_contrast, color, lambda = "ML")
+summary(lambda.result6.multi)
+
+lambda.result7.multi <- pgls(NPOL ~ SIZ + Floral_display + Green_Contrast	+ Brightness_Contrast	+ 	Chromatic_contrast, color, lambda = "ML")
+summary(lambda.result7.multi)
+    
+lambda.result8.multi <- pgls(VPOL ~ SIZ + Floral_display + Green_Contrast	+ Brightness_Contrast	+ 	Chromatic_contrast, color, lambda = "ML")
+summary(lambda.result8.multi)
+   
+sink(NULL)    
+
+```
+
+
+
+Cathegorical variables
+
+```{r,  echo = F}
+
+sink("new_results_cathegorical.txt")
+
+     lambda.resulth0 <- pgls(MSUG ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth0)
+    
+    lambda.resulth00 <- pgls(CSUG ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth00)
+
+    lambda.resulth000 <- pgls(NPOL ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth000)
+    
+    lambda.resulth0000 <- pgls(VPOL ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth0000)
+    
+    lambda.resulth1 <- pgls(SIZ ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth1)
+
+    lambda.resulth2 <- pgls(Floral_display ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth2)
+    
+    lambda.resulth8 <- pgls(CHROMA ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth8)
+    
+    lambda.resulth13 <- pgls(UV_Chroma  ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth13)
+    
+    lambda.resulth14 <- pgls(Green_Contrast  ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth14)
+    
+    lambda.resulth15 <- pgls(Brightness_Contrast  ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth15)
+  
+    lambda.resulth16 <- pgls(Reflectance_amplitude  ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth16)
+  
+    lambda.resulth17 <- pgls(Chromatic_contrast  ~ SIM, color, lambda = "ML")
+    summary(lambda.resulth17)
 
     
-lambda.result8.multi <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR + Floral.display, color, lambda = "ML")
-    summary(lambda.result8.multi)
+        
+ lambda.resulti0 <- pgls(MSUG ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti0)
     
-    lambda.result9.multi <- pgls(X5.NPOL ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI  + X14.CHR + Floral.display, color, lambda = "ML")
-    summary(lambda.result9.multi)
+    lambda.resulti00 <- pgls(CSUG ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti00)
+
+    lambda.resulti000 <- pgls(NPOL ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti000)
     
-    lambda.result10.multi <- pgls(X3.MSUG ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI + X14.CHR + Floral.display, color, lambda = "ML")
-    summary(lambda.result10.multi)
+    lambda.resulti0000 <- pgls(VPOL ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti0000)
     
-    lambda.result11.multi <- pgls(X4.CSUG ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI  + X14.CHR + Floral.display, color, lambda = "ML")
-    summary(lambda.result11.multi)
+    lambda.resulti1 <- pgls(SIZ ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti1)
+
+    lambda.resulti2 <- pgls(Floral_display ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti2)
     
-    lambda.result12.multi <- pgls(X4.CSUG ~ X9.SIZ  + X17.DIST + X13.BRI, color, lambda = "ML")
-    summary(lambda.result12.multi)
+    lambda.resulti8 <- pgls(CHROMA ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti8)
+    
+    lambda.resulti13 <- pgls(UV_Chroma  ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti13)
+    
+    lambda.resulti14 <- pgls(Green_Contrast  ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti14)
+    
+    lambda.resulti15 <- pgls(Brightness_Contrast  ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti15)
+  
+    lambda.resulti16 <- pgls(Reflectance_amplitude  ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti16)
+  
+    lambda.resulti17 <- pgls(Chromatic_contrast  ~ COLOR, color, lambda = "ML")
+    summary(lambda.resulti17)
+    
+
+       lambda.resultj000 <- pgls(NPOL ~ COROLA, color, lambda = "ML")
+    summary(lambda.resultj000)
+    
+    lambda.resultj0000 <- pgls(VPOL ~ COROLA, color, lambda = "ML")
+    summary(lambda.resultj0000)
+    
+    lambda.resultj1 <- pgls(SIZ ~ COROLA, color, lambda = "ML")
+    summary(lambda.resultj1)
+
+    lambda.resultj2 <- pgls(Floral_display ~ COROLA, color, lambda = "ML")
+    summary(lambda.resultj2)
+    
+    lambda.resultj8 <- pgls(CHROMA ~ COROLA, color, lambda = "ML")
+    summary(lambda.resultj8)
+    
+    lambda.resultj13 <- pgls(UV_Chroma  ~ COROLA, color, lambda = "ML")
+    summary(lambda.resultj13)
+    
+    lambda.resultj14 <- pgls(Green_Contrast  ~ COROLA, color, lambda = "ML")
+    summary(lambda.resultj14)
+    
+    lambda.resultj15 <- pgls(Brightness_Contrast  ~ COROLA, color, lambda = "ML")
+    summary(lambda.resultj15)
+  
+    lambda.resultj16 <- pgls(Reflectance_amplitude  ~ COROLA, color, lambda = "ML")
+    summary(lambda.resultj16)
+  
+    lambda.resultj17 <- pgls(Chromatic_contrast  ~ COROLA, color, lambda = "ML")
+    summary(lambda.resultj17)    
+    
+    
+    
+    
+    lambda.resultk000 <- pgls(NPOL ~ NECTAR, color, lambda = "ML")
+    summary(lambda.resultk000)
+    
+    lambda.resultk0000 <- pgls(VPOL ~ NECTAR, color, lambda = "ML")
+    summary(lambda.resultk0000)
+    
+    lambda.resultk1 <- pgls(SIZ ~ NECTAR, color, lambda = "ML")
+    summary(lambda.resultk1)
+
+    lambda.resultk2 <- pgls(Floral_display ~ NECTAR, color, lambda = "ML")
+    summary(lambda.resultk2)
+    
+    lambda.resultk8 <- pgls(CHROMA ~ NECTAR, color, lambda = "ML")
+    summary(lambda.resultk8)
+    
+    lambda.resultk13 <- pgls(UV_Chroma  ~ NECTAR, color, lambda = "ML")
+    summary(lambda.resultk13)
+    
+    lambda.resultk14 <- pgls(Green_Contrast  ~ NECTAR, color, lambda = "ML")
+    summary(lambda.resultk14)
+    
+    lambda.resultk15 <- pgls(Brightness_Contrast  ~ NECTAR, color, lambda = "ML")
+    summary(lambda.resultk15)
+  
+    lambda.resultk16 <- pgls(Reflectance_amplitude  ~ NECTAR, color, lambda = "ML")
+    summary(lambda.resultk16)
+  
+    lambda.resultk17 <- pgls(Chromatic_contrast  ~ NECTAR, color, lambda = "ML")
+    summary(lambda.resultk17)    
+
+    
+sink(NULL)    
+
     
 ```
+
 
 
 Phylogenetic signal of cathegorical variables
 
 ```{r, echo = F}
 
-
-resulti1 <- phylo.d(mydata, mytree2, X2.Especies2, X10.SIM, permut = 1000, rnd.bias=NULL)
-summary(resulti1)
-
-###This is a method I have found to calculate phylogenetic signal for more than two categories
 library(geiger)
-hexagon <- mydata$X18.CAT
-names(hexagon) <- mydata$X2.Especies2
+
+sink("newresults_cathegorical_phylogeneticsignal.txt")
+
+symmetry <- mydata$SIM
+names(symmetry) <- mydata$Species2
 mytree3 <- multi2di(mytree2)
-resulti1 <- fitDiscrete(mytree3, hexagon, model = "ER", transform = "lambda", niter = 100, FAIL = 1e+200, hessian = FALSE, CI = 0.95, ncores=NULL)
-resulti1
+resultl1 <- fitDiscrete(mytree3, symmetry, model = "ER", transform = "lambda", niter = 100, FAIL = 1e+200, hessian = FALSE, CI = 0.95, ncores=NULL)
+resultl1
 
-library(geiger)
-symmetry <- mydata$X10.SIM
-names(symmetry) <- mydata$X2.Especies2
-mytree3 <- multi2di(mytree2)
-resultim <- fitDiscrete(mytree3, symmetry, model = "ER", transform = "lambda", niter = 100, FAIL = 1e+200, hessian = FALSE, CI = 0.95, ncores=NULL)
-resultim
+color3 <- mydata$COLOR
+names(color3) <- mydata$Species2
+resultl2 <- fitDiscrete(mytree3, color3, model = "ER", transform = "lambda", niter = 100, FAIL = 1e+200, hessian = FALSE, CI = 0.95, ncores=NULL)
+resultl2
 
-library(geiger)
-symmetry <- mydata$X10.SIM
-names(symmetry) <- mydata$X2.Especies2
-mytree3 <- multi2di(mytree2)
-resultim <- fitDiscrete(mytree3, symmetry, model = "ER", transform = "lambda", niter = 100, FAIL = 1e+200, hessian = FALSE, CI = 0.95, ncores=NULL)
-resultim
+NECTAR <- mydata$NECTAR
+names(NECTAR) <- mydata$Species2
+resultl3 <- fitDiscrete(mytree3, NECTAR, model = "ER", transform = "lambda", niter = 100, FAIL = 1e+200, hessian = FALSE, CI = 0.95, ncores=NULL)
+resultl3
 
-library(geiger)
-NECTAR <- mydata$X21.NECTAR
-names(NECTAR) <- mydata$X2.Especies2
-mytree3 <- multi2di(mytree2)
-resultin <- fitDiscrete(mytree3, NECTAR, model = "ER", transform = "lambda", niter = 100, FAIL = 1e+200, hessian = FALSE, CI = 0.95, ncores=NULL)
-resultin
+COROLA <- mydata$COROLA
+names(COROLA) <- mydata$Species2
+resultl4 <- fitDiscrete(mytree3, COROLA, model = "ER", transform = "lambda", niter = 100, FAIL = 1e+200, hessian = FALSE, CI = 0.95, ncores=NULL)
+resultl4
 
 
-
-
+sink(NULL)
 
 ```
 
@@ -731,8 +522,8 @@ library(phytools)
 
 
 #MSUG
-dat.MSUG <- mydata$X3.MSUG
-names(dat.MSUG) <- mydata$X2.Especies2
+dat.MSUG <- mydata$MSUG
+names(dat.MSUG) <- mydata$Species2
 names(dat.MSUG)[is.na(dat.MSUG) == TRUE]
 tree <- drop.tip(mytree2, names(dat.MSUG)[is.na(dat.MSUG) == TRUE])
 dat.MSUG <- dat.MSUG[is.na(dat.MSUG) == FALSE]
@@ -743,8 +534,8 @@ plot(contMap.MSUG,type="fan",legend=0.7*max(nodeHeights(tree)),
 
 
 #CSUG
-dat.CSUG <- mydata$X4.CSUG
-names(dat.CSUG) <- mydata$X2.Especies2
+dat.CSUG <- mydata$CSUG
+names(dat.CSUG) <- mydata$Species2
 names(dat.CSUG)[is.na(dat.CSUG) == TRUE]
 tree <- drop.tip(mytree2, names(dat.CSUG)[is.na(dat.CSUG) == TRUE])
 dat.CSUG <- dat.CSUG[is.na(dat.CSUG) == FALSE]
@@ -756,8 +547,8 @@ plot(contMap.CSUG,type="fan",legend=0.7*max(nodeHeights(tree)),
 
 
 #NPOL
-dat.NPOL <- mydata$X5.NPOL
-names(dat.NPOL) <- mydata$X2.Especies2
+dat.NPOL <- mydata$NPOL
+names(dat.NPOL) <- mydata$Species2
 names(dat.NPOL)[is.na(dat.NPOL) == TRUE]
 tree <- drop.tip(mytree2, names(dat.NPOL)[is.na(dat.NPOL) == TRUE])
 dat.NPOL <- dat.NPOL[is.na(dat.NPOL) == FALSE]
@@ -768,8 +559,8 @@ plot(contMap.NPOL,type="fan",legend=0.7*max(nodeHeights(tree)),
 
 
 #VPOL
-dat.VPOL <- mydata$X6.VPOL
-names(dat.VPOL) <- mydata$X2.Especies2
+dat.VPOL <- mydata$VPOL
+names(dat.VPOL) <- mydata$Species2
 names(dat.VPOL)[is.na(dat.VPOL) == TRUE]
 tree <- drop.tip(mytree2, names(dat.VPOL)[is.na(dat.VPOL) == TRUE])
 dat.VPOL <- dat.VPOL[is.na(dat.VPOL) == FALSE]
@@ -779,8 +570,8 @@ plot(contMap.VPOL,type="fan",legend=0.7*max(nodeHeights(tree)),
     sig=2,fsize=c(0.7,0.9))
 
 #SIZ
-dat.SIZ <- mydata$X9.SIZ
-names(dat.SIZ) <- mydata$X2.Especies2
+dat.SIZ <- mydata$SIZ
+names(dat.SIZ) <- mydata$Species2
 names(dat.SIZ)[is.na(dat.SIZ) == TRUE]
 tree <- drop.tip(mytree2, names(dat.SIZ)[is.na(dat.SIZ) == TRUE])
 dat.SIZ <- dat.SIZ[is.na(dat.SIZ) == FALSE]
@@ -789,31 +580,9 @@ contMap.SIZ <-contMap(tree,dat.SIZ,plot=FALSE)
 plot(contMap.SIZ,type="fan",legend=0.7*max(nodeHeights(tree)),
     sig=2,fsize=c(0.7,0.9))
 
-#HUE
-dat.HUE <- mydata$X12.HUE
-names(dat.HUE) <- mydata$X2.Especies2
-names(dat.HUE)[is.na(dat.HUE) == TRUE]
-tree <- drop.tip(mytree2, names(dat.HUE)[is.na(dat.HUE) == TRUE])
-dat.HUE <- dat.HUE[is.na(dat.HUE) == FALSE]
-
-contMap.HUE <-contMap(tree,dat.HUE,plot=FALSE)
-plot(contMap.HUE,type="fan",legend=0.7*max(nodeHeights(tree)),
-    sig=2,fsize=c(0.7,0.9))
-
-#BRI
-dat.BRI <- mydata$X13.BRI
-names(dat.BRI) <- mydata$X2.Especies2
-names(dat.BRI)[is.na(dat.BRI) == TRUE]
-tree <- drop.tip(mytree2, names(dat.BRI)[is.na(dat.BRI) == TRUE])
-dat.BRI <- dat.BRI[is.na(dat.BRI) == FALSE]
-
-contMap.BRI <-contMap(tree,dat.BRI,plot=FALSE)
-plot(contMap.BRI,type="fan",legend=0.7*max(nodeHeights(tree)),
-    sig=2,fsize=c(0.7,0.9))
-
 #CHR
-dat.CHR <- mydata$X14.CHR
-names(dat.CHR) <- mydata$X2.Especies2
+dat.CHR <- mydata$CHROMA
+names(dat.CHR) <- mydata$Species2
 names(dat.CHR)[is.na(dat.CHR) == TRUE]
 tree <- drop.tip(mytree2, names(dat.CHR)[is.na(dat.CHR) == TRUE])
 dat.CHR <- dat.CHR[is.na(dat.CHR) == FALSE]
@@ -822,20 +591,9 @@ contMap.CHR <-contMap(tree,dat.CHR,plot=FALSE)
 plot(contMap.CHR,type="fan",legend=0.7*max(nodeHeights(tree)),
     sig=2,fsize=c(0.7,0.9))
 
-#UV
-dat.UV <- mydata$X15.UV
-names(dat.UV) <- mydata$X2.Especies2
-names(dat.UV)[is.na(dat.UV) == TRUE]
-tree <- drop.tip(mytree2, names(dat.UV)[is.na(dat.UV) == TRUE])
-dat.UV <- dat.UV[is.na(dat.UV) == FALSE]
-
-contMap.UV <-contMap(tree,dat.UV,plot=FALSE)
-plot(contMap.UV,type="fan",legend=0.7*max(nodeHeights(tree)),
-    sig=2,fsize=c(0.7,0.9))
-
 #GC
-dat.GC <- mydata$X16.GC
-names(dat.GC) <- mydata$X2.Especies2
+dat.GC <- mydata$Green_Contrast
+names(dat.GC) <- mydata$Species2
 names(dat.GC)[is.na(dat.GC) == TRUE]
 tree <- drop.tip(mytree2, names(dat.GC)[is.na(dat.GC) == TRUE])
 dat.GC <- dat.GC[is.na(dat.GC) == FALSE]
@@ -844,20 +602,10 @@ contMap.GC <-contMap(tree,dat.GC,plot=FALSE)
 plot(contMap.GC,type="fan",legend=0.7*max(nodeHeights(tree)),
     sig=2,fsize=c(0.7,0.9))
 
-#DIST
-dat.DIST <- mydata$X17.DIST
-names(dat.DIST) <- mydata$X2.Especies2
-names(dat.DIST)[is.na(dat.DIST) == TRUE]
-tree <- drop.tip(mytree2, names(dat.DIST)[is.na(dat.DIST) == TRUE])
-dat.DIST <- dat.DIST[is.na(dat.DIST) == FALSE]
-
-contMap.DIST <-contMap(tree,dat.DIST,plot=FALSE)
-plot(contMap.DIST,type="fan",legend=0.7*max(nodeHeights(tree)),
-    sig=2,fsize=c(0.7,0.9))
 
 #Floral.display
-dat.Fd <- mydata$Floral.display
-names(dat.Fd) <- mydata$X2.Especies2
+dat.Fd <- mydata$Floral_display
+names(dat.Fd) <- mydata$Species2
 names(dat.Fd)[is.na(dat.Fd) == TRUE]
 tree <- drop.tip(mytree2, names(dat.Fd)[is.na(dat.Fd) == TRUE])
 dat.Fd <- dat.Fd[is.na(dat.Fd) == FALSE]
@@ -867,16 +615,75 @@ plot(contMap.Fd,type="fan",legend=0.7*max(nodeHeights(tree)),
     sig=2,fsize=c(0.7,0.9))
 
 
-#Floral.display x Size
-dat.FdSize <- mydata$FdSize
-names(dat.FdSize) <- mydata$X2.Especies2
-names(dat.FdSize)[is.na(dat.FdSize) == TRUE]
-tree <- drop.tip(mytree2, names(dat.FdSize)[is.na(dat.FdSize) == TRUE])
-dat.FdSize <- dat.FdSize[is.na(dat.FdSize) == FALSE]
+#Brightness_Contrast
+dat.BC <- mydata$Brightness_Contrast
+names(dat.BC) <- mydata$Species2
+names(dat.BC)[is.na(dat.BC) == TRUE]
+tree <- drop.tip(mytree2, names(dat.BC)[is.na(dat.BC) == TRUE])
+dat.BC <- dat.BC[is.na(dat.BC) == FALSE]
 
-contMap.FdSize <-contMap(tree,dat.FdSize,plot=FALSE)
-plot(contMap.FdSize,type="fan",legend=0.7*max(nodeHeights(tree)),
+contMap.BC <-contMap(tree,dat.BC,plot=FALSE)
+plot(contMap.BC,type="fan",legend=0.7*max(nodeHeights(tree)),
     sig=2,fsize=c(0.7,0.9))
+
+#Chromatic_Contrast
+dat.CC <- mydata$Chromatic_contrast
+names(dat.CC) <- mydata$Species2
+names(dat.CC)[is.na(dat.CC) == TRUE]
+tree <- drop.tip(mytree2, names(dat.CC)[is.na(dat.CC) == TRUE])
+dat.CC <- dat.CC[is.na(dat.CC) == FALSE]
+
+contMap.CC <-contMap(tree,dat.CC,plot=FALSE)
+plot(contMap.CC,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+
+#Reflectance_amplitude
+dat.RA <- mydata$Reflectance_amplitude
+names(dat.RA) <- mydata$Species2
+names(dat.RA)[is.na(dat.RA) == TRUE]
+tree <- drop.tip(mytree2, names(dat.RA)[is.na(dat.RA) == TRUE])
+dat.RA <- dat.RA[is.na(dat.RA) == FALSE]
+
+contMap.RA <-contMap(tree,dat.RA,plot=FALSE)
+plot(contMap.RA,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+
+#CHR
+dat.UVCHR <- mydata$UV_Chroma
+names(dat.UVCHR) <- mydata$Species2
+names(dat.UVCHR)[is.na(dat.UVCHR) == TRUE]
+tree <- drop.tip(mytree2, names(dat.UVCHR)[is.na(dat.UVCHR) == TRUE])
+dat.UVCHR <- dat.UVCHR[is.na(dat.UVCHR) == FALSE]
+
+contMap.UVCHR <-contMap(tree,dat.UVCHR,plot=FALSE)
+plot(contMap.UVCHR,type="fan",legend=0.7*max(nodeHeights(tree)),
+    sig=2,fsize=c(0.7,0.9))
+
+```
+
+
+Plotting
+
+
+```{r, echo = F}
+
+#library(devtools)
+#install_github("liamrevell/phytools")
+library(phytools)
+
+rownames(mydata) <- as.character(mydata$Species2)
+
+colors<-colorRampPalette(colors=gray.colors(100, alpha = 1))(100) #blanco y negro
+
+colors<-colorRampPalette(colors=heat.colors(100, alpha = 1))(100) #escala naranja
+
+traits <- mydata[,c("MSUG", "CSUG", "NPOL", "VPOL", "SIZ", "Floral_display", "CHROMA", "UV_Chroma", "Green_Contrast", "Brightness_Contrast", "Reflectance_amplitude", "Chromatic_contrast")]
+
+phylo.heatmap(mytree2,traits,ftype="i", fsize = c(0.35,0.5,0.5),colors=colors,standardize=T,lwd=1, pts=F, grid=F, legend = F, split=c(0.70,0.30))
+
+#para que salga la leyenda legend=T
 
 
 
@@ -884,100 +691,197 @@ plot(contMap.FdSize,type="fan",legend=0.7*max(nodeHeights(tree)),
 
 
 
+
 Modified data set
 
 
 ```{r}
-mytree4 <- drop.tip(mytree2, "Cistus_ladanifer") 
-mydata2 <- mydata[which(mydata$X2.Especies2 != "Cistus_ladanifer"),]
+library(caper)
 
-color2 <- comparative.data(mytree4, mydata2, X2.Especies2, vcv=TRUE, vcv.dim=2, na.omit=F, 
+mytree4 <- drop.tip(mytree2, "Cistus_ladanifer") 
+mydata2 <- mydata[which(mydata$Species2 != "Cistus_ladanifer"),]
+
+color2 <- comparative.data(mytree4, mydata2, Species2, vcv=TRUE, vcv.dim=2, na.omit=F, 
 	             force.root=FALSE, warn.dropped=T, scope=NULL)
 
-lambda.result1.color2 <- pgls(X6.VPOL ~ X9.SIZ, color2, lambda = "ML")
-    summary(lambda.result1.color2)
-lambda.result2.color2 <- pgls(X6.VPOL ~ X16.GC, color2, lambda = "ML")
-    summary(lambda.result2.color2)
-lambda.result3.color2 <- pgls(X6.VPOL ~ X17.DIST, color2, lambda = "ML")
-    summary(lambda.result3.color2)
-lambda.result4.color2 <- pgls(X6.VPOL ~ X13.BRI, color2, lambda = "ML")
-    summary(lambda.result4.color2)
-lambda.result5.color2 <- pgls(X6.VPOL ~ X14.CHR, color2, lambda = "ML")
-    summary(lambda.result5.color2)
+sink("new_results_noCistusladanifer.txt")
+    lambda.resultmod1 <- pgls(MSUG ~ SIZ, color2, lambda = "ML")
+    summary(lambda.resultmod1)
     
-
-          
-lambda.result6.color2 <- pgls(X5.NPOL ~ X9.SIZ, color2, lambda = "ML")
-    summary(lambda.result6.color2)
-lambda.result7.color2 <- pgls(X5.NPOL ~ X16.GC, color2, lambda = "ML")
-    summary(lambda.result7.color2)
-lambda.result8.color2 <- pgls(X5.NPOL ~ X17.DIST, color2, lambda = "ML")
-    summary(lambda.result8.color2)
-lambda.result9.color2 <- pgls(X5.NPOL ~ X13.BRI, color2, lambda = "ML")
-    summary(lambda.result9.color2)
-lambda.result10.color2 <- pgls(X5.NPOL ~ X14.CHR, color2, lambda = "ML")
-    summary(lambda.result10.color2)
-
-
-lambda.result11.color2 <- pgls(X3.MSUG ~ X9.SIZ, color2, lambda = "ML")
-    summary(lambda.result11.color2)
-lambda.result12.color2 <- pgls(X3.MSUG ~ X16.GC, color2, lambda = "ML")
-    summary(lambda.result12.color2)
-lambda.result13.color2 <- pgls(X3.MSUG ~ X17.DIST, color2, lambda = "ML")
-    summary(lambda.result13.color2)
-lambda.result14.color2 <- pgls(X3.MSUG ~ X13.BRI, color2, lambda = "ML")
-    summary(lambda.result14.color2)
-lambda.result15.color2 <- pgls(X3.MSUG ~ X14.CHR, color2, lambda = "ML")
-    summary(lambda.result15.color2)
-
-lambda.result16.color2 <- pgls(X4.CSUG ~ X9.SIZ, color2, lambda = "ML")
-    summary(lambda.result16.color2)
-lambda.result17.color2 <- pgls(X4.CSUG ~ X16.GC, color2, lambda = "ML")
-    summary(lambda.result17.color2)
-lambda.result18.color2 <- pgls(X4.CSUG ~ X17.DIST, color2, lambda = "ML")
-    summary(lambda.result18.color2)
-lambda.result19.color2 <- pgls(X4.CSUG ~ X13.BRI, color2, lambda = "ML")
-    summary(lambda.result19.color2)
-lambda.result20.color2 <- pgls(X4.CSUG ~ X14.CHR, color2, lambda = "ML")
-    summary(lambda.result20.color2)
+    lambda.resultmod2 <- pgls(MSUG ~ Floral_display, color2, lambda = "ML")
+    summary(lambda.resultmod2)
     
-lambda.result25.color2 <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
-    summary(lambda.result25.color2)
-lambda.result26.color2 <- pgls(X5.NPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
-    summary(lambda.result26.color2)
-lambda.result27.color2 <- pgls(X3.MSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
-    summary(lambda.result27.color2)
-lambda.result28.color2 <- pgls(X4.CSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
-    summary(lambda.result28.color2)
-
-lambda.result21.color2 <- pgls(X6.VPOL ~ Floral.display, color2, lambda = "ML")
-    summary(lambda.result21.color2)
-lambda.result22.color2 <- pgls(X5.NPOL ~ Floral.display, color2, lambda = "ML")
-    summary(lambda.result22.color2)
-lambda.result23.color2 <- pgls(X3.MSUG ~ Floral.display, color2, lambda = "ML")
-    summary(lambda.result23.color2)
-lambda.result24.color2 <- pgls(X4.CSUG ~ Floral.display, color2, lambda = "ML")
-    summary(lambda.result24.color2)
+    lambda.resultmod8 <- pgls(MSUG ~ CHROMA, color2, lambda = "ML")
+    summary(lambda.resultmod8)
     
-
-lambda.result25.color2 <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
-    summary(lambda.result25.color2)
-lambda.result26.color2 <- pgls(X5.NPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
-    summary(lambda.result26.color2)
-lambda.result27.color2 <- pgls(X3.MSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
-    summary(lambda.result27.color2)
-lambda.result28.color2 <- pgls(X4.CSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color2, lambda = "ML")
-    summary(lambda.result28.color2)
+    lambda.resultmod13 <- pgls(MSUG ~ UV_Chroma, color2, lambda = "ML")
+    summary(lambda.resultmod13)
     
-lambda.result29.color2 <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR  + Floral.display, color2, lambda = "ML")
-    summary(lambda.result29.color2)
-lambda.result30.color2 <- pgls(X5.NPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR  + Floral.display, color2, lambda = "ML")
-    summary(lambda.result30.color2)
-lambda.result31.color2 <- pgls(X3.MSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR  + Floral.display, color2, lambda = "ML")
-    summary(lambda.result31.color2)
-lambda.result32.color2 <- pgls(X4.CSUG ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR  + Floral.display, color2, lambda = "ML")
-    summary(lambda.result32.color2)    
+    lambda.resultmod14 <- pgls(MSUG ~ Green_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmod14)
+    
+    lambda.resultmod15 <- pgls(MSUG ~ Brightness_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmod15)
+  
+    lambda.resultmod16 <- pgls(MSUG ~ Reflectance_amplitude, color2, lambda = "ML")
+    summary(lambda.resultmod16)
+  
+    lambda.resultmod17 <- pgls(MSUG ~ Chromatic_contrast, color2, lambda = "ML")
+    summary(lambda.resultmod17)
+    
+    
+    lambda.resultmoda1 <- pgls(CSUG ~ SIZ, color2, lambda = "ML")
+    summary(lambda.resultmoda1)
+    
+    lambda.resultmoda2 <- pgls(CSUG ~ Floral_display, color2, lambda = "ML")
+    summary(lambda.resultmoda2)
+    
+    lambda.resultmoda8 <- pgls(CSUG ~ CHROMA, color2, lambda = "ML")
+    summary(lambda.resultmoda8)
+    
+    lambda.resultmoda13 <- pgls(CSUG ~ UV_Chroma, color2, lambda = "ML")
+    summary(lambda.resultmoda13)
+    
+    lambda.resultmoda14 <- pgls(CSUG ~ Green_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmoda14)
+    
+    lambda.resultmoda15 <- pgls(CSUG ~ Brightness_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmoda15)
+  
+    lambda.resultmoda16 <- pgls(CSUG ~ Reflectance_amplitude, color2, lambda = "ML")
+    summary(lambda.resultmoda16)
+  
+    lambda.resultmoda17 <- pgls(CSUG ~ Chromatic_contrast, color2, lambda = "ML")
+    summary(lambda.resultmoda17)
 
+
+    lambda.resultmodc1 <- pgls(NPOL ~ SIZ, color2, lambda = "ML")
+    summary(lambda.resultmodc1)
+    
+    lambda.resultmodc2 <- pgls(NPOL ~ Floral_display, color2, lambda = "ML")
+    summary(lambda.resultmodc2)
+    
+    lambda.resultmodc8 <- pgls(NPOL ~ CHROMA, color2, lambda = "ML")
+    summary(lambda.resultmodc8)
+    
+    lambda.resultmodc13 <- pgls(NPOL ~ UV_Chroma, color2, lambda = "ML")
+    summary(lambda.resultmodc13)
+    
+    lambda.resultmodc14 <- pgls(NPOL ~ Green_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmodc14)
+    
+    lambda.resultmodc15 <- pgls(NPOL ~ Brightness_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmodc15)
+  
+    lambda.resultmodc16 <- pgls(NPOL ~ Reflectance_amplitude, color2, lambda = "ML")
+    summary(lambda.resultmodc16)
+  
+    lambda.resultmodc17 <- pgls(NPOL ~ Chromatic_contrast, color2, lambda = "ML")
+    summary(lambda.resultmodc17)
+
+    
+    lambda.resultmodd1 <- pgls(VPOL ~ SIZ, color2, lambda = "ML")
+    summary(lambda.resultmodd1)
+    
+    lambda.resultmodd2 <- pgls(VPOL ~ Floral_display, color2, lambda = "ML")
+    summary(lambda.resultmodd2)
+    
+    lambda.resultmodd8 <- pgls(VPOL ~ CHROMA, color2, lambda = "ML")
+    summary(lambda.resultmodd8)
+    
+    lambda.resultmodd13 <- pgls(VPOL ~ UV_Chroma, color2, lambda = "ML")
+    summary(lambda.resultmodd13)
+    
+    lambda.resultmodd14 <- pgls(VPOL ~ Green_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmodd14)
+    
+    lambda.resultmodd15 <- pgls(VPOL ~ Brightness_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmodd15)
+  
+    lambda.resultmodd16 <- pgls(VPOL ~ Reflectance_amplitude, color2, lambda = "ML")
+    summary(lambda.resultmodd16)
+  
+    lambda.resultmodd17 <- pgls(VPOL ~ Chromatic_contrast, color2, lambda = "ML")
+    summary(lambda.resultmodd17)
+
+    
+    
+    lambda.resultmode8 <- pgls(SIZ ~ CHROMA, color2, lambda = "ML")
+    summary(lambda.resultmode8)
+    
+    lambda.resultmode13 <- pgls(SIZ ~ UV_Chroma, color2, lambda = "ML")
+    summary(lambda.resultmode13)
+    
+    lambda.resultmode14 <- pgls(SIZ ~ Green_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmode14)
+    
+    lambda.resultmode15 <- pgls(SIZ ~ Brightness_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmode15)
+  
+    lambda.resultmode16 <- pgls(SIZ ~ Reflectance_amplitude, color2, lambda = "ML")
+    summary(lambda.resultmode16)
+  
+    lambda.resultmode17 <- pgls(SIZ ~ Chromatic_contrast, color2, lambda = "ML")
+    summary(lambda.resultmode17)
+
+    
+    
+    lambda.resultmodf8 <- pgls(Floral_display ~ CHROMA, color2, lambda = "ML")
+    summary(lambda.resultmodf8)
+    
+    lambda.resultmodf13 <- pgls(Floral_display ~ UV_Chroma, color2, lambda = "ML")
+    summary(lambda.resultmodf13)
+    
+    lambda.resultmodf14 <- pgls(Floral_display ~ Green_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmodf14)
+    
+    lambda.resultmodf15 <- pgls(Floral_display ~ Brightness_Contrast, color2, lambda = "ML")
+    summary(lambda.resultmodf15)
+  
+    lambda.resultmodf16 <- pgls(Floral_display ~ Reflectance_amplitude, color2, lambda = "ML")
+    summary(lambda.resultmodf16)
+  
+    lambda.resultmodf17 <- pgls(Floral_display ~ Chromatic_contrast, color2, lambda = "ML")
+    summary(lambda.resultmodf17)
+    
+    
+    sink(NULL)
+
+
+```
+
+
+Modified data set - Multiple models
+
+```{r}
+sink("new_results_multi_noCistusladanifer.txt") 
+
+
+lambda.resultmod1.multi <- pgls(MSUG ~ SIZ + Green_Contrast	+ Brightness_Contrast	+ Chromatic_contrast, color2, lambda = "ML")
+summary(lambda.resultmod1.multi)
+
+lambda.resultmod2.multi <- pgls(CSUG ~ SIZ + Green_Contrast	+ Brightness_Contrast	+ Chromatic_contrast, color2, lambda = "ML")
+summary(lambda.resultmod2.multi)
+
+lambda.resultmod3.multi <- pgls(NPOL ~ SIZ + Green_Contrast	+ Brightness_Contrast	+ Chromatic_contrast, color2, lambda = "ML")
+summary(lambda.resultmod3.multi)
+    
+lambda.resultmod4.multi <- pgls(VPOL ~ SIZ + Green_Contrast	+ Brightness_Contrast	+ Chromatic_contrast, color2, lambda = "ML")
+summary(lambda.resultmod4.multi)
+
+lambda.resultmod5.multi <- pgls(MSUG ~ SIZ + Floral_display + Green_Contrast	+ Brightness_Contrast	+ Chromatic_contrast, color2, lambda = "ML")
+summary(lambda.resultmod5.multi)
+
+lambda.resultmod6.multi <- pgls(CSUG ~ SIZ + Floral_display + Green_Contrast	+ Brightness_Contrast	+ Chromatic_contrast, color2, lambda = "ML")
+summary(lambda.resultmod6.multi)
+
+lambda.resultmod7.multi <- pgls(NPOL ~ SIZ + Floral_display + Green_Contrast	+ Brightness_Contrast	+ Chromatic_contrast, color2, lambda = "ML")
+summary(lambda.resultmod7.multi)
+    
+lambda.resultmod8.multi <- pgls(VPOL ~ SIZ + Floral_display + Green_Contrast	+ Brightness_Contrast	+ Chromatic_contrast, color2, lambda = "ML")
+summary(lambda.resultmod8.multi)
+   
+sink(NULL)    
 
 ```
 
