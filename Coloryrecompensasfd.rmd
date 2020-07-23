@@ -456,6 +456,7 @@ sink("new_results_cathegorical.txt")
     lambda.resultk8 <- pgls(CHROMA ~ NECTAR, color, lambda = "ML")
     summary(lambda.resultk8)
     
+<<<<<<< HEAD
     lambda.resultk13 <- pgls(UV_Chroma  ~ NECTAR, color, lambda = "ML")
     summary(lambda.resultk13)
     
@@ -474,7 +475,29 @@ sink("new_results_cathegorical.txt")
     
 sink(NULL)    
 
+=======
+#MULVARIABLES MODELS
+
+
+lambda.result1.multi <- pgls(X6.VPOL ~ X9.SIZ + X16.GC + X17.DIST + X13.BRI + X14.CHR, color, lambda = "ML")
+    summary(lambda.result1.multi)
     
+    lambda.result2.multi <- pgls(X5.NPOL ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI  + X14.CHR, color, lambda = "ML")
+    summary(lambda.result2.multi)
+    
+    lambda.result3.multi <- pgls(X3.MSUG ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI + X14.CHR, color, lambda = "ML")
+    summary(lambda.result3.multi)
+    
+    lambda.result4.multi <- pgls(X4.CSUG ~ X9.SIZ  + X16.GC + X17.DIST + X13.BRI  + X14.CHR, color, lambda = "ML")
+    summary(lambda.result4.multi)
+
+    lambda.result5.multi <- pgls(X4.CSUG ~ X9.SIZ  + X16.GC + X17.DIST, color, lambda = "ML")
+    summary(lambda.result5.multi)
+>>>>>>> 788299b265b37d377345443d14a9ffbb4e4ba476
+    
+    lambda.result6.multi <- pgls(X4.CSUG ~ X16.GC + X17.DIST, color, lambda = "ML")
+    summary(lambda.result6.multi)
+
 ```
 
 
@@ -510,6 +533,10 @@ resultl4
 
 
 sink(NULL)
+
+
+
+
 
 ```
 
