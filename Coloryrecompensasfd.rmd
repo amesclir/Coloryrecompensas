@@ -9,9 +9,9 @@ editor_options:
 1. Install and load packages
 
 ```{r, echo = F}
-#devtools::install_github("jinyizju/V.PhyloMaker")
-library(V.PhyloMaker)
 
+devtools::install_github("jinyizju/V.PhyloMaker")
+library(V.PhyloMaker)
 
 ```
 
@@ -19,6 +19,7 @@ library(V.PhyloMaker)
 3. Frequency matrix.
 
 ```{r, echo = F}
+
 mydata <- read.csv("mydata.csv")
 mydata
 ```
@@ -89,7 +90,13 @@ color$phy
 color$dropped
 dim(color$vcv)
     
-sink("new_results.txt")
+sink("new_results2.txt")
+    lambda.result3 <- pgls(MSUG ~ NPOL, color, lambda = "ML")
+    summary(lambda.result3)
+    
+    lambda.result4 <- pgls(MSUG ~ VPOL, color, lambda = "ML")
+    summary(lambda.result4)
+
     lambda.result1 <- pgls(MSUG ~ SIZ, color, lambda = "ML")
     summary(lambda.result1)
     
@@ -114,6 +121,12 @@ sink("new_results.txt")
     lambda.result17 <- pgls(MSUG ~ Chromatic_contrast, color, lambda = "ML")
     summary(lambda.result17)
     
+    
+    lambda.resulta3 <- pgls(CSUG ~ NPOL, color, lambda = "ML")
+    summary(lambda.resulta3)
+    
+    lambda.resulta4 <- pgls(CSUG ~ VPOL, color, lambda = "ML")
+    summary(lambda.resulta4)
     
     lambda.resulta1 <- pgls(CSUG ~ SIZ, color, lambda = "ML")
     summary(lambda.resulta1)
