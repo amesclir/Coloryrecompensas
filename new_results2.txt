@@ -4,15 +4,15 @@ pgls(formula = MSUG ~ NPOL, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--120.33  -18.70    3.60   28.37  111.28 
+-80.655 -22.419   0.787  26.184 120.373 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
 lambda [ ML]  : 0.000
    lower bound : 0.000, p = 1    
-   upper bound : 1.000, p = 2.4168e-10
-   95.0% CI   : (NA, 0.267)
+   upper bound : 1.000, p = 1.8328e-10
+   95.0% CI   : (NA, 0.272)
 delta  [Fix]  : 1.000
 
 Coefficients:
@@ -32,15 +32,15 @@ pgls(formula = MSUG ~ VPOL, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--112.025  -29.809   -5.694   16.818  131.728 
+-128.453  -24.750   -0.466   17.480  100.483 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
 lambda [ ML]  : 0.000
    lower bound : 0.000, p = 1    
-   upper bound : 1.000, p = 6.5984e-08
-   95.0% CI   : (NA, 0.409)
+   upper bound : 1.000, p = 3.1362e-08
+   95.0% CI   : (NA, 0.422)
 delta  [Fix]  : 1.000
 
 Coefficients:
@@ -60,35 +60,35 @@ pgls(formula = MSUG ~ SIZ, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--147.548  -27.102   -2.761   15.488  153.062 
+-152.148  -25.760    0.911   17.782  155.170 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
 lambda [ ML]  : 0.186
-   lower bound : 0.000, p = 0.073616
-   upper bound : 1.000, p = 2.7377e-08
-   95.0% CI   : (NA, 0.573)
+   lower bound : 0.000, p = 0.072864
+   upper bound : 1.000, p = 5.9474e-08
+   95.0% CI   : (NA, 0.574)
 delta  [Fix]  : 1.000
 
 Coefficients:
              Estimate Std. Error t value  Pr(>|t|)    
-(Intercept) -142.7665   116.2241 -1.2284    0.2226    
-SIZ           17.8127     3.8711  4.6014 1.402e-05 ***
+(Intercept) -141.8224   116.4094 -1.2183    0.2264    
+SIZ           17.7844     3.8681  4.5977 1.422e-05 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 41.55 on 88 degrees of freedom
+Residual standard error: 41.56 on 88 degrees of freedom
   (8 observations deleted due to missingness)
-Multiple R-squared: 0.1939,	Adjusted R-squared: 0.1848 
-F-statistic: 21.17 on 1 and 88 DF,  p-value: 1.402e-05 
+Multiple R-squared: 0.1937,	Adjusted R-squared: 0.1845 
+F-statistic: 21.14 on 1 and 88 DF,  p-value: 1.422e-05 
 
 Call:
 pgls(formula = MSUG ~ Floral_display, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--56.515 -23.514   2.349  21.691  96.255 
+-54.990 -13.156   2.267  31.097  84.874 
 
 Branch length transformations:
 
@@ -96,13 +96,13 @@ kappa  [Fix]  : 1.000
 lambda [ ML]  : 0.000
    lower bound : 0.000, p = 1    
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.314)
+   95.0% CI   : (NA, 0.312)
 delta  [Fix]  : 1.000
 
 Coefficients:
                  Estimate Std. Error t value  Pr(>|t|)    
-(Intercept)    274.931776  71.630603  3.8382 0.0004428 ***
-Floral_display  -0.034075   0.027269 -1.2496 0.2189046    
+(Intercept)    274.931767  71.630602  3.8382 0.0004428 ***
+Floral_display  -0.034075   0.027269 -1.2496 0.2189048    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -115,662 +115,660 @@ Call:
 pgls(formula = MSUG ~ CHROMA, data = color, lambda = "ML")
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--177.25  -21.81   -1.25   23.47  124.46 
+     Min       1Q   Median       3Q      Max 
+-181.170  -22.748    0.116   19.794  151.658 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.010
-   lower bound : 0.000, p = 0.91079
+lambda [ ML]  : 0.012
+   lower bound : 0.000, p = 0.89557
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.283)
+   95.0% CI   : (NA, 0.286)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
-(Intercept) 252.1366   179.5329  1.4044   0.1636
-CHROMA       -7.8485    99.5114 -0.0789   0.9373
+(Intercept) 252.1238   179.6640  1.4033   0.1639
+CHROMA       -8.2249    99.5270 -0.0826   0.9343
 
-Residual standard error: 44.08 on 91 degrees of freedom
+Residual standard error: 44.09 on 91 degrees of freedom
   (5 observations deleted due to missingness)
-Multiple R-squared: 6.835e-05,	Adjusted R-squared: -0.01092 
-F-statistic: 0.00622 on 1 and 91 DF,  p-value: 0.9373 
+Multiple R-squared: 7.504e-05,	Adjusted R-squared: -0.01091 
+F-statistic: 0.006829 on 1 and 91 DF,  p-value: 0.9343 
 
 Call:
 pgls(formula = MSUG ~ UV_Chroma, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--177.835  -17.461   -1.164   22.695  125.546 
+-182.059  -17.038    0.748   19.174  151.763 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.017
-   lower bound : 0.000, p = 0.84853
+lambda [ ML]  : 0.019
+   lower bound : 0.000, p = 0.8325
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.288)
+   95.0% CI   : (NA, 0.292)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)   
-(Intercept)  258.473     84.818  3.0474 0.003021 **
-UV_Chroma   -245.347    657.857 -0.3729 0.710054   
+(Intercept)  258.206     85.263  3.0283 0.003199 **
+UV_Chroma   -249.288    657.977 -0.3789 0.705667   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 44.06 on 91 degrees of freedom
+Residual standard error: 44.07 on 91 degrees of freedom
   (5 observations deleted due to missingness)
-Multiple R-squared: 0.001526,	Adjusted R-squared: -0.009446 
-F-statistic: 0.1391 on 1 and 91 DF,  p-value: 0.7101 
+Multiple R-squared: 0.001575,	Adjusted R-squared: -0.009397 
+F-statistic: 0.1435 on 1 and 91 DF,  p-value: 0.7057 
 
 Call:
 pgls(formula = MSUG ~ Green_Contrast, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--174.626  -14.026    1.501   25.564  124.542 
+-177.243  -18.511    0.501   16.688  152.989 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.017
-   lower bound : 0.000, p = 0.84044
+lambda [ ML]  : 0.019
+   lower bound : 0.000, p = 0.82793
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.287)
+   95.0% CI   : (NA, 0.290)
 delta  [Fix]  : 1.000
 
 Coefficients:
                Estimate Std. Error t value Pr(>|t|)
-(Intercept)      178.44     117.10  1.5238   0.1310
-Green_Contrast   302.60     534.59  0.5660   0.5728
+(Intercept)      177.79     117.36  1.5149   0.1333
+Green_Contrast   303.55     534.60  0.5678   0.5716
 
 Residual standard error: 44.02 on 91 degrees of freedom
   (5 observations deleted due to missingness)
-Multiple R-squared: 0.003508,	Adjusted R-squared: -0.007442 
-F-statistic: 0.3204 on 1 and 91 DF,  p-value: 0.5728 
+Multiple R-squared: 0.003531,	Adjusted R-squared: -0.00742 
+F-statistic: 0.3224 on 1 and 91 DF,  p-value: 0.5716 
 
 Call:
 pgls(formula = MSUG ~ Brightness_Contrast, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--175.096  -12.760    5.602   24.595  124.087 
+-177.904  -12.727    3.045   20.460  152.276 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.012
-   lower bound : 0.000, p = 0.88725
+lambda [ ML]  : 0.014
+   lower bound : 0.000, p = 0.87525
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.280)
+   95.0% CI   : (NA, 0.283)
 delta  [Fix]  : 1.000
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)
-(Intercept)           182.78     117.08  1.5612   0.1220
-Brightness_Contrast   108.60     201.74  0.5383   0.5917
+(Intercept)           182.25     117.38  1.5526   0.1240
+Brightness_Contrast   108.66     201.79  0.5385   0.5916
 
 Residual standard error: 44.02 on 91 degrees of freedom
   (5 observations deleted due to missingness)
-Multiple R-squared: 0.003174,	Adjusted R-squared: -0.00778 
-F-statistic: 0.2898 on 1 and 91 DF,  p-value: 0.5917 
+Multiple R-squared: 0.003176,	Adjusted R-squared: -0.007778 
+F-statistic:  0.29 on 1 and 91 DF,  p-value: 0.5916 
 
 Call:
 pgls(formula = MSUG ~ Reflectance_amplitude, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--130.794  -19.818   -0.613   23.555  176.720 
+-181.368  -20.477   -0.206   17.582  153.502 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.001
-   lower bound : 0.000, p = 0.98818
+lambda [ ML]  : 0.003
+   lower bound : 0.000, p = 0.97097
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.270)
+   95.0% CI   : (NA, 0.274)
 delta  [Fix]  : 1.000
 
 Coefficients:
                       Estimate Std. Error t value Pr(>|t|)  
-(Intercept)             289.11     137.84  2.0974  0.03873 *
-Reflectance_amplitude  -171.37     466.40 -0.3674  0.71415  
+(Intercept)             287.76     138.25  2.0815   0.0402 *
+Reflectance_amplitude  -169.31     466.71 -0.3628   0.7176  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 44.05 on 91 degrees of freedom
   (5 observations deleted due to missingness)
-Multiple R-squared: 0.001481,	Adjusted R-squared: -0.009491 
-F-statistic: 0.135 on 1 and 91 DF,  p-value: 0.7142 
+Multiple R-squared: 0.001444,	Adjusted R-squared: -0.009529 
+F-statistic: 0.1316 on 1 and 91 DF,  p-value: 0.7176 
 
 Call:
 pgls(formula = MSUG ~ Chromatic_contrast, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--177.301  -21.569    3.451   24.561  124.327 
+-181.331  -19.029    0.868   22.563  152.091 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.008
-   lower bound : 0.000, p = 0.92302
+lambda [ ML]  : 0.010
+   lower bound : 0.000, p = 0.90797
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.277)
+   95.0% CI   : (NA, 0.280)
 delta  [Fix]  : 1.000
 
 Coefficients:
                    Estimate Std. Error t value Pr(>|t|)
-(Intercept)        237.4543   150.8163  1.5745   0.1189
-Chromatic_contrast   8.4385   620.5244  0.0136   0.9892
+(Intercept)        237.0911   150.9868  1.5703   0.1198
+Chromatic_contrast   7.1962   620.7271  0.0116   0.9908
 
 Residual standard error: 44.08 on 91 degrees of freedom
   (5 observations deleted due to missingness)
-Multiple R-squared: 2.032e-06,	Adjusted R-squared: -0.01099 
-F-statistic: 0.0001849 on 1 and 91 DF,  p-value: 0.9892 
+Multiple R-squared: 1.477e-06,	Adjusted R-squared: -0.01099 
+F-statistic: 0.0001344 on 1 and 91 DF,  p-value: 0.9908 
 
 Call:
 pgls(formula = CSUG ~ NPOL, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--3.5554 -0.9802  0.1814  1.1515  4.3406 
+-3.5222 -0.7017 -0.1091  1.2955  4.3445 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.885
-   lower bound : 0.000, p = 2.1819e-12
-   upper bound : 1.000, p = 1.6571e-07
-   95.0% CI   : (0.728, 0.959)
+lambda [ ML]  : 0.884
+   lower bound : 0.000, p = 2.5265e-12
+   upper bound : 1.000, p = 1.5011e-07
+   95.0% CI   : (0.725, 0.959)
 delta  [Fix]  : 1.000
 
 Coefficients:
                Estimate  Std. Error t value  Pr(>|t|)    
-(Intercept)  2.6064e+01  7.1158e+00  3.6628 0.0007571 ***
-NPOL        -3.6072e-06  1.0875e-05 -0.3317 0.7419347    
+(Intercept)  2.5967e+01  7.0873e+00  3.6639 0.0007546 ***
+NPOL        -3.4962e-06  1.0919e-05 -0.3202 0.7505736    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.669 on 38 degrees of freedom
+Residual standard error: 1.668 on 38 degrees of freedom
   (58 observations deleted due to missingness)
-Multiple R-squared: 0.002887,	Adjusted R-squared: -0.02335 
-F-statistic:  0.11 on 1 and 38 DF,  p-value: 0.7419 
+Multiple R-squared: 0.002691,	Adjusted R-squared: -0.02355 
+F-statistic: 0.1025 on 1 and 38 DF,  p-value: 0.7506 
 
 Call:
 pgls(formula = CSUG ~ VPOL, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--3.4041 -0.8759 -0.0680  1.0442  4.3342 
+-4.4195 -0.5885  0.5310  1.5055  2.8760 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.893
-   lower bound : 0.000, p = 6.9103e-10
-   upper bound : 1.000, p = 6.3416e-08
-   95.0% CI   : (0.736, 0.962)
+lambda [ ML]  : 0.892
+   lower bound : 0.000, p = 8.0601e-10
+   upper bound : 1.000, p = 5.713e-08
+   95.0% CI   : (0.733, 0.961)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value  Pr(>|t|)    
-(Intercept) 27.32229    7.43576  3.6744 0.0007505 ***
-VPOL        -0.18372    0.27603 -0.6656 0.5098159    
+(Intercept) 27.21505    7.40529  3.6751 0.0007492 ***
+VPOL        -0.18135    0.27728 -0.6540 0.5171307    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.69 on 37 degrees of freedom
+Residual standard error: 1.689 on 37 degrees of freedom
   (59 observations deleted due to missingness)
-Multiple R-squared: 0.01183,	Adjusted R-squared: -0.01488 
-F-statistic: 0.443 on 1 and 37 DF,  p-value: 0.5098 
+Multiple R-squared: 0.01143,	Adjusted R-squared: -0.01529 
+F-statistic: 0.4278 on 1 and 37 DF,  p-value: 0.5171 
 
 Call:
 pgls(formula = CSUG ~ SIZ, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--2.3309 -0.9488 -0.0780  1.0140  4.4791 
+-3.9032 -1.1460 -0.1020  0.6362  5.0175 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.883
-   lower bound : 0.000, p = 5.494e-10
-   upper bound : 1.000, p = 5.5349e-09
-   95.0% CI   : (0.715, 0.956)
+lambda [ ML]  : 0.880
+   lower bound : 0.000, p = 7.4209e-10
+   upper bound : 1.000, p = 4.582e-09
+   95.0% CI   : (0.708, 0.955)
 delta  [Fix]  : 1.000
 
 Coefficients:
              Estimate Std. Error t value  Pr(>|t|)    
-(Intercept) 25.585786   6.995806  3.6573 0.0006905 ***
-SIZ         -0.019966   0.103065 -0.1937 0.8473052    
+(Intercept) 25.424867   6.945791  3.6605 0.0006841 ***
+SIZ         -0.016965   0.103844 -0.1634 0.8709902    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.597 on 43 degrees of freedom
+Residual standard error: 1.593 on 43 degrees of freedom
   (53 observations deleted due to missingness)
-Multiple R-squared: 0.000872,	Adjusted R-squared: -0.02236 
-F-statistic: 0.03753 on 1 and 43 DF,  p-value: 0.8473 
+Multiple R-squared: 0.0006203,	Adjusted R-squared: -0.02262 
+F-statistic: 0.02669 on 1 and 43 DF,  p-value: 0.871 
 
 Call:
 pgls(formula = CSUG ~ Floral_display, data = color, lambda = "ML")
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--5.3685 -0.1680  0.6307  1.6827  3.9873 
+   Min     1Q Median     3Q    Max 
+-5.461 -1.181 -0.502  1.646  2.744 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.879
-   lower bound : 0.000, p = 2.1191e-07
-   upper bound : 1.000, p = 7.1402e-06
-   95.0% CI   : (0.654, 0.966)
+lambda [ ML]  : 0.878
+   lower bound : 0.000, p = 2.1636e-07
+   upper bound : 1.000, p = 6.5647e-06
+   95.0% CI   : (0.653, 0.965)
 delta  [Fix]  : 1.000
 
 Coefficients:
                  Estimate Std. Error t value Pr(>|t|)   
-(Intercept)    30.1780190 10.4432325  2.8897 0.008504 **
-Floral_display -0.0074739  0.0069124 -1.0812 0.291309   
+(Intercept)    30.1988268 10.4361986  2.8937 0.008427 **
+Floral_display -0.0075105  0.0069227 -1.0849 0.289709   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 2.027 on 22 degrees of freedom
+Residual standard error: 2.026 on 22 degrees of freedom
   (74 observations deleted due to missingness)
-Multiple R-squared: 0.05046,	Adjusted R-squared: 0.007296 
-F-statistic: 1.169 on 1 and 22 DF,  p-value: 0.2913 
+Multiple R-squared: 0.05078,	Adjusted R-squared: 0.007638 
+F-statistic: 1.177 on 1 and 22 DF,  p-value: 0.2897 
 
 Call:
 pgls(formula = CSUG ~ CHROMA, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.1146 -0.9093  0.1825  1.2151  3.6618 
+-3.4792 -1.0251 -0.1635  0.7220  4.4256 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.879
-   lower bound : 0.000, p = 1.7319e-14
-   upper bound : 1.000, p = 6.8099e-10
-   95.0% CI   : (0.742, 0.949)
+lambda [ ML]  : 0.877
+   lower bound : 0.000, p = 2.2871e-14
+   upper bound : 1.000, p = 5.8706e-10
+   95.0% CI   : (0.737, 0.949)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)   
-(Intercept)  29.5501     8.5427  3.4591 0.001215 **
-CHROMA       -2.6821     3.3605 -0.7981 0.429096   
+(Intercept)  29.6100     8.5530  3.4619 0.001205 **
+CHROMA       -2.7527     3.3677 -0.8174 0.418115   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.568 on 44 degrees of freedom
+Residual standard error: 1.564 on 44 degrees of freedom
   (52 observations deleted due to missingness)
-Multiple R-squared: 0.01427,	Adjusted R-squared: -0.008133 
-F-statistic: 0.637 on 1 and 44 DF,  p-value: 0.4291 
+Multiple R-squared: 0.01496,	Adjusted R-squared: -0.00743 
+F-statistic: 0.6681 on 1 and 44 DF,  p-value: 0.4181 
 
 Call:
 pgls(formula = CSUG ~ UV_Chroma, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--3.0237 -0.8871  0.1523  1.1967  4.1298 
+-4.8058 -1.2238  0.0303  0.4418  4.4277 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.879
-   lower bound : 0.000, p = 1.6764e-14
-   upper bound : 1.000, p = 3.7639e-10
-   95.0% CI   : (0.742, 0.949)
+lambda [ ML]  : 0.877
+   lower bound : 0.000, p = 2.2538e-14
+   upper bound : 1.000, p = 3.1091e-10
+   95.0% CI   : (0.738, 0.948)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value  Pr(>|t|)    
-(Intercept)  25.8266     6.8054  3.7950 0.0004477 ***
-UV_Chroma    -9.2497    23.6439 -0.3912 0.6975298    
+(Intercept)  25.7229     6.7630  3.8035 0.0004364 ***
+UV_Chroma    -9.3022    23.7264 -0.3921 0.6969072    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.577 on 44 degrees of freedom
+Residual standard error: 1.574 on 44 degrees of freedom
   (52 observations deleted due to missingness)
-Multiple R-squared: 0.003466,	Adjusted R-squared: -0.01918 
-F-statistic: 0.153 on 1 and 44 DF,  p-value: 0.6975 
+Multiple R-squared: 0.003481,	Adjusted R-squared: -0.01917 
+F-statistic: 0.1537 on 1 and 44 DF,  p-value: 0.6969 
 
 Call:
 pgls(formula = CSUG ~ Green_Contrast, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.2182 -1.2506  0.2829  1.1116  3.5007 
+-4.6054 -0.8799  0.1992  0.8449  4.4094 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.886
-   lower bound : 0.000, p = 9.3259e-15
-   upper bound : 1.000, p = 1.7346e-09
-   95.0% CI   : (0.752, 0.953)
+lambda [ ML]  : 0.884
+   lower bound : 0.000, p = 1.2323e-14
+   upper bound : 1.000, p = 1.4777e-09
+   95.0% CI   : (0.748, 0.953)
 delta  [Fix]  : 1.000
 
 Coefficients:
                Estimate Std. Error t value Pr(>|t|)   
-(Intercept)     22.0202     7.1801  3.0668 0.003693 **
-Green_Contrast  15.5289    14.0115  1.1083 0.273755   
+(Intercept)     21.8877     7.1399  3.0655 0.003706 **
+Green_Contrast  15.8083    14.1061  1.1207 0.268506   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.57 on 44 degrees of freedom
+Residual standard error: 1.567 on 44 degrees of freedom
   (52 observations deleted due to missingness)
-Multiple R-squared: 0.02716,	Adjusted R-squared: 0.005048 
-F-statistic: 1.228 on 1 and 44 DF,  p-value: 0.2738 
+Multiple R-squared: 0.02775,	Adjusted R-squared: 0.005655 
+F-statistic: 1.256 on 1 and 44 DF,  p-value: 0.2685 
 
 Call:
 pgls(formula = CSUG ~ Brightness_Contrast, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.1649 -0.9012  0.3155  1.0819  3.6409 
+-3.5238 -1.2859 -0.1675  0.7837  4.4351 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.878
-   lower bound : 0.000, p = 2.1649e-14
-   upper bound : 1.000, p = 3.4121e-10
-   95.0% CI   : (0.739, 0.949)
+lambda [ ML]  : 0.875
+   lower bound : 0.000, p = 2.8866e-14
+   upper bound : 1.000, p = 2.796e-10
+   95.0% CI   : (0.734, 0.948)
 delta  [Fix]  : 1.000
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)   
-(Intercept)          23.6760     7.7081  3.0716 0.003645 **
-Brightness_Contrast   2.8572     7.5171  0.3801 0.705702   
+(Intercept)          23.5220     7.6438  3.0773 0.003588 **
+Brightness_Contrast   2.9978     7.5175  0.3988 0.691990   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.573 on 44 degrees of freedom
+Residual standard error: 1.57 on 44 degrees of freedom
   (52 observations deleted due to missingness)
-Multiple R-squared: 0.003273,	Adjusted R-squared: -0.01938 
-F-statistic: 0.1445 on 1 and 44 DF,  p-value: 0.7057 
+Multiple R-squared: 0.003601,	Adjusted R-squared: -0.01904 
+F-statistic: 0.159 on 1 and 44 DF,  p-value: 0.692 
 
 Call:
 pgls(formula = CSUG ~ Reflectance_amplitude, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--3.3893 -1.2962  0.1735  1.2617  3.4216 
+-3.3967 -1.4364 -0.2592  0.5465  4.3841 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.886
-   lower bound : 0.000, p = 1.4766e-14
-   upper bound : 1.000, p = 6.1202e-09
-   95.0% CI   : (0.751, 0.954)
+lambda [ ML]  : 0.884
+   lower bound : 0.000, p = 1.954e-14
+   upper bound : 1.000, p = 5.2154e-09
+   95.0% CI   : (0.747, 0.953)
 delta  [Fix]  : 1.000
 
 Coefficients:
                       Estimate Std. Error t value Pr(>|t|)  
-(Intercept)             17.703      8.182  2.1637  0.03596 *
-Reflectance_amplitude   26.377     17.473  1.5096  0.13829  
+(Intercept)            17.5863     8.1319  2.1626  0.03605 *
+Reflectance_amplitude  26.5972    17.4897  1.5207  0.13548  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.552 on 44 degrees of freedom
+Residual standard error: 1.549 on 44 degrees of freedom
   (52 observations deleted due to missingness)
-Multiple R-squared: 0.04924,	Adjusted R-squared: 0.02764 
-F-statistic: 2.279 on 1 and 44 DF,  p-value: 0.1383 
+Multiple R-squared: 0.04994,	Adjusted R-squared: 0.02834 
+F-statistic: 2.313 on 1 and 44 DF,  p-value: 0.1355 
 
 Call:
 pgls(formula = CSUG ~ Chromatic_contrast, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--3.1903 -1.0142  0.3507  1.1673  3.4095 
+-2.9695 -1.1706 -0.1335  0.5819  4.2184 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.902
-   lower bound : 0.000, p = 1.521e-14
-   upper bound : 1.000, p = 6.1869e-07
-   95.0% CI   : (0.767, 0.966)
+lambda [ ML]  : 0.901
+   lower bound : 0.000, p = 1.9318e-14
+   upper bound : 1.000, p = 6.4571e-07
+   95.0% CI   : (0.765, 0.966)
 delta  [Fix]  : 1.000
 
 Coefficients:
                    Estimate Std. Error t value Pr(>|t|)  
-(Intercept)         16.5940     7.7064  2.1533  0.03682 *
-Chromatic_contrast  43.6412    20.7756  2.1006  0.04144 *
+(Intercept)          15.981      7.770  2.0567  0.04567 *
+Chromatic_contrast   45.358     21.261  2.1333  0.03851 *
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.551 on 44 degrees of freedom
+Residual standard error: 1.548 on 44 degrees of freedom
   (52 observations deleted due to missingness)
-Multiple R-squared: 0.09114,	Adjusted R-squared: 0.07049 
-F-statistic: 4.413 on 1 and 44 DF,  p-value: 0.04144 
+Multiple R-squared: 0.09374,	Adjusted R-squared: 0.07314 
+F-statistic: 4.551 on 1 and 44 DF,  p-value: 0.03851 
 
 Call:
 pgls(formula = NPOL ~ SIZ, data = color, lambda = "ML")
 
 Residuals:
    Min     1Q Median     3Q    Max 
--66702 -10790  -2478   7096  79663 
+-67054  -7024   2272  11360  58430 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.923
-   lower bound : 0.000, p = 3.5247e-07
-   upper bound : 1.000, p = 5.1923e-05
-   95.0% CI   : (0.774, 0.981)
+lambda [ ML]  : 0.926
+   lower bound : 0.000, p = 2.6236e-07
+   upper bound : 1.000, p = 3.9476e-05
+   95.0% CI   : (0.781, 0.981)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value  Pr(>|t|)    
-(Intercept)  17303.0    78092.4  0.2216    0.8253    
-SIZ           6724.1     1009.2  6.6626 4.603e-09 ***
+(Intercept) 19433.70   78502.03  0.2476    0.8052    
+SIZ          6641.56     970.07  6.8465 2.118e-09 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 20670 on 72 degrees of freedom
+Residual standard error: 20770 on 72 degrees of freedom
   (24 observations deleted due to missingness)
-Multiple R-squared: 0.3814,	Adjusted R-squared: 0.3728 
-F-statistic: 44.39 on 1 and 72 DF,  p-value: 4.603e-09 
+Multiple R-squared: 0.3943,	Adjusted R-squared: 0.3859 
+F-statistic: 46.87 on 1 and 72 DF,  p-value: 2.118e-09 
 
 Call:
 pgls(formula = NPOL ~ Floral_display, data = color, lambda = "ML")
 
 Residuals:
    Min     1Q Median     3Q    Max 
--58652 -13596   -360  12523  75256 
+-75728  -6686   3758  13163  84977 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
 lambda [ ML]  : 0.773
-   lower bound : 0.000, p = 0.014745
-   upper bound : 1.000, p = 4.2814e-12
-   95.0% CI   : (0.347, 0.913)
+   lower bound : 0.000, p = 0.013913
+   upper bound : 1.000, p = 3.3363e-12
+   95.0% CI   : (0.356, 0.911)
 delta  [Fix]  : 1.000
 
 Coefficients:
-                 Estimate Std. Error t value Pr(>|t|)  
-(Intercept)    168817.163  99819.096  1.6912  0.09898 .
-Floral_display    -13.375     15.889 -0.8418  0.40518  
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+                 Estimate Std. Error t value Pr(>|t|)
+(Intercept)    167605.884  99939.948  1.6771   0.1017
+Floral_display    -11.487     15.376 -0.7470   0.4596
 
-Residual standard error: 25040 on 38 degrees of freedom
+Residual standard error: 25120 on 38 degrees of freedom
   (58 observations deleted due to missingness)
-Multiple R-squared: 0.01831,	Adjusted R-squared: -0.007529 
-F-statistic: 0.7086 on 1 and 38 DF,  p-value: 0.4052 
+Multiple R-squared: 0.01447,	Adjusted R-squared: -0.01146 
+F-statistic: 0.5581 on 1 and 38 DF,  p-value: 0.4596 
 
 Call:
 pgls(formula = NPOL ~ CHROMA, data = color, lambda = "ML")
 
 Residuals:
    Min     1Q Median     3Q    Max 
--70974 -12530  -2368   7177  73693 
+-60781 -13008  -2214   7538  70290 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.734
-   lower bound : 0.000, p = 0.0014453
+lambda [ ML]  : 0.732
+   lower bound : 0.000, p = 0.0013502
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.406, 0.878)
+   95.0% CI   : (0.407, 0.875)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
-(Intercept)    94025      99821  0.9419   0.3493
-CHROMA         16017      45136  0.3549   0.7237
+(Intercept)    94618      99953  0.9466   0.3469
+CHROMA         16314      45249  0.3605   0.7195
 
-Residual standard error: 20240 on 74 degrees of freedom
+Residual standard error: 20220 on 74 degrees of freedom
   (22 observations deleted due to missingness)
-Multiple R-squared: 0.001699,	Adjusted R-squared: -0.01179 
-F-statistic: 0.1259 on 1 and 74 DF,  p-value: 0.7237 
+Multiple R-squared: 0.001753,	Adjusted R-squared: -0.01174 
+F-statistic:  0.13 on 1 and 74 DF,  p-value: 0.7195 
 
 Call:
 pgls(formula = NPOL ~ UV_Chroma, data = color, lambda = "ML")
 
 Residuals:
    Min     1Q Median     3Q    Max 
--41523 -13140  -1247   9801  73083 
+-67374 -12321   -498   7902  29735 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
 lambda [ ML]  : 0.725
-   lower bound : 0.000, p = 0.0014844
+   lower bound : 0.000, p = 0.0013568
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.397, 0.872)
+   95.0% CI   : (0.400, 0.870)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)  
-(Intercept)   126746      71763  1.7662  0.08149 .
-UV_Chroma     -86345     253808 -0.3402  0.73467  
+(Intercept)   129017      71707  1.7992  0.07606 .
+UV_Chroma    -100329     251850 -0.3984  0.69151  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 20120 on 74 degrees of freedom
   (22 observations deleted due to missingness)
-Multiple R-squared: 0.001562,	Adjusted R-squared: -0.01193 
-F-statistic: 0.1157 on 1 and 74 DF,  p-value: 0.7347 
+Multiple R-squared: 0.00214,	Adjusted R-squared: -0.01134 
+F-statistic: 0.1587 on 1 and 74 DF,  p-value: 0.6915 
 
 Call:
 pgls(formula = NPOL ~ Green_Contrast, data = color, lambda = "ML")
 
 Residuals:
    Min     1Q Median     3Q    Max 
--68372  -9675  -3058   7644  40154 
+-62967  -8559    952  10977  70439 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.706
-   lower bound : 0.000, p = 0.0017856
+lambda [ ML]  : 0.704
+   lower bound : 0.000, p = 0.0016979
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.361, 0.862)
+   95.0% CI   : (0.362, 0.860)
 delta  [Fix]  : 1.000
 
 Coefficients:
                Estimate Std. Error t value Pr(>|t|)
-(Intercept)       65371      75817  0.8622   0.3914
-Green_Contrast   293106     201927  1.4515   0.1509
+(Intercept)       66512      75867  0.8767   0.3835
+Green_Contrast   291601     202265  1.4417   0.1536
 
-Residual standard error: 19630 on 74 degrees of freedom
+Residual standard error: 19620 on 74 degrees of freedom
   (22 observations deleted due to missingness)
-Multiple R-squared: 0.02768,	Adjusted R-squared: 0.01455 
-F-statistic: 2.107 on 1 and 74 DF,  p-value: 0.1509 
+Multiple R-squared: 0.02732,	Adjusted R-squared: 0.01418 
+F-statistic: 2.078 on 1 and 74 DF,  p-value: 0.1536 
 
 Call:
 pgls(formula = NPOL ~ Brightness_Contrast, data = color, lambda = "ML")
 
 Residuals:
    Min     1Q Median     3Q    Max 
--69976 -13087  -1922  10537  73732 
+-69281 -11225  -1409  10878  59865 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.729
-   lower bound : 0.000, p = 0.0019006
+lambda [ ML]  : 0.726
+   lower bound : 0.000, p = 0.0017789
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.389, 0.876)
+   95.0% CI   : (0.391, 0.873)
 delta  [Fix]  : 1.000
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)
-(Intercept)         121432.7    79502.2  1.5274   0.1309
-Brightness_Contrast  -4030.2    82384.1 -0.0489   0.9611
+(Intercept)         122619.9    79596.5  1.5405   0.1277
+Brightness_Contrast  -4221.5    82532.7 -0.0511   0.9593
 
-Residual standard error: 20180 on 74 degrees of freedom
+Residual standard error: 20170 on 74 degrees of freedom
   (22 observations deleted due to missingness)
-Multiple R-squared: 3.234e-05,	Adjusted R-squared: -0.01348 
-F-statistic: 0.002393 on 1 and 74 DF,  p-value: 0.9611 
+Multiple R-squared: 3.535e-05,	Adjusted R-squared: -0.01348 
+F-statistic: 0.002616 on 1 and 74 DF,  p-value: 0.9593 
 
 Call:
 pgls(formula = NPOL ~ Reflectance_amplitude, data = color, lambda = "ML")
 
 Residuals:
    Min     1Q Median     3Q    Max 
--51988  -9477    141  10454  74149 
+-58718 -10017   2761  10071  67990 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.719
-   lower bound : 0.000, p = 0.0018327
+lambda [ ML]  : 0.718
+   lower bound : 0.000, p = 0.0017175
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.376, 0.872)
+   95.0% CI   : (0.378, 0.869)
 delta  [Fix]  : 1.000
 
 Coefficients:
                       Estimate Std. Error t value Pr(>|t|)
-(Intercept)             100101      89088  1.1236   0.2648
-Reflectance_amplitude    69346     207583  0.3341   0.7393
+(Intercept)             101303      89230  1.1353   0.2599
+Reflectance_amplitude    68671     207839  0.3304   0.7420
 
-Residual standard error: 20050 on 74 degrees of freedom
+Residual standard error: 20040 on 74 degrees of freedom
   (22 observations deleted due to missingness)
-Multiple R-squared: 0.001506,	Adjusted R-squared: -0.01199 
-F-statistic: 0.1116 on 1 and 74 DF,  p-value: 0.7393 
+Multiple R-squared: 0.001473,	Adjusted R-squared: -0.01202 
+F-statistic: 0.1092 on 1 and 74 DF,  p-value: 0.742 
 
 Call:
 pgls(formula = NPOL ~ Chromatic_contrast, data = color, lambda = "ML")
 
 Residuals:
    Min     1Q Median     3Q    Max 
--53472 -10656  -2564   9077  72476 
+-53283 -10866   -876   8762  62692 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.733
-   lower bound : 0.000, p = 0.001476
+lambda [ ML]  : 0.732
+   lower bound : 0.000, p = 0.0013541
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.410, 0.875)
+   95.0% CI   : (0.413, 0.873)
 delta  [Fix]  : 1.000
 
 Coefficients:
                    Estimate Std. Error t value Pr(>|t|)
-(Intercept)           71354      84201  0.8474   0.3995
-Chromatic_contrast   223405     225720  0.9897   0.3255
+(Intercept)           71329      84289  0.8462   0.4001
+Chromatic_contrast   227909     225954  1.0087   0.3164
 
-Residual standard error: 20110 on 74 degrees of freedom
+Residual standard error: 20100 on 74 degrees of freedom
   (22 observations deleted due to missingness)
-Multiple R-squared: 0.01306,	Adjusted R-squared: -0.0002721 
-F-statistic: 0.9796 on 1 and 74 DF,  p-value: 0.3255 
+Multiple R-squared: 0.01356,	Adjusted R-squared: 0.0002316 
+F-statistic: 1.017 on 1 and 74 DF,  p-value: 0.3164 
 
 Call:
 pgls(formula = VPOL ~ SIZ, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.85252 -0.11643 -0.02277  0.10581  0.43301 
+-0.68244 -0.13818 -0.01735  0.09336  0.31545 
 
 Branch length transformations:
 
@@ -778,7 +776,7 @@ kappa  [Fix]  : 1.000
 lambda [ ML]  : 0.000
    lower bound : 0.000, p = 1    
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.146)
+   95.0% CI   : (NA, 0.147)
 delta  [Fix]  : 1.000
 
 Coefficients:
@@ -797,407 +795,407 @@ Call:
 pgls(formula = VPOL ~ Floral_display, data = color, lambda = "ML")
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--2.17104 -0.15911 -0.01471  0.06358  0.46281 
+    Min      1Q  Median      3Q     Max 
+-1.4568 -0.2326 -0.0201  0.1686  0.8954 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.062
-   lower bound : 0.000, p = 0.50549
+lambda [ ML]  : 0.061
+   lower bound : 0.000, p = 0.51244
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.341)
+   95.0% CI   : (NA, 0.340)
 delta  [Fix]  : 1.000
 
 Coefficients:
                   Estimate  Std. Error t value Pr(>|t|)  
-(Intercept)     2.21028019  1.04774681  2.1096  0.04154 *
-Floral_display -0.00029006  0.00033767 -0.8590  0.39571  
+(Intercept)     2.20570661  1.04478422  2.1112  0.04139 *
+Floral_display -0.00028641  0.00033820 -0.8469  0.40238  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.4422 on 38 degrees of freedom
+Residual standard error: 0.4423 on 38 degrees of freedom
   (58 observations deleted due to missingness)
-Multiple R-squared: 0.01905,	Adjusted R-squared: -0.006765 
-F-statistic: 0.7379 on 1 and 38 DF,  p-value: 0.3957 
+Multiple R-squared: 0.01852,	Adjusted R-squared: -0.007305 
+F-statistic: 0.7172 on 1 and 38 DF,  p-value: 0.4024 
 
 Call:
 pgls(formula = VPOL ~ CHROMA, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--2.23378 -0.05962 -0.02075  0.03275  0.77943 
+-1.44414 -0.08471 -0.00372  0.05282  0.99908 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.112
-   lower bound : 0.000, p = 0.095266
+lambda [ ML]  : 0.111
+   lower bound : 0.000, p = 0.095998
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.306)
+   95.0% CI   : (NA, 0.304)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
-(Intercept)  0.88005    1.67560  0.5252   0.6010
-CHROMA       0.30945    0.94076  0.3289   0.7431
+(Intercept)  0.88603    1.67573  0.5287   0.5985
+CHROMA       0.30632    0.94069  0.3256   0.7456
 
 Residual standard error: 0.3226 on 76 degrees of freedom
   (20 observations deleted due to missingness)
-Multiple R-squared: 0.001422,	Adjusted R-squared: -0.01172 
-F-statistic: 0.1082 on 1 and 76 DF,  p-value: 0.7431 
+Multiple R-squared: 0.001393,	Adjusted R-squared: -0.01175 
+F-statistic: 0.106 on 1 and 76 DF,  p-value: 0.7456 
 
 Call:
 pgls(formula = VPOL ~ UV_Chroma, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.82425 -0.06556 -0.00883  0.05110  2.21857 
+-0.79329 -0.06838 -0.01005  0.04652  2.20032 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.111
-   lower bound : 0.000, p = 0.093143
+lambda [ ML]  : 0.110
+   lower bound : 0.000, p = 0.093466
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.309)
+   95.0% CI   : (NA, 0.307)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)  
-(Intercept)   1.6100     0.7806  2.0625  0.04258 *
-UV_Chroma    -2.4125     5.1913 -0.4647  0.64346  
+(Intercept)  1.61343    0.78005  2.0684  0.04201 *
+UV_Chroma   -2.43774    5.18987 -0.4697  0.63991  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 0.3224 on 76 degrees of freedom
   (20 observations deleted due to missingness)
-Multiple R-squared: 0.002834,	Adjusted R-squared: -0.01029 
-F-statistic: 0.216 on 1 and 76 DF,  p-value: 0.6435 
+Multiple R-squared: 0.002895,	Adjusted R-squared: -0.01023 
+F-statistic: 0.2206 on 1 and 76 DF,  p-value: 0.6399 
 
 Call:
 pgls(formula = VPOL ~ Green_Contrast, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--1.54584 -0.13751 -0.02134  0.02100  0.46102 
+-1.50582 -0.07919  0.00034  0.04312  0.56882 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.099
-   lower bound : 0.000, p = 0.13835
+lambda [ ML]  : 0.098
+   lower bound : 0.000, p = 0.13951
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.296)
+   95.0% CI   : (NA, 0.294)
 delta  [Fix]  : 1.000
 
 Coefficients:
                Estimate Std. Error t value Pr(>|t|)
-(Intercept)     0.78828    1.00141  0.7872   0.4336
-Green_Contrast  3.14971    4.22730  0.7451   0.4585
+(Intercept)      0.7899     1.0014  0.7888   0.4327
+Green_Contrast   3.1431     4.2279  0.7434   0.4595
 
 Residual standard error: 0.3212 on 76 degrees of freedom
   (20 observations deleted due to missingness)
-Multiple R-squared: 0.007252,	Adjusted R-squared: -0.005811 
-F-statistic: 0.5552 on 1 and 76 DF,  p-value: 0.4585 
+Multiple R-squared: 0.007219,	Adjusted R-squared: -0.005844 
+F-statistic: 0.5526 on 1 and 76 DF,  p-value: 0.4595 
 
 Call:
 pgls(formula = VPOL ~ Brightness_Contrast, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--1.54792 -0.15370 -0.02687  0.03761  0.44825 
+-0.78036 -0.06548  0.00080  0.05777  2.22298 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.112
-   lower bound : 0.000, p = 0.096637
+lambda [ ML]  : 0.111
+   lower bound : 0.000, p = 0.097141
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.307)
+   95.0% CI   : (NA, 0.305)
 delta  [Fix]  : 1.000
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)
-(Intercept)          1.64260    1.03355  1.5893   0.1162
-Brightness_Contrast -0.50735    1.66539 -0.3046   0.7615
+(Intercept)          1.64673    1.03442  1.5919   0.1156
+Brightness_Contrast -0.51279    1.66651 -0.3077   0.7591
 
 Residual standard error: 0.3227 on 76 degrees of freedom
   (20 observations deleted due to missingness)
-Multiple R-squared: 0.00122,	Adjusted R-squared: -0.01192 
-F-statistic: 0.09281 on 1 and 76 DF,  p-value: 0.7615 
+Multiple R-squared: 0.001244,	Adjusted R-squared: -0.0119 
+F-statistic: 0.09468 on 1 and 76 DF,  p-value: 0.7591 
 
 Call:
 pgls(formula = VPOL ~ Reflectance_amplitude, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--1.53704 -0.10624 -0.01422  0.04876  0.44755 
+-1.44936 -0.09264 -0.01142  0.03868  0.97157 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.103
-   lower bound : 0.000, p = 0.13404
+lambda [ ML]  : 0.102
+   lower bound : 0.000, p = 0.13497
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.301)
+   95.0% CI   : (NA, 0.299)
 delta  [Fix]  : 1.000
 
 Coefficients:
                       Estimate Std. Error t value Pr(>|t|)
-(Intercept)            1.15516    1.25169  0.9229   0.3590
-Reflectance_amplitude  0.82206    3.89046  0.2113   0.8332
+(Intercept)            1.15719    1.25218  0.9241   0.3583
+Reflectance_amplitude  0.81755    3.89141  0.2101   0.8342
 
 Residual standard error: 0.3224 on 76 degrees of freedom
   (20 observations deleted due to missingness)
-Multiple R-squared: 0.0005871,	Adjusted R-squared: -0.01256 
-F-statistic: 0.04465 on 1 and 76 DF,  p-value: 0.8332 
+Multiple R-squared: 0.0005804,	Adjusted R-squared: -0.01257 
+F-statistic: 0.04414 on 1 and 76 DF,  p-value: 0.8342 
 
 Call:
 pgls(formula = VPOL ~ Chromatic_contrast, data = color, lambda = "ML")
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--1.41256 -0.09284 -0.01727  0.05845  0.76798 
+-0.74414 -0.07757 -0.02832  0.03918  2.20724 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.103
-   lower bound : 0.000, p = 0.1086
+lambda [ ML]  : 0.102
+   lower bound : 0.000, p = 0.11024
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (NA, 0.295)
+   95.0% CI   : (NA, 0.293)
 delta  [Fix]  : 1.000
 
 Coefficients:
                      Estimate Std. Error t value Pr(>|t|)
-(Intercept)        -0.0091737  1.2388237 -0.0074   0.9941
-Chromatic_contrast  5.9767139  4.6294373  1.2910   0.2006
+(Intercept)        -0.0035594  1.2387826 -0.0029   0.9977
+Chromatic_contrast  5.9506371  4.6276102  1.2859   0.2024
 
 Residual standard error: 0.319 on 76 degrees of freedom
   (20 observations deleted due to missingness)
-Multiple R-squared: 0.02146,	Adjusted R-squared: 0.008585 
-F-statistic: 1.667 on 1 and 76 DF,  p-value: 0.2006 
+Multiple R-squared: 0.02129,	Adjusted R-squared: 0.008416 
+F-statistic: 1.654 on 1 and 76 DF,  p-value: 0.2024 
 
 Call:
 pgls(formula = SIZ ~ CHROMA, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.8261 -0.6414  0.0174  0.5756  2.7648 
+-3.9556 -0.6856  0.0099  0.6327  4.4073 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.233
-   lower bound : 0.000, p = 0.0073562
+lambda [ ML]  : 0.224
+   lower bound : 0.000, p = 0.008153
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.044, 0.494)
+   95.0% CI   : (0.041, 0.479)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value  Pr(>|t|)    
-(Intercept) 19.55256    4.77077  4.0984 8.887e-05 ***
-CHROMA      -0.51488    2.43973 -0.2110    0.8333    
+(Intercept) 19.65315    4.76007  4.1288 7.952e-05 ***
+CHROMA      -0.55749    2.44028 -0.2285    0.8198    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.138 on 93 degrees of freedom
+Residual standard error: 1.137 on 93 degrees of freedom
   (3 observations deleted due to missingness)
-Multiple R-squared: 0.0004787,	Adjusted R-squared: -0.01027 
-F-statistic: 0.04454 on 1 and 93 DF,  p-value: 0.8333 
+Multiple R-squared: 0.0005609,	Adjusted R-squared: -0.01019 
+F-statistic: 0.05219 on 1 and 93 DF,  p-value: 0.8198 
 
 Call:
 pgls(formula = SIZ ~ UV_Chroma, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.5283 -0.6878 -0.1327  0.4502  3.2805 
+-2.9035 -0.5470  0.0346  0.7997  3.8669 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.239
-   lower bound : 0.000, p = 0.0043555
+lambda [ ML]  : 0.230
+   lower bound : 0.000, p = 0.0048376
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.052, 0.500)
+   95.0% CI   : (0.049, 0.486)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value  Pr(>|t|)    
-(Intercept)  19.2791     3.0469  6.3273 8.654e-09 ***
-UV_Chroma    -5.9484    16.6605 -0.3570    0.7219    
+(Intercept)  19.3132     3.0219  6.3911 6.481e-09 ***
+UV_Chroma    -5.9924    16.6585 -0.3597    0.7199    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.139 on 93 degrees of freedom
+Residual standard error: 1.138 on 93 degrees of freedom
   (3 observations deleted due to missingness)
-Multiple R-squared: 0.001369,	Adjusted R-squared: -0.009369 
-F-statistic: 0.1275 on 1 and 93 DF,  p-value: 0.7219 
+Multiple R-squared: 0.001389,	Adjusted R-squared: -0.009348 
+F-statistic: 0.1294 on 1 and 93 DF,  p-value: 0.7199 
 
 Call:
 pgls(formula = SIZ ~ Green_Contrast, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.2035 -0.7445 -0.1269  0.5106  3.3248 
+-2.1893 -0.8593  0.0779  0.6523  5.1481 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.201
-   lower bound : 0.000, p = 0.014802
+lambda [ ML]  : 0.195
+   lower bound : 0.000, p = 0.015689
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.027, 0.459)
+   95.0% CI   : (0.025, 0.448)
 delta  [Fix]  : 1.000
 
 Coefficients:
                Estimate Std. Error t value  Pr(>|t|)    
-(Intercept)     13.6646     3.4514  3.9592 0.0001471 ***
-Green_Contrast  26.5785    13.1703  2.0181 0.0464648 *  
+(Intercept)      13.613      3.447  3.9494 0.0001523 ***
+Green_Contrast   26.879     13.188  2.0382 0.0443737 *  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 1.106 on 93 degrees of freedom
   (3 observations deleted due to missingness)
-Multiple R-squared: 0.04195,	Adjusted R-squared: 0.03165 
-F-statistic: 4.073 on 1 and 93 DF,  p-value: 0.04646 
+Multiple R-squared: 0.04276,	Adjusted R-squared: 0.03246 
+F-statistic: 4.154 on 1 and 93 DF,  p-value: 0.04437 
 
 Call:
 pgls(formula = SIZ ~ Brightness_Contrast, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--3.6074 -0.6701  0.0084  0.7567  2.9617 
+-3.1037 -0.7549 -0.0336  0.5811  3.4720 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.219
-   lower bound : 0.000, p = 0.011109
+lambda [ ML]  : 0.212
+   lower bound : 0.000, p = 0.012064
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.035, 0.480)
+   95.0% CI   : (0.032, 0.467)
 delta  [Fix]  : 1.000
 
 Coefficients:
                     Estimate Std. Error t value  Pr(>|t|)    
-(Intercept)          15.6947     3.5526  4.4178 2.693e-05 ***
-Brightness_Contrast   5.9970     5.0516  1.1871    0.2382    
+(Intercept)          15.6612     3.5440  4.4191 2.679e-05 ***
+Brightness_Contrast   6.0913     5.0539  1.2053    0.2312    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.126 on 93 degrees of freedom
+Residual standard error: 1.125 on 93 degrees of freedom
   (3 observations deleted due to missingness)
-Multiple R-squared: 0.01493,	Adjusted R-squared: 0.004335 
-F-statistic: 1.409 on 1 and 93 DF,  p-value: 0.2382 
+Multiple R-squared: 0.01538,	Adjusted R-squared: 0.004793 
+F-statistic: 1.453 on 1 and 93 DF,  p-value: 0.2312 
 
 Call:
 pgls(formula = SIZ ~ Reflectance_amplitude, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--2.2327 -0.6589  0.0537  0.7476  3.5808 
+-3.3907 -0.7440 -0.0968  0.5571  4.5344 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.196
-   lower bound : 0.000, p = 0.024961
+lambda [ ML]  : 0.190
+   lower bound : 0.000, p = 0.026651
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.017, 0.458)
+   95.0% CI   : (0.015, 0.446)
 delta  [Fix]  : 1.000
 
 Coefficients:
                       Estimate Std. Error t value Pr(>|t|)   
-(Intercept)            12.0815     4.0867  2.9563 0.003946 **
-Reflectance_amplitude  23.7041    11.9355  1.9860 0.049975 * 
+(Intercept)            12.0246     4.0814  2.9462 0.004066 **
+Reflectance_amplitude  23.9368    11.9419  2.0044 0.047931 * 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 1.106 on 93 degrees of freedom
   (3 observations deleted due to missingness)
-Multiple R-squared: 0.04069,	Adjusted R-squared: 0.03037 
-F-statistic: 3.944 on 1 and 93 DF,  p-value: 0.04997 
+Multiple R-squared: 0.04141,	Adjusted R-squared: 0.03111 
+F-statistic: 4.018 on 1 and 93 DF,  p-value: 0.04793 
 
 Call:
 pgls(formula = SIZ ~ Chromatic_contrast, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--3.3200 -0.9413 -0.1604  0.4735  2.8833 
+-3.6279 -0.7706 -0.0715  0.6197  2.3972 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 0.235
-   lower bound : 0.000, p = 0.0037332
+lambda [ ML]  : 0.227
+   lower bound : 0.000, p = 0.0041919
    upper bound : 1.000, p = < 2.22e-16
-   95.0% CI   : (0.054, 0.488)
+   95.0% CI   : (0.051, 0.474)
 delta  [Fix]  : 1.000
 
 Coefficients:
                    Estimate Std. Error t value  Pr(>|t|)    
-(Intercept)         15.4836     4.1026  3.7741 0.0002825 ***
-Chromatic_contrast  14.5484    14.4769  1.0049 0.3175346    
+(Intercept)         15.5319     4.0941  3.7937 0.0002639 ***
+Chromatic_contrast  14.4195    14.4802  0.9958 0.3219256    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 1.132 on 93 degrees of freedom
   (3 observations deleted due to missingness)
-Multiple R-squared: 0.01074,	Adjusted R-squared: 0.0001053 
-F-statistic:  1.01 on 1 and 93 DF,  p-value: 0.3175 
+Multiple R-squared: 0.01055,	Adjusted R-squared: -8.893e-05 
+F-statistic: 0.9916 on 1 and 93 DF,  p-value: 0.3219 
 
 Call:
 pgls(formula = Floral_display ~ CHROMA, data = color, lambda = "ML")
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--688.90  -91.53   25.74   83.85 1352.08 
+     Min       1Q   Median       3Q      Max 
+-1491.60   -93.34    14.42    92.54  1078.92 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
 lambda [ ML]  : 1.000
-   lower bound : 0.000, p = 0.0014054
+   lower bound : 0.000, p = 0.0060361
    upper bound : 1.000, p = 1    
-   95.0% CI   : (0.969, NA)
+   95.0% CI   : (0.978, NA)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
-(Intercept)   716.31    1620.52  0.4420   0.6609
-CHROMA        176.21     504.16  0.3495   0.7285
+(Intercept)   505.16    1730.00  0.2920   0.7718
+CHROMA        229.44     549.77  0.4173   0.6787
 
-Residual standard error: 334.8 on 40 degrees of freedom
+Residual standard error: 353.7 on 40 degrees of freedom
   (56 observations deleted due to missingness)
-Multiple R-squared: 0.003045,	Adjusted R-squared: -0.02188 
-F-statistic: 0.1222 on 1 and 40 DF,  p-value: 0.7285 
+Multiple R-squared: 0.004335,	Adjusted R-squared: -0.02056 
+F-statistic: 0.1742 on 1 and 40 DF,  p-value: 0.6787 
 
 Call:
 pgls(formula = Floral_display ~ UV_Chroma, data = color, lambda = "ML")
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--687.38  -94.33   -3.51   79.50 1357.37 
+-1504.6   -65.5     3.1   105.7  1076.3 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
 lambda [ ML]  : 1.000
-   lower bound : 0.000, p = 0.0014878
+   lower bound : 0.000, p = 0.0066974
    upper bound : 1.000, p = 1    
-   95.0% CI   : (0.972, NA)
+   95.0% CI   : (0.979, NA)
 delta  [Fix]  : 1.000
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
-(Intercept)  1062.76    1373.88  0.7735   0.4437
-UV_Chroma    -372.24    1939.77 -0.1919   0.8488
+(Intercept)   924.42    1450.45  0.6373   0.5275
+UV_Chroma    -173.44    1688.10 -0.1027   0.9187
 
-Residual standard error: 335.2 on 40 degrees of freedom
+Residual standard error: 354.4 on 40 degrees of freedom
   (56 observations deleted due to missingness)
-Multiple R-squared: 0.0009198,	Adjusted R-squared: -0.02406 
-F-statistic: 0.03682 on 1 and 40 DF,  p-value: 0.8488 
+Multiple R-squared: 0.0002638,	Adjusted R-squared: -0.02473 
+F-statistic: 0.01056 on 1 and 40 DF,  p-value: 0.9187 
 
 Call:
 pgls(formula = Floral_display ~ Green_Contrast, data = color, 
@@ -1205,26 +1203,28 @@ pgls(formula = Floral_display ~ Green_Contrast, data = color,
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--689.26  -89.21    4.95   76.03 1362.54 
+-273.43  -40.63   32.09  150.53  816.59 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 1.000
-   lower bound : 0.000, p = 0.0031301
+lambda [ ML]  : 0.404
+   lower bound : 0.000, p = 0.15154
    upper bound : 1.000, p = 1    
-   95.0% CI   : (0.968, NA)
+   95.0% CI   : (NA, NA)
 delta  [Fix]  : 1.000
 
 Coefficients:
-               Estimate Std. Error t value Pr(>|t|)
-(Intercept)     1090.01    1379.20  0.7903   0.4340
-Green_Contrast  -384.97    1390.57 -0.2768   0.7833
+               Estimate Std. Error t value Pr(>|t|)  
+(Intercept)     1943.34     940.43  2.0664   0.0453 *
+Green_Contrast -5302.91    3676.68 -1.4423   0.1570  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 335 on 40 degrees of freedom
+Residual standard error: 213.7 on 40 degrees of freedom
   (56 observations deleted due to missingness)
-Multiple R-squared: 0.001912,	Adjusted R-squared: -0.02304 
-F-statistic: 0.07664 on 1 and 40 DF,  p-value: 0.7833 
+Multiple R-squared: 0.04944,	Adjusted R-squared: 0.02567 
+F-statistic:  2.08 on 1 and 40 DF,  p-value: 0.157 
 
 Call:
 pgls(formula = Floral_display ~ Brightness_Contrast, data = color, 
@@ -1232,26 +1232,28 @@ pgls(formula = Floral_display ~ Brightness_Contrast, data = color,
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--736.54 -104.50   -5.53   57.34 1311.83 
+-409.27  -61.16   10.71   86.48  659.65 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 1.000
-   lower bound : 0.000, p = 0.01995
+lambda [ ML]  : 0.150
+   lower bound : 0.000, p = 0.81318
    upper bound : 1.000, p = 1    
-   95.0% CI   : (0.578, NA)
+   95.0% CI   : (NA, NA)
 delta  [Fix]  : 1.000
 
 Coefficients:
-                    Estimate Std. Error t value Pr(>|t|)
-(Intercept)           1790.9     1427.4  1.2547   0.2169
-Brightness_Contrast  -1911.1     1318.4 -1.4496   0.1550
+                    Estimate Std. Error t value Pr(>|t|)   
+(Intercept)          2833.51     866.83  3.2688 0.002224 **
+Brightness_Contrast -3924.01    1583.28 -2.4784 0.017515 * 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 326.9 on 40 degrees of freedom
+Residual standard error: 194.1 on 40 degrees of freedom
   (56 observations deleted due to missingness)
-Multiple R-squared: 0.04991,	Adjusted R-squared: 0.02616 
-F-statistic: 2.101 on 1 and 40 DF,  p-value: 0.155 
+Multiple R-squared: 0.1331,	Adjusted R-squared: 0.1114 
+F-statistic: 6.142 on 1 and 40 DF,  p-value: 0.01751 
 
 Call:
 pgls(formula = Floral_display ~ Reflectance_amplitude, data = color, 
@@ -1259,50 +1261,52 @@ pgls(formula = Floral_display ~ Reflectance_amplitude, data = color,
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--685.51  -93.73   13.74   87.15 1369.59 
+-602.19  -41.52   23.29   99.40  859.20 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
-lambda [ ML]  : 1.000
-   lower bound : 0.000, p = 0.0034
+lambda [ ML]  : 0.480
+   lower bound : 0.000, p = 0.13678
    upper bound : 1.000, p = 1    
-   95.0% CI   : (0.965, NA)
+   95.0% CI   : (NA, NA)
 delta  [Fix]  : 1.000
 
 Coefficients:
-                      Estimate Std. Error t value Pr(>|t|)
-(Intercept)            1230.19    1498.66  0.8209   0.4166
-Reflectance_amplitude  -833.79    2571.82 -0.3242   0.7475
+                      Estimate Std. Error t value Pr(>|t|)  
+(Intercept)             2442.7     1189.0  2.0545   0.0465 *
+Reflectance_amplitude  -5736.2     3721.1 -1.5415   0.1311  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 334.9 on 40 degrees of freedom
+Residual standard error: 218.1 on 40 degrees of freedom
   (56 observations deleted due to missingness)
-Multiple R-squared: 0.002621,	Adjusted R-squared: -0.02231 
-F-statistic: 0.1051 on 1 and 40 DF,  p-value: 0.7475 
+Multiple R-squared: 0.05608,	Adjusted R-squared: 0.03248 
+F-statistic: 2.376 on 1 and 40 DF,  p-value: 0.1311 
 
 Call:
 pgls(formula = Floral_display ~ Chromatic_contrast, data = color, 
     lambda = "ML")
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--704.20  -94.33    1.96   67.69 1292.80 
+     Min       1Q   Median       3Q      Max 
+-1461.53  -143.01     8.95   123.08  1080.81 
 
 Branch length transformations:
 
 kappa  [Fix]  : 1.000
 lambda [ ML]  : 1.000
-   lower bound : 0.000, p = 0.00072626
+   lower bound : 0.000, p = 0.003221
    upper bound : 1.000, p = 1    
-   95.0% CI   : (0.963, NA)
+   95.0% CI   : (0.975, NA)
 delta  [Fix]  : 1.000
 
 Coefficients:
                    Estimate Std. Error t value Pr(>|t|)
-(Intercept)          496.76    1457.69  0.3408   0.7350
-Chromatic_contrast  2390.03    2535.45  0.9426   0.3515
+(Intercept)          352.78    1545.52  0.2283   0.8206
+Chromatic_contrast  2515.56    2712.51  0.9274   0.3593
 
-Residual standard error: 331.7 on 40 degrees of freedom
+Residual standard error: 350.7 on 40 degrees of freedom
   (56 observations deleted due to missingness)
-Multiple R-squared: 0.02173,	Adjusted R-squared: -0.002725 
-F-statistic: 0.8886 on 1 and 40 DF,  p-value: 0.3515 
+Multiple R-squared: 0.02105,	Adjusted R-squared: -0.003425 
+F-statistic: 0.8601 on 1 and 40 DF,  p-value: 0.3593 
