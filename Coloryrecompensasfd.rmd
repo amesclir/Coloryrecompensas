@@ -10,7 +10,8 @@ editor_options:
 
 ```{r, echo = F}
 
-devtools::install_github("jinyizju/V.PhyloMaker")
+#devtools::install_github("jinyizju/V.PhyloMaker")
+library(ape)
 library(V.PhyloMaker)
 
 ```
@@ -343,7 +344,7 @@ sink(NULL)
 Cathegorical variables
 
 ```{r,  echo = F}
-
+View(mydata)
 sink("new_results_cathegorical.txt")
 
      lambda.resulth0 <- pgls(MSUG ~ SIM, color, lambda = "ML")
